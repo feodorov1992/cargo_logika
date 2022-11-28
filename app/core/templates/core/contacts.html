@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% block content %}{% load static %}
+<div id="content" class="no_main">
+	<h1>Контакты</h1>
+    <div id="doc_links">
+        <a class="link" href="tel:+74954450367">
+            <div class="doc_img">
+                <img src="{% static '/img/phone.svg' %}" alt="Телефон">
+            </div>
+            <div class="doc_label">+7 (495) 445-03-67</div>
+        </a>
+        <a class="link" href="mailto:info@cargo-logika.ru">
+            <div class="doc_img">
+                <img src="{% static '/img/email.svg' %}" alt="E-mail">
+            </div>
+            <div class="doc_label">info@cargo-logika.ru</div>
+        </a>
+        <a class="link" target="_blank" href="https://yandex.ru/maps/-/CCUF56wh9B">
+            <div class="doc_img">
+                <img src="{% static '/img/addr.svg' %}" alt="Адрес">
+            </div>
+            <div class="doc_label">г. Москва, ул. Промышленная, д. 11А, стр. 47</div>
+        </a>
+    </div>
+</div>
+<div style="width: 100%;">
+	<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0e08bf3a39e8027e467a236ad98a7e84ca8757a68fd57d6b951d23bc98524725&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+import os
+import sys
+
+import pdfkit
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
+from app import settings
+
+
+class PDFGenerator:
+    OPENED_FILES = list()
+
+    def __init__(self, output_name):
+        self.filename = output_name if output_name.endswith('pdf') else f'{output_name}.pdf'
+        self.temp_file_path = os.path.join(settings.MEDIA_ROOT, self.filename)
+        self.temp_file_path = os.path.normpath(self.temp_file_path)
+        self.context = {'filename': self.filename}
+
+    def response(self, template_name, context):
+        self.context.update(context)
+        pdf = self.file(self.temp_file_path, template_name, self.context)
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        return response
+
+    def file(self, file_path, template_name, context):
+        html = render_to_string(template_name, context)
+        options = {
+            "enable-local-file-access": True,
+            "margin-top": "11mm",
+            "margin-bottom": "11mm",
+            "margin-left": "11mm",
+            "margin-right": "11mm"
+        }
+        pdfkit.from_string(html, file_path, options=options, verbose=True)
+        file = open(file_path, 'rb')
+        self.OPENED_FILES.append(file)
+        return file
+
+    def __del__(self):
+        for file in self.OPENED_FILES:
+            file.close()
+        if os.path.exists(self.temp_file_path):
+            os.remove(self.temp_file_path)

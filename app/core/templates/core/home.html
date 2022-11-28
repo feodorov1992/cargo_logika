@@ -1,0 +1,146 @@
+{% extends 'core/base.html' %}
+{% block content %}{% load static %}
+<div id="header">
+    <div id="header_content">
+        <div id="plates">
+            <a href="/calc">
+                <div class="dark_plate">
+                    <h1>Запросить стоимость</h1>
+                    <div class="row">
+                        <p>Узнать ориентировочную стоимость вашего отправления - быстро и легко</p>
+                        <div class="next_btn">
+                            <img src="{% static '/img/next.svg' %}">
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/order">
+                <div class="dark_plate green">
+                    <h1>Оформить заявку</h1>
+                    <div class="row">
+                        <p>Выберите все нужное вам, мы сделаем остальное</p>
+                        <div class="next_btn" style="" >
+                            <img src="{% static '/img/next.svg' %}">
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="dark_plate">
+                <h1>Отследить груз</h1>
+				<p>Проверить статус доставки онлайн</p>
+                <form id="status_form">
+                    <input type="text" placeholder="Введите номер заявки" name="order_num" id="order_num">
+                    <button type="submit">
+                        <img src="{% static '/img/next.svg' %}">
+                    </button>
+                </form>
+            </div>
+            <a href="/feedback">
+                <div class="dark_plate">
+                    <h1>Обратная связь</h1>
+                    <div class="row">
+                        <p>Мы становимся лучше благодаря вам и ради вас</p>
+                        <div class="next_btn">
+                            <img src="{% static '/img/next.svg' %}">
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <h1>Наши услуги</h1>
+    <div id="services">
+        <div class="service">
+            <div class="landing_img">
+                <img src="{% static '/img/icons/1.svg' %}">
+            </div>
+            <div>
+                <h3>Автоперевозки сборных грузов</h3>
+				<p>По всей России и странам СНГ</p>
+            </div>
+        </div>
+        <div class="service">
+            <div class="landing_img">
+                <img src="{% static '/img/icons/2.svg' %}">
+            </div>
+            <div>
+                <h3>Отдельные машины</h3>
+				<p>Объемом от 10 до 120м3</p>
+            </div>
+        </div>
+        <div class="service">
+            <div class="landing_img">
+                <img src="{% static '/img/icons/3.svg' %}">
+            </div>
+            <div>
+                <h3>Погрузочно-разгрузочные работы</h3>
+				<p>Любой сложности</p>
+            </div>
+        </div>
+        <div class="service">
+            <div class="landing_img">
+                <img src="{% static '/img/icons/4.svg' %}">
+            </div>
+            <div>
+				<h3>Авиаперевозки</h3>
+				<p>Доставка от 24 часов</p>
+            </div>
+        </div>
+        <div class="service">
+            <div class="landing_img">
+                <img src="{% static '/img/icons/5.svg' %}">
+            </div>
+            <div>
+                <h3>Железнодорожные перевозки</h3>
+				<p>Грузовая и пассажирская скорость</p>
+            </div>
+        </div>
+        <div class="service">
+            <div class="landing_img">
+                <img src="{% static '/img/icons/6.svg' %}">
+            </div>
+            <div>
+                <h3>Международные перевозки</h3>
+				<p>Всеми видами транспорта</p>
+            </div>
+        </div>
+        <div class="service">
+            <div class="landing_img">
+                <img src="{% static '/img/icons/7.svg' %}">
+            </div>
+            <div>
+                <h3>Таможенное оформление</h3>
+				<p>По всему миру</p>
+            </div>
+        </div>
+        <div class="service">
+            <div class="landing_img">
+                <img src="{% static '/img/icons/8.svg' %}">
+            </div>
+            <div>
+                <h3>Ответственное хранение</h3>
+				<p>Все виды терминальной обработки</p>
+            </div>
+        </div>
+    </div>
+    <div id="alert">
+        <div>
+            <div id="alert_label" class="dark_plate">
+                <h2>Статус заявки №<span id="order_num_out"></span></h2>
+                <div class="row">
+                    <p id="status_output"></p>
+                </div>
+            </div>
+            <div id="cross">
+                <svg version="1.1" baseProfile="full" viewBox="-5 -5 20 20"xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" x2="10" y1="0" y2="10" stroke-width="2"/>
+                    <line x1="10" x2="0" y1="0" y2="10" stroke-width="2"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static '/js/status.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block content %}{% load static %}
+<div id="content" class="no_main">
+	<h1>Документы</h1>
+    <div id="doc_links">
+        <a class="link" target="_blank" href="{% static '/docs/Реквизиты ООО КАРГО ЛОГИКА.pdf' %}">
+            <div class="doc_img">
+                <img src="{% static '/img/doc.svg' %}" alt="Документ">
+            </div>
+            <div class="doc_label">Реквизиты</div>
+        </a>
+        <a class="link" target="_blank" href="{% static '/docs/Договор ООО КАРГО ЛОГИКА о ТЭО.pdf' %}">
+            <div class="doc_img">
+                <img src="{% static '/img/doc.svg' %}" alt="Документ">
+            </div>
+            <div class="doc_label">Договор ТЭО</div>
+        </a>
+        <a class="link" target="_blank" href="{% static '/docs/Поручение экспедитору КАРГО ЛОГИКА (образец).pdf' %}">
+            <div class="doc_img">
+                <img src="{% static '/img/doc.svg' %}" alt="Документ">
+            </div>
+            <div class="doc_label">Образец поручения экспедитору</div>
+        </a>
+    </div>
+</div>
+{% endblock %}
