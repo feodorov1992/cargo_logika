@@ -23,16 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.environ.get('DEBUG', 1)))
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
 ALLOWED_HOSTS = []
 ALLOWED_HOSTS.extend(
     filter(
         None,
-        os.environ.get('ALLOWED_HOSTS', '').split(','),
+        os.environ.get('ALLOWED_HOSTS', '').split(),
     )
 )
-
+CSRF_TRUSTED_ORIGINS = [f'https://{i}' for i in ALLOWED_HOSTS]
 # Application definition
 
 INSTALLED_APPS = [
@@ -174,4 +174,5 @@ MAIN_PHONE = os.environ.get('MAIN_PHONE')
 MAIN_PHONE_RAW = ''.join(filter(lambda x: x.isnumeric(), MAIN_PHONE))
 FACT_ADDRESS = os.environ.get('FACT_ADDRESS')
 YANDEX_MAPS_LINK = os.environ.get('YANDEX_MAPS_LINK')
+YANDEX_MAPS_API_LINK = os.environ.get('YANDEX_MAPS_API_LINK')
 INITIAL_ORDER_NUMBER = int(os.environ.get('INITIAL_ORDER_NUMBER'))

@@ -8,4 +8,5 @@ def app_settings(request):
         'MAIN_PHONE_RAW': settings.MAIN_PHONE_RAW,
         'FACT_ADDRESS': settings.FACT_ADDRESS,
         'YANDEX_MAPS_LINK': settings.YANDEX_MAPS_LINK,
+        'YANDEX_MAPS_API_LINK': settings.YANDEX_MAPS_API_LINK,
     }}

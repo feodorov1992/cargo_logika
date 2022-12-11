@@ -217,7 +217,7 @@ class Order(models.Model):
             raise ValidationError(errors)
 
     def send_creation_email(self, mail_type='admin'):
-        subject = _('New order No.') + self.order_number
+        subject = _('New order No.') + str(self.order_number)
         from_email = 'order@cargo-logika.ru'
         if mail_type == 'admin':
             template_name = 'logistics/mail/order_admin'

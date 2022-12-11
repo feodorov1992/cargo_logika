@@ -169,6 +169,7 @@ class OrderAdmin(admin.ModelAdmin):
             )
         else:
             self.send_accounts_email(queryset, request.user)
+            queryset.update(accounts_email_sent=True)
             self.message_user(
                 request,
                 _('Accounts manager ordered to issue bills')
