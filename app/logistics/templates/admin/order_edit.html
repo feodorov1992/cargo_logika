@@ -1,5 +1,5 @@
 {% extends 'admin/change_form.html' %}
 {% block object-tools %}{% load i18n %}
-    {% if adminform.form.instance %}<a href="{% url 'receipt' order_pk=adminform.form.instance.pk filename=adminform.form.instance.receipt_filename %}" target="_blank">{% trans 'Download receipt' %}</a>{% endif %} %}
+    {% if adminform.form.instance %}<a href="{% url 'receipt' order_pk=adminform.form.instance.pk filename=adminform.form.instance.receipt_filename %}" target="_blank">{% trans 'Download receipt' %}</a>{% endif %}
     {{ block.super }}
 {% endblock %}
