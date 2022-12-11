@@ -1,0 +1,24 @@
+<table>
+    <tr>
+        <th>{{ fields.sub_name.label_tag }}</th>
+        <td>{{ fields.sub_name.errors }}{{ fields.sub_name }}</td>
+    </tr>
+    <tr id="not_full">
+        <th></th>
+        <td>Пожалуйста, введите хотя бы один контакт!</td>
+    </tr>
+    <tr>
+        <th>{{ fields.sub_phone.label_tag }}</th>
+        <td>{{ fields.sub_phone.errors }}{{ fields.sub_phone }}</td>
+    </tr>
+    <tr>
+        <th>{{ fields.sub_email.label_tag }}</th>
+        <td>{{ fields.sub_email.errors }}{{ fields.sub_email }}</td>
+    </tr>
+    <tr>
+        <td colspan="2">{{ fields.sub_title.label_tag }}{{ fields.sub_title.errors }}{{ fields.sub_title }}</td>
+    </tr>
+    <tr>
+        <td colspan="2">{{ fields.sub_body.label_tag }}{{ fields.sub_body.errors }}{{ fields.sub_body }}</td>
+    </tr>
+</table>

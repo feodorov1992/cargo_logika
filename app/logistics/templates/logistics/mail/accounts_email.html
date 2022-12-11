@@ -1,0 +1,50 @@
+{% extends 'mailer/base_wide.html' %}{% load i18n %}
+{% block mail_header %}{% trans 'Request for bills issue' %}{% endblock %}
+{% block mail_content %}
+    <table>
+        <tr>
+            <td width="100%" style="width: 100%">
+                <b>{{ user.first_name }} {{ user.last_name }}</b> {% trans 'has sent you the request to issue following bills:' %}
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" style="width: 100%">
+                <table style="background: #fafafa; border-collapse: collapse; border: 1px solid #452f7f; border-radius: 3px">
+                    <thead>
+                        <tr>
+                            <th style="white-space: nowrap; border: none; padding: 5px; background: #d27100; color: #fafafa">{% trans 'Bill #' %}</th>
+                            <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Bill date' %}</th>
+                            <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Service name' %}</th>
+                            <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Price, RUB' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in queryset %}
+                        <tr style="text-align: start">
+                            <td style="border: 1px solid #452f7f; padding: 5px">{{ order.order_number }}</td>
+                            <td style="border: 1px solid #452f7f; padding: 5px">{% if order.bill_date %}{{ order.bill_date|date:"d.m.Y" }}{% elif order.delivery_date|date:"d.m.Y" %}{{ order.delivery_date|date:"d.m.Y" }}{% else %}-{% endif %}</td>
+                            <td style="border: 1px solid #452f7f; padding: 5px">
+                                {% trans 'Forwarding services' %} {{ order.sender_addr }} - {{ order.receiver_addr }}
+                                {% if order.load_unload %}{% trans 'with loading and unloading operations' %}{% endif %}
+                                {% trans 'under contract No.' %}{{ order.contract }}
+                                ({% trans 'Receipt No.' %} {{ order.order_number }}{% if order.cargo_spaces %}, {% trans 'Num. of places' %} {{ order.cargo_spaces }}{% endif %}{% if order.cargo_volume %}, {{ order.cargo_volume }} {% trans 'm' %}&sup3;{% endif %})
+                            </td>
+                            <td style="border: 1px solid #452f7f; padding: 5px">
+                                {{ order.order_price }}
+                            </td>
+                        </tr>
+                        {% if order.insurance %}
+                        <tr style="text-align: start">
+                            <td style="border: 1px solid #452f7f; padding: 5px">{{ order.order_number }}{% trans 'C' %}</td>
+                            <td style="border: 1px solid #452f7f; padding: 5px">{% if order.bill_date %}{{ order.bill_date|date:"d.m.Y" }}{% elif order.delivery_date %}{{ order.delivery_date|date:"d.m.Y" }}{% else %}-{% endif %}</td>
+                            <td style="border: 1px solid #452f7f; padding: 5px">{% trans 'Insurance policy No.' %} {{ order.insurance_number }}</td>
+                            <td style="border: 1px solid #452f7f; padding: 5px">{{ order.insurance_price }}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

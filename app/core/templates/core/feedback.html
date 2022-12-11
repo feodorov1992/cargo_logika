@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block head_title %}Обратная связь{% endblock %}
+{% block content %}{% load static %}
+<div id="content" class="no_main">
+	<h1>Обратная связь</h1>
+    <form id="feedback_form" method="post">
+        {% csrf_token %}
+        {{  form.as_my_style }}
+        <input id="calc_form_submit" type="submit" value="Отправить">
+    </form>
+    <script src="{% static '/js/feedback.js' %}"></script>
+</div>
+{% endblock %}

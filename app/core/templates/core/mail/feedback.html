@@ -1,0 +1,32 @@
+{% extends 'mailer/base_wide.html' %}{% load i18n %}
+{% block mail_header %}{% trans 'New feedback from site' %}{% endblock %}
+{% block mail_content %}
+<table width="100%" style="width: 100%">
+    <tr width="100%" style="width: 100%">
+        <td width="100%" style="width: 100%">
+            <p>{% trans 'You have received new feedback from user' %}</p>
+            <p>
+                <b>{% trans 'Name' %}:</b> {{ sub_name }}
+            </p>
+            <p>
+                {% if sub_email %}<b>Email:</b> {{ sub_email }}{% endif %}
+                {% if sub_phone %}<b>{% trans 'Phone' %}:</b> {{ sub_phone }}{% endif %}
+            </p>
+        </td>
+    </tr>
+    <tr width="100%" style="width: 100%">
+        <td width="100%" style="width: 100%">
+            <table width="100%" style="background: #fafafa; border-collapse: collapse; border: 1px solid #452f7f; border-radius: 3px; width: 100%">
+                <tbody width="100%" style="width: 100%">
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{{ sub_title }}</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ sub_body }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+{% endblock %}

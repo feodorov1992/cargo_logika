@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% block head_title %}Запрос стоимости{% endblock %}
+{% block content %}{% load static %}
+<div id="content" class="no_main">
+	<h1>Запрос стоимости</h1>
+    <form id="calc_form" method="post">
+        {% csrf_token %}
+        {{  form.as_my_style }}
+        <input id="calc_form_submit" type="submit" value="Отправить">
+    </form>
+    <script src="{% static '/js/calc.js' %}"></script>
+</div>
+<script>
+window.onload = $('#id_inner_transfer').change()
+</script>
+{% endblock %}

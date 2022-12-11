@@ -1,0 +1,9 @@
+{% load i18n %}
+<h1>{% trans 'Thank you for your feedback,' %} {{ name }}!</h1>
+<div class="row">
+    <p>{% trans 'Our managers will contact you to' %}
+        {% if phone and email %}{{ phone }} {% trans 'or' %} {{ email }}
+        {% elif phone %}{{ phone }}
+        {% elif email %}{{ email }}
+        {% endif %}</p>
+</div>

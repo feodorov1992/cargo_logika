@@ -1,0 +1,199 @@
+<div id="form_left">{% load i18n %}
+    <table>
+        <tr>
+            <td>
+                {{ fields.payer_name.label_tag }}{{ fields.payer_name.errors }}{{ fields.payer_name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li>{{ fields.payer_type }}</li>
+                    <li>{{ fields.payment_type }}</li>
+                </ul>
+            </td>
+        </tr>
+        <tr id="payer_passport_row">
+            <td>
+                {{ fields.payer_passport.label_tag }}{{ fields.payer_passport.errors }}{{ fields.payer_passport }}
+            </td>
+        </tr>
+        <tr id="payer_inn_row" style="display: none">
+            <td>
+                {{ fields.payer_tin.label_tag }}{{ fields.payer_tin.errors }}{{ fields.payer_tin }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ fields.payer_email.label_tag }}{{ fields.payer_email.errors }}{{ fields.payer_email }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ fields.payer_phone.label_tag }}{{ fields.payer_phone.errors }}{{ fields.payer_phone }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ fields.payer_contact.label_tag }}{{ fields.payer_contact.errors }}{{ fields.payer_contact }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ fields.cargo_name.label_tag }}{{ fields.cargo_name.errors }}{{ fields.cargo_name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li>{{ fields.package_type.label_tag }} {{ fields.package_type }} {{ fields.package_type.errors }}</li>
+                    <li>{{ fields.extra_cargo_params.label_tag }} {{ fields.extra_cargo_params }} {{ fields.extra_cargo_params.errors }}</li>
+                    <li>{{ fields.extra_services.label_tag }} {{ fields.extra_services }} {{ fields.extra_services.errors }}</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li>{{ fields.cargo_spaces.label_tag }} {{ fields.cargo_spaces }}</li>
+                    <li>{{ fields.cargo_weight.label_tag }} {{ fields.cargo_weight }}</li>
+                    <li>{{ fields.cargo_volume.label_tag }} {{ fields.cargo_volume }}</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="checkbox" for="{{ form.insurance.id_for_label }}">
+                    {{ form.insurance }} {{ form.insurance.label }}
+                </label>
+                {{ fields.insurance.errors }}<br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ fields.cargo_value.label_tag }} {{ fields.cargo_value }} {{ fields.cargo_value.errors }}
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="form_right">
+    <div>
+        <table>
+            <tr>
+                <td>
+                    {{ fields.sender_name.label_tag }}{{ fields.sender_name.errors }}{{ fields.sender_name }}
+                    <input class="checkbox" type="checkbox" name="sender_payer" id="sender_payer">
+                    <label class="checkbox" for="sender_payer" class="required">{% trans 'Fill by payer' %}</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>{{ fields.sender_type }}</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr id="sender_passport_row">
+                <td>
+                    {{ fields.sender_passport.label_tag }}{{ fields.sender_passport.errors }}{{ fields.sender_passport }}
+                </td>
+            </tr>
+            <tr id="sender_inn_row" style="display: none">
+                <td>
+                    {{ fields.sender_tin.label_tag }}{{ fields.sender_tin.errors }}{{ fields.sender_tin }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ fields.sender_phone.label_tag }}{{ fields.sender_phone.errors }}{{ fields.sender_phone }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ fields.sender_contact.label_tag }}{{ fields.sender_contact.errors }}{{ fields.sender_contact }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ fields.sender_addr.label_tag }}{{ fields.sender_addr.errors }}{{ fields.sender_addr }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <input class="checkbox" type="checkbox" name="send_precise" id="send_precise">
+                    <label class="checkbox" for="send_precise">{% trans 'Send from address' %}</label>
+                    {{ fields.send_precise_address }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    {{ fields.loading_by }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    {{ fields.receiver_name.label_tag }}{{ fields.receiver_name.errors }}{{ fields.receiver_name }}
+                    <input class="checkbox" type="checkbox" name="receiver_payer" id="receiver_payer">
+                    <label class="checkbox" for="receiver_payer" class="required">{% trans 'Fill by payer' %}</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>{{ fields.receiver_type }}</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr id="receiver_passport_row">
+                <td>
+                    {{ fields.receiver_passport.label_tag }}{{ fields.receiver_passport.errors }}{{ fields.receiver_passport }}
+                </td>
+            </tr>
+            <tr id="receiver_inn_row" style="display: none">
+                <td>
+                    {{ fields.receiver_tin.label_tag }}{{ fields.receiver_tin.errors }}{{ fields.receiver_tin }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ fields.receiver_phone.label_tag }}{{ fields.receiver_phone.errors }}{{ fields.receiver_phone }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ fields.receiver_contact.label_tag }}{{ fields.receiver_contact.errors }}{{ fields.receiver_contact }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ fields.receiver_addr.label_tag }}{{ fields.receiver_addr.errors }}{{ fields.receiver_addr }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <input class="checkbox" type="checkbox" name="receive_precise" id="receive_precise">
+                    <label class="checkbox" for="receive_precise">{% trans 'Deliver to address' %}</label>
+                    {{ fields.receiver_precise_address }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    {{ fields.unloading_by }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    {{ fields.delivery_type.label_tag }} {{ fields.delivery_type }} {{ fields.delivery_type.errors }}
+    <br>
+    {{ fields.extra_info.label_tag }} {{ fields.extra_info }} {{ fields.extra_info.errors }}
+    <div class="g-recaptcha" data-sitekey="6Lc6AkAUAAAAALYtA6sKTUWTldN7RuW1Auv8fPyu"></div>
+</div>

@@ -1,0 +1,64 @@
+<table>
+    <tr id="not_full">
+        <td>Пожалуйста, введите хотя бы один контакт!</td>
+    </tr>
+    <tr><td>{{ fields.sub_phone.label_tag }}{{ fields.sub_phone.errors }}{{ fields.sub_phone }}</td></tr>
+    <tr><td>{{ fields.sub_email.label_tag }}{{ fields.sub_email.errors }}{{ fields.sub_email }}</td></tr>
+    <tr><td>{{ fields.sender_addr.label_tag }}{{ fields.sender_addr.errors }}{{ fields.sender_addr }}</td></tr>
+    <tr>
+        <td>
+            <label class="checkbox" for="{{ form.send_precise.id_for_label }}">
+                {{ form.send_precise }} {{ form.send_precise.label }}:
+            </label>
+            {{ fields.send_precise.errors }}
+        </td>
+    </tr>
+    <tr><td>{{ fields.send_precise_address.errors }}{{ fields.send_precise_address }}</td></tr>
+    <tr><td><br>{{ fields.who_packs }}{{ fields.who_packs.errors }}</td></tr>
+    <tr>
+        <td><br>
+            <label class="checkbox" for="{{ form.inner_transfer.id_for_label }}">
+                {{ form.inner_transfer }} {{ form.inner_transfer.label }}
+            </label>
+            {{ fields.inner_transfer.errors }}
+        </td>
+    </tr>
+    <tr><td>{{ fields.receiver_addr.label_tag }}{{ fields.receiver_addr.errors }}{{ fields.receiver_addr }}</td></tr>
+    <tr>
+        <td>
+            <label class="checkbox" for="{{ form.receive_precise.id_for_label }}">
+                {{ form.receive_precise }} {{ form.receive_precise.label }}:
+            </label>
+            {{ fields.receive_precise.errors }}
+        </td>
+    </tr>
+    <tr><td>{{ fields.receive_precise_address.errors }}{{ fields.receive_precise_address }}</td></tr>
+    <tr><td><br>{{ fields.who_unpacks }}{{ fields.who_unpacks.errors }}</td></tr>
+    <tr>
+        <td>
+            <ul>
+                <li>{{ fields.cargo_spaces.label_tag }}{{ fields.cargo_spaces.errors }}{{ fields.cargo_spaces }}</li>
+                <li>{{ fields.cargo_weight.label_tag }}{{ fields.cargo_weight.errors }}{{ fields.cargo_weight }}</li>
+                <li>{{ fields.cargo_volume.label_tag }}{{ fields.cargo_volume.errors }}{{ fields.cargo_volume }}</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li>{{ fields.package_type.label_tag }}{{ fields.package_type.errors }}{{ fields.package_type }}</li>
+                <li>{{ fields.cargo_warns.label_tag }}{{ fields.cargo_warns.errors }}{{ fields.cargo_warns }}</li>
+                <li>{{ fields.extra_services.label_tag }}{{ fields.extra_services.errors }}{{ fields.extra_services }}</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label class="checkbox" for="{{ fields.insurance.id_for_label }}">
+                {{ fields.insurance }} {{ fields.insurance.label }}
+            </label>
+            {{ fields.insurance.errors }}<br>
+        </td>
+    </tr>
+    <tr><td>{{ fields.cargo_value.label_tag }}{{ fields.cargo_value.errors }}{{ fields.cargo_value }}</td></tr>
+</table>

@@ -36,7 +36,7 @@ ALLOWED_HOSTS.extend(
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'app.apps.CargoLogikaAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_auth',
     'core',
+    'logistics',
+    'dynamic_docs',
+    'mailer'
 ]
 
 MIDDLEWARE = [
@@ -70,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'app.context_processors.app_settings',
             ],
             'libraries': {
                 'pdf_static': 'app.templatetags.pdf_static'
@@ -158,3 +162,16 @@ CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
 
 XDG_RUNTIME_DIR = '/tmp/runtime-app'
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = bool(int(os.environ.get('EMAIL_USE_SSL', 1)))
+EMAIL_ACCOUNTS_ADDRESS = os.environ.get('EMAIL_ACCOUNTS_ADDRESS')
+EMAIL_ADMIN_ADDRESS = os.environ.get('EMAIL_ADMIN_ADDRESS')
+MAIN_PHONE = os.environ.get('MAIN_PHONE')
+MAIN_PHONE_RAW = ''.join(filter(lambda x: x.isnumeric(), MAIN_PHONE))
+FACT_ADDRESS = os.environ.get('FACT_ADDRESS')
+YANDEX_MAPS_LINK = os.environ.get('YANDEX_MAPS_LINK')
+INITIAL_ORDER_NUMBER = int(os.environ.get('INITIAL_ORDER_NUMBER'))

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>{% load static %}
     <meta charset="UTF-8">
-    <title>Транспортно-логистическая компания CARGO ЛОГИКА</title>
+    <title>{% block head_title %}Транспортно-логистическая компания CARGO ЛОГИКА{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link type="image/x-icon" href="{% static 'img/favicon.ico' %}" rel="shortcut icon">
 	<link type="Image/x-icon" href="{% static 'img/favicon.ico' %}" rel="icon">
@@ -23,7 +23,7 @@
     </div>
 	<div id="retro_right">
 		<div id="contacts">
-			<a href="tel:+74954450367">
+			<a href="tel:+{{ settings.MAIN_PHONE_RAW }}">
 				<span class="contact_icon">
 					<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 511.999 511.999" xml:space="preserve">
 						<g>
@@ -41,9 +41,9 @@
 						</g>
 					</svg>
 				</span>
-				<span class="contact_label">+7 (495) 445-03-67</span>
+				<span class="contact_label">{{ settings.MAIN_PHONE }}</span>
 			</a>
-			<a href="mailto:info@cargo-logika.ru">
+			<a href="mailto:{{ settings.EMAIL_ADMIN_ADDRESS }}">
 				<span class="contact_icon">
 					<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 75.294 75.294" xml:space="preserve">
 						<g>
@@ -57,7 +57,7 @@
 						</g>
 					</svg>
 				</span>
-				<span class="contact_label">info@cargo-logika.ru</span>
+				<span class="contact_label">{{ settings.EMAIL_ADMIN_ADDRESS }}</span>
 			</a>
 			<div id="nav-icon">
 				<span></span>
@@ -114,13 +114,28 @@
     <script src="{% static '/js/nav-icon.js' %}"></script>
 </div>
 <div id="menu">
-	<a href="/">Главная</a>
+	<a href="{% url 'home' %}">Главная</a>
 	<a href="/#services">Услуги</a>
-	<a href="/projects">Наши проекты</a>
+	<a href="{% url 'projects' %}">Наши проекты</a>
 	<a href="{% url 'docs' %}">Документы</a>
 	<a href="{% url 'contacts' %}">Контакты</a>
 </div>
 {% block content %}{% endblock %}
+<div id="alert"{% if messages %} style="display: flex"{% endif %}>
+    <div>
+        <div id="alert_label" class="dark_plate">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        <div id="cross">
+            <svg version="1.1" baseProfile="full" viewBox="-5 -5 20 20"xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" x2="10" y1="0" y2="10" stroke-width="2"/>
+                <line x1="10" x2="0" y1="0" y2="10" stroke-width="2"/>
+            </svg>
+        </div>
+    </div>
+</div>
 <div id="footer">
     <div id="footer_content">
 		<div style="color:rgb(210, 113, 9)" class="footer_links">
@@ -131,14 +146,14 @@
 		</div>
         <div style="color:rgb(210, 113, 9)" class="footer_links">
 			<h3>Услуги</h3>
-            <a href="/order">Оформить заявку</a>
-            <a href="/calc">Рассчитать стоимость</a>
-            <a href="/feedback">Обратная связь</a>
+            <a href="{% url 'order' %}">Оформить заявку</a>
+            <a href="{% url 'calc' %}">Рассчитать стоимость</a>
+            <a href="{% url 'feedback' %}">Обратная связь</a>
         </div>
 		<div class="footer_links right">
-            <a href="tel:+74954450367">+7 (495) 445-03-67</a>
-            <a href="mailto:info@cargo-logika.ru">info@cargo-logika.ru</a>
-			<a target="_blank" href="https://yandex.ru/maps/-/CCUF56wh9B">г. Москва, ул. Промышленная, д. 11А, стр. 47</a>
+            <a href="tel:+{{ settings.MAIN_PHONE_RAW }}">{{  settings.MAIN_PHONE }}</a>
+            <a href="mailto:{{ settings.EMAIL_ADMIN_ADDRESS }}">{{ settings.EMAIL_ADMIN_ADDRESS }}</a>
+			<a target="_blank" href="{{ settings.YANDEX_MAPS_LINK }}">{{ settings.FACT_ADDRESS }}</a>
 			<div id="footer_socials">
 				<a target="_blank" href="https://vk.com/">
 					<span class="retro_social">
@@ -192,6 +207,11 @@
 	$('#anchor').click(function(){
 		$('#nav-icon').click();
 	})
+
+    $('#cross').click( function(){
+        $('#alert').removeAttr('style');
+        $('#alert_label').html(null);
+    })
 </script>
 </body>
 </html>

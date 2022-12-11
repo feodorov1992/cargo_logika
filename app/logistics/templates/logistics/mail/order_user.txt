@@ -1,0 +1,6 @@
+{% load i18n %}{% trans 'New order No.' %} {{ object.order_number }}
+
+{% trans 'Your order has been registered under number' %} {{ object.order_number }}. {% trans 'Please wait for the response from us' %}
+{% trans 'Thank you for your order' %}
+{% include 'logistics/mail/order_table.txt' %}
+{% block order_table %}{% endblock %}

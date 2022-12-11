@@ -1,0 +1,9 @@
+{% extends "admin/base_site.html" %}
+{% block content %}{% load i18n %}
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="id_registry_number">{% trans 'Please enter the number of registry bill' %}:</label>
+    <input required type="text" name="registry_number" id="id_registry_number">
+    <button type="submit">{% trans 'Send email' %}</button>
+</form>
+{% endblock %}

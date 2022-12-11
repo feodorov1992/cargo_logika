@@ -1,0 +1,12 @@
+{% extends 'mailer/base_wide.html' %}{% load i18n %}
+{% block mail_header %}{% trans 'New order No.' %} {{ object.order_number }}{% endblock %}
+{% block mail_content %}
+<table width="100%" style="width: 100%">
+    <tr>
+        <td width="100%" style="width: 100%">
+            {% include 'logistics/mail/order_table.html' %}
+            {% block order_table %}{% endblock %}
+        </td>
+    </tr>
+</table>
+{% endblock %}

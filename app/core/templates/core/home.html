@@ -3,24 +3,24 @@
 <div id="header">
     <div id="header_content">
         <div id="plates">
-            <a href="/calc">
+            <a href="{% url 'calc' %}">
                 <div class="dark_plate">
                     <h1>Запросить стоимость</h1>
                     <div class="row">
                         <p>Узнать ориентировочную стоимость вашего отправления - быстро и легко</p>
                         <div class="next_btn">
-                            <img src="{% static '/img/next.svg' %}">
+                            <img src="{% static '/img/next.svg' %}" alt="Далее">
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="/order">
+            <a href="{% url 'order' %}">
                 <div class="dark_plate green">
                     <h1>Оформить заявку</h1>
                     <div class="row">
                         <p>Выберите все нужное вам, мы сделаем остальное</p>
                         <div class="next_btn" style="" >
-                            <img src="{% static '/img/next.svg' %}">
+                            <img src="{% static '/img/next.svg' %}" alt="Далее">
                         </div>
                     </div>
                 </div>
@@ -28,20 +28,21 @@
             <div class="dark_plate">
                 <h1>Отследить груз</h1>
 				<p>Проверить статус доставки онлайн</p>
-                <form id="status_form">
-                    <input type="text" placeholder="Введите номер заявки" name="order_num" id="order_num">
+                <form id="status_form" method="post">
+                    {% csrf_token %}
+                    {{ form.order_num }}
                     <button type="submit">
-                        <img src="{% static '/img/next.svg' %}">
+                        <img src="{% static '/img/next.svg' %}" alt="Далее">
                     </button>
                 </form>
             </div>
-            <a href="/feedback">
+            <a href="{% url 'feedback' %}">
                 <div class="dark_plate">
                     <h1>Обратная связь</h1>
                     <div class="row">
                         <p>Мы становимся лучше благодаря вам и ради вас</p>
                         <div class="next_btn">
-                            <img src="{% static '/img/next.svg' %}">
+                            <img src="{% static '/img/next.svg' %}" alt="Далее">
                         </div>
                     </div>
                 </div>
@@ -125,22 +126,5 @@
             </div>
         </div>
     </div>
-    <div id="alert">
-        <div>
-            <div id="alert_label" class="dark_plate">
-                <h2>Статус заявки №<span id="order_num_out"></span></h2>
-                <div class="row">
-                    <p id="status_output"></p>
-                </div>
-            </div>
-            <div id="cross">
-                <svg version="1.1" baseProfile="full" viewBox="-5 -5 20 20"xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0" x2="10" y1="0" y2="10" stroke-width="2"/>
-                    <line x1="10" x2="0" y1="0" y2="10" stroke-width="2"/>
-                </svg>
-            </div>
-        </div>
-    </div>
 </div>
-<script src="{% static '/js/status.js' %}"></script>
 {% endblock %}

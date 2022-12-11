@@ -5,69 +5,73 @@ $('.digits').keyup(function(e){
     }
 });
 
-$('#send_precise').change( function() {
-    const el = $(this);
-    if( el.is(':checked') ) {
-        $( '#send_precise_address' ).prop('disabled', false);
+$('#id_send_precise').change( function() {
+    let target = $( '#id_send_precise_address' )
+    if( $(this).is(':checked') ) {
+        target.prop('disabled', false);
+        target.prop('required', true);
+        $('label[for="id_send_precise"]').addClass('required');
     } else {
-        $( '#send_precise_address' ).prop('disabled', true);
+        target.prop('disabled', true).val('');
+        target.prop('required', false);
+        $('label[for="id_send_precise"]').removeClass('required');
     }
 });
 
-$('#receive_precise').change( function() {
-    const el = $(this);
-    if( el.is(':checked') ) {
-        $( '#receive_precise_address' ).prop('disabled', false);
+$('#id_receive_precise').change( function() {
+    let target = $( '#id_receive_precise_address' )
+    if( $(this).is(':checked') ) {
+        target.prop('disabled', false);
+        target.prop('required', true);
+        $('label[for="id_receive_precise"]').addClass('required');
     } else {
-        $( '#receive_precise_address' ).prop('disabled', true);
+        target.prop('disabled', true).val('');
+        target.prop('required', false);
+        $('label[for="id_receive_precise"]').removeClass('required');
     }
 });
 
-$('#inner_transfer').change( function () {
-    const el = $(this);
-    if( el.is(':checked') ) {
-        if ($('#receive_precise').is(':checked')){
-            $('#receive_precise').click();
+$('#id_inner_transfer').change( function () {
+    let target_check = $('#id_receive_precise')
+    let target_field = $( '#id_receiver_addr' )
+    if( $(this).is(':checked') ) {
+        if (target_check.is(':checked')){
+            target_check.click();
         }
-        $( '#receive_precise' ).prop('disabled', true).val('');
-        $( '#receiver_addr' ).prop('disabled', true).val('');
+        target_check.prop('disabled', true);
+        target_field.prop('disabled', true).val('');
+        target_field.prop('required', false);
+        $('label[for="id_receiver_addr"]').removeClass('required');
     } else {
-        $( '#receive_precise' ).prop('disabled', false);
-        $( '#receiver_addr' ).prop('disabled', false);
+        target_check.prop('disabled', false);
+        target_field.prop('disabled', false);
+        target_field.prop('required', true);
+        $('label[for="id_receiver_addr"]').addClass('required');
     }
 })
 
-$('#insurance').change( function () {
-    const el = $(this);
-    if( el.is(':checked') ) {
-        $( '#cargo_value' ).prop('disabled', false);
+$('#id_insurance').change( function () {
+    let target = $('#id_cargo_value')
+    if( $(this).is(':checked') ) {
+        target.prop('disabled', false);
+        target.prop('required', true);
+        $('label[for="id_cargo_value"]').addClass('required')
     } else {
-        $( '#cargo_value' ).prop('disabled', true).val('');
+        target.prop('disabled', true).val('');
+        target.prop('required', false);
+        $('label[for="id_cargo_value"]').removeClass('required')
     }
 })
 
-$("#calc_form").submit(function(e){
-    e.preventDefault();
-    if (!$('#sub_phone').val() && !$('#sub_email').val()) {
+$("#calc_form").submit(function(e) {
+    if (!$('#id_sub_phone').val() && !$('#id_sub_email').val()) {
+        e.preventDefault()
         $('#not_full').css('display', 'table-row');
         document.getElementById("content").scrollIntoView({block: "start", behavior: "smooth"})
+        return false
     } else {
-        $('#not_full').css('display', 'none');
-        let raw_data = $("#calc_form").serialize();
-        $.post(
-            "/php/redirect_calc.php",
-            raw_data,
-            function() {
-                $('#alert').css('display', 'flex');
-            }
-        );
-        $("#calc_form").trigger('reset');
-        $( '#receive_precise' ).prop('disabled', false);
-        $( '#receiver_addr' ).prop('disabled', false);
+        $("input[type=text]").prop('disabled', false);
+        $("input[type=tel]").prop('disabled', false);
+        return true
     }
 });
-
-$('#cross').click( function(){
-    $('#alert').removeAttr('style');
-    }
-)

@@ -1,0 +1,20 @@
+{% load i18n %}{% trans 'Order price calculation request from site' %}
+
+{% trans 'You have been requested for order price calculation' %}
+{% if sub_email %}Email: {{ sub_email }}{% endif %}
+{% if sub_phone %}{% trans 'Phone' %}: {{ sub_phone }}{% endif %}
+
+{% trans 'Departure city' %}: {{ sender_addr }}{% if inner_transfer %} ({% trans 'Inner transfer' %}){% endif %}
+{% trans 'Departure address' %}: {{ send_precise_address }}
+{% trans 'Loading by' %}: {{ who_packs }}
+{% if not inner_transfer %}
+{% trans 'Delivery city' %}: {{ receiver_addr }}
+{% if receive_precise %}{% trans 'Full delivery address' %}: {{ receive_precise_address }}{% endif %}
+{% endif %}
+{% trans 'Unloading by' %}: {{ who_unpacks }}
+{% trans 'Cargo parameters' %}: {{ cargo_spaces }} {% trans 'spaces' %}, {{ cargo_weight }} {% trans 'kg' %}, {{ cargo_volume }} {% trans 'm' %}3
+{% trans 'Package type' %}: {{ package_type }}
+{% if cargo_warns %}{% trans 'Extra cargo parameters' %}: {{ cargo_warns }}{% endif %}
+{% if extra_services %}{% trans 'Extra services' %}: {{ extra_services }}{% endif %}
+{% trans 'Insurance is required' %}: {% if insurance %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
+{% if insurance %}{% trans 'Cargo value' %}: {{ cargo_value }}{% endif %}

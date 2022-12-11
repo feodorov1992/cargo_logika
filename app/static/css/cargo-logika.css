@@ -159,7 +159,7 @@ body {
 }
 
 #header {
-	background: url("/static/img/main_header.png") no-repeat left 50% bottom 15%;
+	background: url("/static/static/img/main_header.png") no-repeat left 50% bottom 15%;
     background-size:  auto 120% ;
     height: 700px;
     margin-bottom: 30px;
@@ -329,7 +329,7 @@ button:hover {
 }
 
 .no_main {
-	background: linear-gradient(to right, rgba(216,216,216,0.85), rgba(216,216,216,0.85)), url("/static/img/1.png") repeat-y left 50% bottom 20%;
+	background: linear-gradient(to right, rgba(216,216,216,0.85), rgba(216,216,216,0.85)), url("/static/static/img/1.png") repeat-y left 50% bottom 20%;
 }
 
 #services {
@@ -473,10 +473,12 @@ td input {
 
 td li {
     width: 30%;
-    margin-right: 2%;
+    margin: 0 1%;
+    vertical-align: top;
 }
 
-input.checkbox {
+input[type=radio],
+input[type=checkbox] {
     width: auto;
 }
 
@@ -679,6 +681,16 @@ fieldset {
     color: gray;
 }
 
+div#id_delivery_type {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+div#id_delivery_type>div {
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
 @media screen and (max-width: 1700px) {
     #plates {
         width: 1100px;
@@ -708,7 +720,7 @@ fieldset {
 
 @media screen and (max-width: 1285px) {
 	.no_main {
-		background: linear-gradient(to right, rgba(216,216,216,0.85), rgba(216,216,216,0.85)), url("/static/img/1.png") repeat-y;
+		background: linear-gradient(to right, rgba(216,216,216,0.85), rgba(216,216,216,0.85)), url("/static/static/img/1.png") repeat-y;
 	}
 }
 
@@ -734,7 +746,6 @@ fieldset {
     }
 
     #form_right>div {
-        display: block;
         width: 100%;
     }
 }
@@ -940,5 +951,4 @@ fieldset {
 	#footer_socials a {
 		margin: 10px;
 	}
-
 }

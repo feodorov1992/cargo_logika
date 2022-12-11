@@ -1,0 +1,11 @@
+{% load i18n %}
+<h1>{% trans 'Status of the order No.' %}{{ order.order_number }}</h1>
+<div style="text-align: left">
+    <p><b>{% trans 'Current status' %}:</b> {{ order.statuses.last.label }}</p>
+    <p><b>{% trans 'Status history' %}:</b></p>
+    <ul>
+        {% for status in order.statuses.all %}
+        <li>{{ status.date }}: {{ status.label }}</li>
+        {% endfor %}
+    </ul>
+</div>

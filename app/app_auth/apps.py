@@ -5,4 +5,4 @@ from django.utils.translation import gettext_lazy as _
 class AppAuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'app_auth'
-    verbose_name = _('Authorization')
+    verbose_name = _('authorization')

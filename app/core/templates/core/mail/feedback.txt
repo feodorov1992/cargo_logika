@@ -1,0 +1,9 @@
+{% load i18n %}{% trans 'New feedback from site' %}
+
+{% trans 'You have received new feedback from user' %}
+{% trans 'Name' %}: {{ sub_name }}
+{% if sub_email %}Email: {{ sub_email }}{% endif %}
+{% if sub_phone %}{% trans 'Phone' %}: {{ sub_phone }}{% endif %}
+
+{{ sub_title }}
+{{ sub_body }}

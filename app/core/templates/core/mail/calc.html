@@ -1,0 +1,83 @@
+{% extends 'mailer/base_wide.html' %}{% load i18n %}
+{% block mail_header %}{% trans 'Order price calculation request from site' %}{% endblock %}
+{% block mail_content %}
+<table width="100%" style="width: 100%">
+    <tr width="100%" style="width: 100%">
+        <td width="100%" style="width: 100%">
+            <p>{% trans 'You have been requested for order price calculation' %}</p>
+            <p>
+                {% if sub_email %}<b>Email:</b> {{ sub_email }}{% endif %}
+                {% if sub_phone %}<b>{% trans 'Phone' %}:</b> {{ sub_phone }}{% endif %}
+            </p>
+        </td>
+    </tr>
+    <tr width="100%" style="width: 100%">
+        <td width="100%" style="width: 100%">
+            <table width="100%" style="background: #fafafa; border-collapse: collapse; border: 1px solid #452f7f; border-radius: 3px; width: 100%">
+                <tbody width="100%" style="width: 100%">
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Departure city' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ sender_addr }}{% if inner_transfer %} <b>({% trans 'Inner transfer' %})</b>{% endif %}</td>
+                    </tr>
+                    {% if send_precise %}
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Departure address' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ send_precise_address }}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Loading by' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ who_packs }}</td>
+                    </tr>
+                    {% if not inner_transfer %}
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Delivery city' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ receiver_addr }}</td>
+                    </tr>
+                    {% if receive_precise %}
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Full delivery address' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ receive_precise_address }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endif %}
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Unloading by' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ who_unpacks }}</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo parameters' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ cargo_spaces }} {% trans 'spaces' %}, {{ cargo_weight }} {% trans 'kg' %}, {{ cargo_volume }} {% trans 'm' %}&sup3;</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Package type' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ package_type }}</td>
+                    </tr>
+                    {% if cargo_warns %}
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Extra cargo parameters' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ cargo_warns }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if extra_services %}
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Extra services' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ extra_services }}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Insurance is required' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{% if insurance %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
+                    </tr>
+                    {% if insurance %}
+                    <tr>
+                        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo value' %}</th>
+                        <td style="border: 1px solid #452f7f; padding: 5px">{{ cargo_value }}</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+{% endblock %}

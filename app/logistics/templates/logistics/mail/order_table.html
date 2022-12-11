@@ -1,0 +1,205 @@
+{% load i18n %}<table width="100%" style="background: #fafafa; border-collapse: collapse; border: 1px solid #452f7f; border-radius: 3px; width: 100%; text-align: left">
+    <tr>
+        <th colspan="2" style="border: 1px solid #452f7f; padding: 5px; text-align: center">{% trans 'Payer' %}</th>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% if object.payer_type == 'company' %}{% trans 'Payment organisation name' %}{% else %}{% trans 'Payer name' %}{% endif %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_name }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer type' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.get_payer_type_display }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payment type' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.get_payment_type_display }}</td>
+    </tr>
+    {% if object.payer_type == 'company' %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer TIN' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_tin }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer passport' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_passport }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer email' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_email }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer phone' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_phone }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer contact' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_contact }}</td>
+    </tr>
+    <tr>
+        <th colspan="2" style="border: 1px solid #452f7f; padding: 5px"></th>
+    </tr>
+    <tr>
+        <th colspan="2" style="border: 1px solid #452f7f; padding: 5px; text-align: center">{% trans 'Cargo info' %}</th>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo name' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_name }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Package type' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.get_package_type_display }}</td>
+    </tr>
+    {% if object.extra_cargo_params.exists %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Extra cargo parameters' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.extra_cargo_params.all|join:", " }}</td>
+    </tr>
+    {% endif %}
+    {% if object.extra_services.exists %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Extra services' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.extra_services.all|join:", " }}</td>
+    </tr>
+    {% endif %}
+    {% if object.cargo_spaces %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo spaces' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_spaces }}</td>
+    </tr>
+    {% endif %}
+    {% if object.cargo_weight %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo weight, kg' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_weight }}</td>
+    </tr>
+    {% endif %}
+    {% if object.cargo_volume %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo volume, m3' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_volume }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Insurance is required' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{% if object.insurance %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
+    </tr>
+    {% if object.insurance %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo value' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_value }}</td>
+    </tr>
+    {% endif %}
+    {% if object.delivery_type.exists %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Type of delivery' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.delivery_type.all|join:", " }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <th colspan="2" style="border: 1px solid #452f7f; padding: 5px"></th>
+    </tr>
+    <tr>
+        <th colspan="2" style="border: 1px solid #452f7f; padding: 5px; text-align: center">{% trans 'Sender' %}</th>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% if object.sender_type == 'company' %}{% trans 'Send organisation name' %}{% else %}{% trans 'Sender name' %}{% endif %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.sender_name }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Sender type' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.get_sender_type_display }}</td>
+    </tr>
+    {% if object.sender_type == 'company' %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Sender TIN' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.sender_tin }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Sender passport' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.sender_passport }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Sender phone' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.sender_phone }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Sender contact' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.sender_contact }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Loading by' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.get_loading_by_display }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Departure city' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.sender_addr }}</td>
+    </tr>
+    {% if object.send_precise_address %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Departure address' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.send_precise_address }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <th colspan="2" style="border: 1px solid #452f7f; padding: 5px"></th>
+    </tr>
+    <tr>
+        <th colspan="2" style="border: 1px solid #452f7f; padding: 5px; text-align: center">{% trans 'Receiver' %}</th>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% if object.receiver_type == 'company' %}{% trans 'Receive organisation name' %}{% else %}{% trans 'Receiver name' %}{% endif %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.receiver_name }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Receiver type' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.get_receiver_type_display }}</td>
+    </tr>
+    {% if object.receiver_type == 'company' %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Receiver TIN' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.receiver_tin }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Receiver passport' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.receiver_passport }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Receiver phone' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.receiver_phone }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Receiver contact' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.receiver_contact }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Unloading by' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.get_unloading_by_display }}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Delivery city' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.receiver_addr }}</td>
+    </tr>
+    {% if object.receiver_precise_address %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Full delivery address' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.receiver_precise_address }}</td>
+    </tr>
+    {% endif %}
+    {% if object.extra_info %}
+    <tr>
+        <th colspan="2" style="border: 1px solid #452f7f; padding: 5px"></th>
+    </tr>
+    <tr>
+        <th colspan="2" style="border: 1px solid #452f7f; padding: 5px; text-align: center">{% trans 'Extra info' %}</th>
+    </tr>
+    <tr>
+        <td colspan="2" style="border: 1px solid #452f7f; padding: 5px">{{ object.extra_info }}</td>
+    </tr>
+    {% endif %}
+</table>

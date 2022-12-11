@@ -1,0 +1,18 @@
+{% extends 'mailer/base_wide.html' %}{% load i18n %}
+{% block mail_header %}{% trans 'New order No.' %} {{ object.order_number }}{% endblock %}
+{% block mail_content %}
+<table width="100%" style="width: 100%">
+    <tr width="100%" style="width: 100%">
+        <td width="100%" style="width: 100%">
+            <p>{% trans 'Your order has been registered under number' %} {{ object.order_number }}. {% trans 'Please wait for the response from us' %}</p>
+            <p><b>{% trans 'Thank you for your order' %}</b></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="100%" style="width: 100%">
+            {% include 'logistics/mail/order_table.html' %}
+            {% block order_table %}{% endblock %}
+        </td>
+    </tr>
+</table>
+{% endblock %}

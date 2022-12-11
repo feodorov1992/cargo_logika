@@ -32,7 +32,7 @@ class PDFGenerator:
             "margin-left": "11mm",
             "margin-right": "11mm"
         }
-        pdfkit.from_string(html, file_path, options=options, verbose=True)
+        pdfkit.from_string(html, file_path, options=options)
         file = open(file_path, 'rb')
         self.OPENED_FILES.append(file)
         return file

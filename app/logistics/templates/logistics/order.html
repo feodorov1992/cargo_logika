@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% block head_title %}Создать заявку{% endblock %}
+{% block content %}{% load static %}
+<div id="content" class="no_main">
+    <h1>Создать заявку</h1>
+    <form method="post" id="order_form">
+        {% csrf_token %}
+        {{ form.as_my_style }}
+        <input type="submit" id="submit" value="Отправить заявку">
+    </form>
+</div>
+<script src="{% static 'js/order.js' %}"></script>
+<script>
+    window.onload = $('#id_payer_type').change()
+    window.onload = $('#id_sender_type').change()
+    window.onload = $('#id_receiver_type').change()
+</script>
+{% endblock %}
