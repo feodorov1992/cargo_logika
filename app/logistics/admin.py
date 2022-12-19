@@ -38,7 +38,7 @@ class OrderAdmin(admin.ModelAdmin):
                        ('insurance_price', 'insurance_number'))
         }),
         (_('Cargo info'), {
-            'fields': (('cargo_name', 'package_type', 'extra_cargo_params'),
+            'fields': (('cargo_name', 'package_type'),
                        ('cargo_spaces', 'cargo_weight', 'cargo_volume'))
         }),
         (_('Payer info'), {
