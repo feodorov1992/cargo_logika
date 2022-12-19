@@ -1,6 +1,6 @@
-{% load i18n %}{% trans 'New order No.' %} {{ object.order_number }}
+{% load i18n %}{% load l10n %}{% trans 'New order No.' %} {{ object.order_number|unlocalize }}
 
-{% trans 'Your order has been registered under number' %} {{ object.order_number }}.
+{% trans 'Your order has been registered under number' %} {{ object.order_number|unlocalize }}.
 {% trans 'Thank you for your order' %}!
 {% include 'logistics/mail/order_table.txt' %}
 {% block order_table %}{% endblock %}

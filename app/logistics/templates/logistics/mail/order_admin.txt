@@ -1,4 +1,4 @@
-{% load i18n %}{% trans 'New order No.' %} {{ object.order_number }}
+{% load i18n %}{% load l10n %}{% trans 'New order No.' %} {{ object.order_number|unlocalize }}
 
 {% include 'logistics/mail/order_table.html' %}
 {% block order_table %}{% endblock %}

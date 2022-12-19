@@ -1,5 +1,5 @@
-{% load i18n %}
-<h1>{% trans 'Your order has been registered under number' %} {{ order_number }}</h1>
+{% load i18n %}{% load l10n %}
+<h1>{% trans 'Your order has been registered under number' %} {{ order_number|unlocalize }}</h1>
 <div class="row">
     <p>{% trans 'Confirmation messages has been sent to' %} {{ mail_to }}</p>
 </div>

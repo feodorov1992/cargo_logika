@@ -229,7 +229,7 @@ msgstr "Ваш запрос на расчет стоимости перевоз�
 #: core/templates/core/messages/calc_success.html:4
 #: core/templates/core/messages/feedback_success.html:4
 msgid "Our managers will contact you to"
-msgstr "Наши сотрудники ответят вам на"
+msgstr "Наши сотрудники ответят Вам на"
 
 #: core/templates/core/messages/calc_success.html:5
 #: core/templates/core/messages/feedback_success.html:5
