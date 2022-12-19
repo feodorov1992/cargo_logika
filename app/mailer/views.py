@@ -1,3 +1,5 @@
+from smtplib import SMTPRecipientsRefused
+
 from django.core.mail import EmailMultiAlternatives
 from email.mime.image import MIMEImage
 from django.contrib.staticfiles import finders
@@ -24,4 +26,7 @@ def send_logo_mail(subject, body_text, body_html, from_email, recipients, **kwar
     message.attach_alternative(body_html, "text/html")
     message.attach(logo_data())
 
-    return message.send(fail_silently=False)
+    try:
+        return message.send(fail_silently=False)
+    except SMTPRecipientsRefused:
+        return 0

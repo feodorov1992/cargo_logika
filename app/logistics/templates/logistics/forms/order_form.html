@@ -45,20 +45,37 @@
         </tr>
         <tr>
             <td>
-                <ul>
-                    <li>{{ fields.package_type.label_tag }} {{ fields.package_type }} {{ fields.package_type.errors }}</li>
-                    <li>{{ fields.extra_cargo_params.label_tag }} {{ fields.extra_cargo_params }} {{ fields.extra_cargo_params.errors }}</li>
-                    <li>{{ fields.extra_services.label_tag }} {{ fields.extra_services }} {{ fields.extra_services.errors }}</li>
-                </ul>
+                <table class="sub_table">
+                    <tr>
+                        <td>{{ fields.package_type.label_tag }}</td>
+                        <td colspan="2">{{ fields.extra_services.label_tag }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ fields.package_type }}</td>
+                        <td colspan="2">{{ fields.extra_services }}</td>
+                    </tr>
+                </table>
             </td>
         </tr>
         <tr>
             <td>
-                <ul>
-                    <li>{{ fields.cargo_spaces.label_tag }} {{ fields.cargo_spaces }}</li>
-                    <li>{{ fields.cargo_weight.label_tag }} {{ fields.cargo_weight }}</li>
-                    <li>{{ fields.cargo_volume.label_tag }} {{ fields.cargo_volume }}</li>
-                </ul>
+                <table class="sub_table">
+                    <tr>
+                        <td>{{ fields.cargo_spaces.label_tag }}</td>
+                        <td>{{ fields.cargo_weight.label_tag }}</td>
+                        <td>{{ fields.cargo_volume.label_tag }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ fields.cargo_spaces }}</td>
+                        <td>{{ fields.cargo_weight }}</td>
+                        <td>{{ fields.cargo_volume }}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ fields.cargo_value.label_tag }} {{ fields.cargo_value }} {{ fields.cargo_value.errors }}
             </td>
         </tr>
         <tr>
@@ -67,11 +84,6 @@
                     {{ form.insurance }} {{ form.insurance.label }}
                 </label>
                 {{ fields.insurance.errors }}<br>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ fields.cargo_value.label_tag }} {{ fields.cargo_value }} {{ fields.cargo_value.errors }}
             </td>
         </tr>
     </table>

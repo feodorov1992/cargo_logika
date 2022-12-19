@@ -6,10 +6,12 @@ function resetInput(input, blank_val = true) {
     input.removeAttr("style");
 }
 
-$("#order_form").submit(function() {
+$("#order_form").on('submit', function() {
     $("input[type=text]").prop('disabled', false);
+    $("input[type=number]").prop('disabled', false);
     $("input[type=tel]").prop('disabled', false);
-    return true
+    $("select").prop('disabled', false);
+    return true;
 });
 
 $('#id_payer_type').change(function() {
@@ -189,18 +191,5 @@ $('#receive_precise').change( function() {
         $('#id_receiver_precise_address').prop('disabled', false);
     } else {
         $('#id_receiver_precise_address').prop('disabled', true);
-    }
-});
-
-$('#id_insurance').change( function() {
-    let target = $('#id_cargo_value')
-    if($(this).is(':checked')) {
-        target.prop('disabled', false);
-        target.prop('required', true);
-        $('label[for="id_cargo_value"]').addClass('required')
-    } else {
-        target.prop('disabled', true);
-        target.prop('required', false);
-        $('label[for="id_cargo_value"]').removeClass('required')
     }
 });

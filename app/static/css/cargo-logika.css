@@ -477,12 +477,42 @@ td li {
     vertical-align: top;
 }
 
+table.sub_table {
+    width: 100% !important;
+}
+
+table.sub_table label {
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+table.sub_table input[type=text],
+table.sub_table input[type=number]{
+    width: 95% !important;
+}
+
+#id_extra_services {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 input[type=radio],
 input[type=checkbox] {
-    width: auto;
+    width: auto !important;
 }
 
 input[type=text],
+input[type=number],
 input[type=tel],
 input[type=email] {
     height: 30px;
