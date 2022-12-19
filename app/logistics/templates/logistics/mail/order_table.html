@@ -72,13 +72,13 @@
     {% if object.cargo_weight %}
     <tr>
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo weight, kg' %}</th>
-        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_weight }}</td>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_weight|floatformat:-2 }}</td>
     </tr>
     {% endif %}
     {% if object.cargo_volume %}
     <tr>
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo volume, m3' %}</th>
-        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_volume }}</td>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_volume|floatformat:-2 }}</td>
     </tr>
     {% endif %}
     <tr>
@@ -88,7 +88,7 @@
     {% if object.insurance %}
     <tr>
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo value' %}</th>
-        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_value }}</td>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_value|floatformat:-2 }}</td>
     </tr>
     {% endif %}
     {% if object.delivery_type.exists %}

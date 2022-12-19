@@ -776,17 +776,12 @@ msgstr "ФИО получателя"
 #: logistics/templates/logistics/mail/order_user.txt:3
 #: logistics/templates/logistics/messages/order_success.html:2
 msgid "Your order has been registered under number"
-msgstr "Ваш заказ был зарегистрирован под номером"
-
-#: logistics/templates/logistics/mail/order_user.html:8
-#: logistics/templates/logistics/mail/order_user.txt:4
-msgid "Please wait for the response from us"
-msgstr "Пожалуйста, дождитесь ответа нашего сотрудника"
+msgstr "Ваша заявка зарегистрирована под номером"
 
 #: logistics/templates/logistics/mail/order_user.html:9
 #: logistics/templates/logistics/mail/order_user.txt:5
 msgid "Thank you for your order"
-msgstr "Благодарим за ваш заказ"
+msgstr "Благодарим за Ваш заказ"
 
 #: logistics/templates/logistics/messages/order_success.html:4
 msgid "Confirmation messages has been sent to"

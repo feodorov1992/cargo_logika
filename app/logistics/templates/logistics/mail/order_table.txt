@@ -13,10 +13,10 @@
 {% if object.extra_cargo_params.exists %}{% trans 'Extra cargo parameters' %}: {{ object.extra_cargo_params.all|join:", " }}{% endif %}
 {% if object.extra_services.exists %}{% trans 'Extra services' %}: {{ object.extra_services.all|join:", " }}{% endif %}
 {% if object.cargo_spaces %}{% trans 'Cargo spaces' %}: {{ object.cargo_spaces }}{% endif %}
-{% if object.cargo_weight %}{% trans 'Cargo weight, kg' %}: {{ object.cargo_weight }}{% endif %}
-{% if object.cargo_volume %}{% trans 'Cargo volume, m3' %}{{ object.cargo_volume }}{% endif %}
+{% if object.cargo_weight %}{% trans 'Cargo weight, kg' %}: {{ object.cargo_weight|floatformat:-2 }}{% endif %}
+{% if object.cargo_volume %}{% trans 'Cargo volume, m3' %}{{ object.cargo_volume|floatformat:-2 }}{% endif %}
 {% trans 'Insurance is required' %}: {% if object.insurance %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
-{% if object.insurance %}{% trans 'Cargo value' %}: {{ object.cargo_value }}{% endif %}
+{% if object.insurance %}{% trans 'Cargo value' %}: {{ object.cargo_value|floatformat:-2 }}{% endif %}
 {% if object.delivery_type.exists %}{% trans 'Type of delivery' %}: {{ object.delivery_type.all|join:", " }}{% endif %}
 
 {% trans 'Sender' %}
