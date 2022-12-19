@@ -1,5 +1,5 @@
 {% extends 'dynamic_docs/base/book.html' %}
-{% block pdf_content %}{% load pdf_static %}
+{% block pdf_content %}{% load pdf_static %}{% load humanize %}
 <table>
     <tr class="uneven">
         <td class="table_container">
@@ -39,7 +39,7 @@
                             </tr>
                             <tr>
                                 <td>город: {{ order.receiver_addr }}</td>
-                                <td colspan="2">{% if order.send_precise_address %}адрес: {{ order.receiver_precise_address }}{% endif %}</td>
+                                <td colspan="2">{% if order.receiver_precise_address %}адрес: {{ order.receiver_precise_address }}{% endif %}</td>
                             </tr>
                             <tr>
                                 <td>конт.лицо: {{ order.receiver_contact }}</td>
@@ -105,12 +105,12 @@
                             {% if order.insurance %}
                             <tr>
                                 <th>
-                                    Объявленная стоимость груза:
+                                    Объявленная стоимость груза, руб:
                                 </th>
                             </tr>
                             <tr>
                                 <th>
-                                    {% if order.cargo_value %}{{ order.cargo_value }}{% endif %}
+                                    {% if order.cargo_value %}{{ order.cargo_value|floatformat:-2 }}{% endif %}
                                 </th>
                             </tr>
                             {% endif %}
@@ -127,15 +127,13 @@
         <td>кол.мест</td>
         <td>вес кг.</td>
         <td>объём м.куб.</td>
-        <td>габариты м.</td>
         <td>характер упаковки</td>
     </tr>
     <tr>
         <td class="double_height">{% if order.cargo_name %}{{ order.cargo_name }}{% endif %}</td>
         <td class="double_height">{% if order.cargo_spaces %}{{ order.cargo_spaces }}{% endif %}</td>
-        <td class="double_height">{% if order.cargo_weight %}{{ order.cargo_weight }}{% endif %}</td>
-        <td class="double_height">{% if order.cargo_volume %}{{ order.cargo_volume }}{% endif %}</td>
-        <td class="double_height"></td>
+        <td class="double_height">{% if order.cargo_weight %}{{ order.cargo_weight|floatformat:-2 }}{% endif %}</td>
+        <td class="double_height">{% if order.cargo_volume %}{{ order.cargo_volume|floatformat:-2 }}{% endif %}</td>
         <td class="double_height">{% if order.package_type %}{{ order.get_package_type_display }}{% endif %}</td>
     </tr>
 </table>
@@ -255,7 +253,7 @@
                             </tr>
                             <tr>
                                 <td>город: {{ order.receiver_addr }}</td>
-                                <td colspan="2">{% if order.send_precise_address %}адрес: {{ order.receiver_precise_address }}{% endif %}</td>
+                                <td colspan="2">{% if order.receiver_precise_address %}адрес: {{ order.receiver_precise_address }}{% endif %}</td>
                             </tr>
                             <tr>
                                 <td>конт.лицо: {{ order.receiver_contact }}</td>
@@ -321,12 +319,12 @@
                             {% if order.insurance %}
                             <tr>
                                 <th>
-                                    Объявленная стоимость груза:
+                                    Объявленная стоимость груза, руб:
                                 </th>
                             </tr>
                             <tr>
                                 <th>
-                                    {% if order.cargo_value %}{{ order.cargo_value }}{% endif %}
+                                    {% if order.cargo_value %}{{ order.cargo_value|floatformat:-2 }}{% endif %}
                                 </th>
                             </tr>
                             {% endif %}
@@ -343,15 +341,13 @@
         <td>кол.мест</td>
         <td>вес кг.</td>
         <td>объём м.куб.</td>
-        <td>габариты м.</td>
         <td>характер упаковки</td>
     </tr>
     <tr>
         <td class="double_height">{% if order.cargo_name %}{{ order.cargo_name }}{% endif %}</td>
         <td class="double_height">{% if order.cargo_spaces %}{{ order.cargo_spaces }}{% endif %}</td>
-        <td class="double_height">{% if order.cargo_weight %}{{ order.cargo_weight }}{% endif %}</td>
-        <td class="double_height">{% if order.cargo_volume %}{{ order.cargo_volume }}{% endif %}</td>
-        <td class="double_height"></td>
+        <td class="double_height">{% if order.cargo_weight %}{{ order.cargo_weight|floatformat:-2 }}{% endif %}</td>
+        <td class="double_height">{% if order.cargo_volume %}{{ order.cargo_volume|floatformat:-2 }}{% endif %}</td>
         <td class="double_height">{% if order.package_type %}{{ order.get_package_type_display }}{% endif %}</td>
     </tr>
 </table>
