@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from log_cats.models import ExtraService, DeliveryType
 from mailer.views import send_logo_mail
 
 CP_TYPES = (
@@ -57,39 +58,6 @@ def send_model_email(subject, template_name, obj, from_email, recipients):
     return send_logo_mail(subject, body_text, body_html, from_email, recipients)
 
 
-class ExtraService(models.Model):
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = _('extra service')
-        verbose_name_plural = _('extra services')
-
-
-class ExtraCargoParam(models.Model):
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = _('extra cargo parameter')
-        verbose_name_plural = _('extra cargo parameters')
-
-
-class DeliveryType(models.Model):
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = _('delivery type')
-        verbose_name_plural = _('delivery types')
-
-
 class Order(models.Model):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4) #
     created_at = models.DateTimeField(auto_now_add=True, editable=False) #
@@ -109,13 +77,12 @@ class Order(models.Model):
     cargo_name = models.CharField(max_length=255, verbose_name=_('Cargo name')) #
     package_type = models.CharField(max_length=15, verbose_name=_('Package type'), choices=PACKAGE_TYPES, #
                                     default=PACKAGE_TYPES[0][0]) #
-    extra_cargo_params = models.ManyToManyField(ExtraCargoParam, verbose_name=_('Extra cargo parameters'), blank=True)
     extra_services = models.ManyToManyField(ExtraService, verbose_name=_('Extra services'), blank=True) #
-    cargo_spaces = models.IntegerField(verbose_name=_('Cargo spaces'), blank=True, null=True) #
-    cargo_weight = models.FloatField(verbose_name=_('Cargo weight, kg'), blank=True, null=True) #
-    cargo_volume = models.FloatField(verbose_name=_('Cargo volume, m3'), blank=True, null=True) #
+    cargo_spaces = models.IntegerField(verbose_name=_('Cargo spaces')) #
+    cargo_weight = models.FloatField(verbose_name=_('Cargo weight, kg')) #
+    cargo_volume = models.FloatField(verbose_name=_('Cargo volume, m3')) #
     insurance = models.BooleanField(verbose_name=_('Insurance is required'), default=False) #
-    cargo_value = models.FloatField(verbose_name=_('Cargo value'), blank=True, null=True) #
+    cargo_value = models.FloatField(verbose_name=_('Cargo value')) #
     sender_name = models.CharField(max_length=255, verbose_name=_('Sender')) #
     sender_type = models.CharField(max_length=15, verbose_name=_('Sender type'), choices=CP_TYPES, #
                                    default=CP_TYPES[0][0]) #

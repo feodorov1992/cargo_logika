@@ -1,7 +1,7 @@
 from django import forms
 from django.template.defaultfilters import safe
 from django.utils.translation import gettext_lazy as _
-from logistics.models import LOADING_BY, UNLOADING_BY, PACKAGE_TYPES, ExtraCargoParam, ExtraService
+from logistics.models import LOADING_BY, UNLOADING_BY, PACKAGE_TYPES, ExtraService
 
 
 class CalcForm(forms.Form):
@@ -27,9 +27,6 @@ class CalcForm(forms.Form):
     cargo_value = forms.FloatField(label=_('Cargo value'), required=False,
                                    widget=forms.TextInput(attrs={'class': 'digits', 'disabled': 'disabled'}))
     package_type = forms.ChoiceField(label=_('Package type'), choices=PACKAGE_TYPES)
-    cargo_warns = forms.ModelMultipleChoiceField(label=_('Extra cargo parameters'),
-                                                 queryset=ExtraCargoParam.objects.all(),
-                                                 widget=forms.CheckboxSelectMultiple(), required=False)
     insurance = forms.BooleanField(label=_('Insurance is required'), initial=False, required=False)
     extra_services = forms.ModelMultipleChoiceField(label=_('Extra services'), queryset=ExtraService.objects.all(),
                                                     widget=forms.CheckboxSelectMultiple(), required=False)

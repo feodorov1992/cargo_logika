@@ -5,23 +5,8 @@ from django.db import models
 from django.template.loader import render_to_string
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
-from logistics.models import Order, ExtraService, ExtraCargoParam, DeliveryType, OrderStatus
+from logistics.models import Order, OrderStatus
 from mailer.views import send_logo_mail
-
-
-@admin.register(ExtraService)
-class ExtraServiceAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(ExtraCargoParam)
-class ExtraCargoParamAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(DeliveryType)
-class DeliveryTypeAdmin(admin.ModelAdmin):
-    pass
 
 
 class OrderStatusInline(admin.TabularInline):

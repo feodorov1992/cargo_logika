@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'app_auth',
     'core',
+    'log_cats',
     'logistics',
     'dynamic_docs',
     'mailer'
