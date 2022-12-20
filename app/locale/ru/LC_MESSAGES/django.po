@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-20 16:58+0300\n"
+"POT-Creation-Date: 2022-12-20 20:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -305,58 +305,54 @@ msgstr "тип перевозки"
 msgid "delivery types"
 msgstr "типы перевозки"
 
-#: logistics/admin.py:27
-msgid "Service data"
-msgstr "Служебные данные"
+#: logistics/admin.py:25
+msgid "Send/receive info"
+msgstr "Информация по Грузоотправителю/Грузополучателю"
 
 #: logistics/admin.py:36
-msgid "Insurance info"
-msgstr "Информация о страховании"
+msgid "Pickup/delivery info"
+msgstr "Информация по забору/доставке"
 
-#: logistics/admin.py:40 logistics/templates/logistics/mail/order_table.html:44
+#: logistics/admin.py:41 logistics/templates/logistics/mail/order_table.html:44
 #: logistics/templates/logistics/mail/order_table.txt:10
 msgid "Cargo info"
 msgstr "Данные о грузе"
 
-#: logistics/admin.py:44
+#: logistics/admin.py:45
+msgid "Financial info"
+msgstr "Информация для расчетов"
+
+#: logistics/admin.py:53
 msgid "Payer info"
 msgstr "Информация по Плательщику"
 
-#: logistics/admin.py:50
-msgid "Sender info"
-msgstr "Информация по Отправителю"
-
-#: logistics/admin.py:56
-msgid "Receiver info"
-msgstr "Информация по Получателю"
-
-#: logistics/admin.py:87
+#: logistics/admin.py:84
 msgid "Passport"
 msgstr "Паспорт"
 
-#: logistics/admin.py:89 logistics/models.py:73
+#: logistics/admin.py:86 logistics/models.py:73
 #: logistics/templates/logistics/mail/order_table.html:19
 #: logistics/templates/logistics/mail/order_table.txt:5
 msgid "Payer TIN"
 msgstr "ИНН"
 
-#: logistics/admin.py:96
+#: logistics/admin.py:93
 msgid "Bills issue request"
 msgstr "Запрос на выставление счетов"
 
-#: logistics/admin.py:117 logistics/admin.py:118
+#: logistics/admin.py:114 logistics/admin.py:115
 msgid "{} or {}"
 msgstr "{} или {}"
 
-#: logistics/admin.py:158
+#: logistics/admin.py:155
 msgid "Essential info is missing in orders:<br>{}"
 msgstr "Необходимая информация отсутствует в заявках:<br>{}"
 
-#: logistics/admin.py:166
+#: logistics/admin.py:163
 msgid "Accounts manager ordered to issue bills"
 msgstr "Письмо о выставлении счетов отправлено бухгалтеру"
 
-#: logistics/admin.py:173
+#: logistics/admin.py:170
 msgid "Send bills request to the accounts manager"
 msgstr "Отправить запрос на выставление счетов бухгалтеру"
 
@@ -782,7 +778,7 @@ msgstr "к-во мест"
 msgid "C"
 msgstr "С"
 
-#: logistics/templates/logistics/mail/accounts_email.html:44
+#: logistics/templates/logistics/mail/accounts_email.html:46
 #: logistics/templates/logistics/mail/accounts_email.txt:10
 msgid "Insurance policy No."
 msgstr "Страхование, полис №"
@@ -849,6 +845,12 @@ msgstr "Пожалуйста, введите номер реестрового �
 #: static/admin/registry_number_form.html:7
 msgid "Send email"
 msgstr "Отправить email"
+
+#~ msgid "Service data"
+#~ msgstr "Служебные данные"
+
+#~ msgid "Sender info"
+#~ msgstr "Информация по Отправителю"
 
 #~ msgid "extra cargo parameter"
 #~ msgstr "доп. параметр груза"

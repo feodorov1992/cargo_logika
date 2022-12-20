@@ -18,45 +18,43 @@ class OrderStatusInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            'fields': (('order_number', 'order_date'),
-                       ('sender_addr', 'send_precise_address'),
-                       ('receiver_addr', 'receiver_precise_address'),
-                       ('delivery_type', 'extra_services', 'load_unload'),
+            'fields': (('order_number', 'order_date',),
+                       ('hidden_status', ),
+                       ('delivery_type', 'extra_services', 'load_unload', 'insurance'),
                        'extra_info')
         }),
-        (_('Service data'), {
-            'fields': (('order_price', 'expenses'),
-                       ('contractor', 'contractor_waybill',),
-                       ('pickup_date_wanted', 'pickup_date', 'picked_up',),
-                       ('delivery_date_wanted', 'delivery_date', 'delivered',),
-                       ('bill_date', 'accounts_email_sent', ),
-                       ('bill_sent', 'bill_payed', 'docs_sent'),
-                       'hidden_status')
+        (_('Send/receive info'), {
+            'fields': (('sender_addr', 'receiver_addr'),
+                       ('send_precise_address', 'receiver_precise_address'),
+                       ('loading_by', 'unloading_by'),
+                       ('sender_name', 'receiver_name'),
+                       ('sender_type', 'receiver_type'),
+                       ('sender_tin', 'receiver_tin'),
+                       ('sender_passport', 'receiver_passport'),
+                       ('sender_contact', 'receiver_contact'),
+                       ('sender_phone', 'receiver_phone'))
         }),
-        (_('Insurance info'), {
-            'fields': (('insurance', 'cargo_value'),
-                       ('insurance_price', 'insurance_number'))
+        (_('Pickup/delivery info'), {
+            'fields': (('pickup_date_wanted', 'delivery_date_wanted'),
+                       ('pickup_date', 'delivery_date'),
+                       ('picked_up', 'delivered'))
         }),
         (_('Cargo info'), {
-            'fields': (('cargo_name', 'package_type'),
+            'fields': (('cargo_name', 'package_type', 'cargo_value'),
                        ('cargo_spaces', 'cargo_weight', 'cargo_volume'))
+        }),
+        (_('Financial info'), {
+            'fields': (('order_price', 'expenses'),
+                       ('contractor', 'contractor_waybill'),
+                       ('insurance_price', 'insurance_number'),
+                       ('bill_date', 'bill_sent', 'bill_payed', 'docs_sent'),
+                       'accounts_email_sent'),
+            'classes': ('collapse',),
         }),
         (_('Payer info'), {
             'fields': (('payer_name', 'payer_type', 'payment_type'),
                        ('payer_passport', 'payer_tin', 'contract'),
                        ('payer_email', 'payer_phone', 'payer_contact')),
-            'classes': ('collapse',),
-        }),
-        (_('Sender info'), {
-            'fields': (('sender_name', 'sender_type', 'loading_by'),
-                       ('sender_passport', 'sender_tin'),
-                       ('sender_phone', 'sender_contact')),
-            'classes': ('collapse',),
-        }),
-        (_('Receiver info'), {
-            'fields': (('receiver_name', 'receiver_type', 'unloading_by'),
-                       ('receiver_passport', 'receiver_tin'),
-                       ('receiver_phone', 'receiver_contact')),
             'classes': ('collapse',),
         }),
     )
