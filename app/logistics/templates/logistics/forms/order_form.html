@@ -140,6 +140,11 @@
             </tr>
             <tr>
                 <td>
+                    {{ fields.pickup_date_wanted.label_tag }}{{ fields.pickup_date_wanted.errors }}{{ fields.pickup_date_wanted }}
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <br>
                     {{ fields.loading_by }}
                 </td>
@@ -193,6 +198,11 @@
                     <input class="checkbox" type="checkbox" name="receive_precise" id="receive_precise">
                     <label class="checkbox" for="receive_precise">{% trans 'Deliver to address' %}</label>
                     {{ fields.receiver_precise_address }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ fields.delivery_date_wanted.label_tag }}{{ fields.delivery_date_wanted.errors }}{{ fields.delivery_date_wanted }}
                 </td>
             </tr>
             <tr>

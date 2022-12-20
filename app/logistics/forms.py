@@ -28,4 +28,6 @@ class OrderForm(forms.ModelForm):
             'cargo_value': forms.NumberInput(attrs={'class': 'digits'}),
             'send_precise_address': forms.TextInput(attrs={'disabled': 'disabled'}),
             'receiver_precise_address': forms.TextInput(attrs={'disabled': 'disabled'}),
+            'pickup_date_wanted': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+            'delivery_date_wanted': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
         }

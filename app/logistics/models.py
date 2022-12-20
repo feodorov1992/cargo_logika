@@ -108,9 +108,10 @@ class Order(models.Model):
                                     default=UNLOADING_BY[0][0]) #
     delivery_type = models.ManyToManyField(DeliveryType, verbose_name=_('Type of delivery'), blank=True) #
     extra_info = models.TextField(verbose_name=_('Extra info'), blank=True, null=True) #
-
+    pickup_date_wanted = models.DateField(verbose_name=_('Wanted date of pickup'))
     pickup_date = models.DateField(verbose_name=_('Date of pickup'), blank=True, null=True) #
     picked_up = models.BooleanField(verbose_name=_('Cargo picked up'), default=False) #
+    delivery_date_wanted = models.DateField(verbose_name=_('Wanted date of delivery'), blank=True, null=True)
     delivery_date = models.DateField(verbose_name=_('Date of delivery'), blank=True, null=True) #
     delivered = models.BooleanField(verbose_name=_('Cargo delivered'), default=False) #
     docs_sent = models.CharField(max_length=5, verbose_name=_('Docs sent'), choices=DOCS_SENT_CHOICES, #

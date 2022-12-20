@@ -27,8 +27,8 @@ class OrderAdmin(admin.ModelAdmin):
         (_('Service data'), {
             'fields': (('order_price', 'expenses'),
                        ('contractor', 'contractor_waybill',),
-                       ('pickup_date', 'picked_up',),
-                       ('delivery_date', 'delivered',),
+                       ('pickup_date_wanted', 'pickup_date', 'picked_up',),
+                       ('delivery_date_wanted', 'delivery_date', 'delivered',),
                        ('bill_date', 'accounts_email_sent', ),
                        ('bill_sent', 'bill_payed', 'docs_sent'),
                        'hidden_status')
@@ -82,8 +82,15 @@ class OrderAdmin(admin.ModelAdmin):
     }
 
     @staticmethod
-    def send_accounts_email(queryset, user):
-        context = {'user': user, 'queryset': queryset}
+    def get_payer_type_label(queryset):
+        if all([i.payer_type == 'individual' for i in queryset]):
+            return _('Passport')
+        elif all([i.payer_type == 'company' for i in queryset]):
+            return _('Payer TIN')
+        return f"{_('Payer TIN')}/{_('Passport')}"
+
+    def send_accounts_email(self, queryset, user):
+        context = {'user': user, 'queryset': queryset, 'payer_id_label': self.get_payer_type_label(queryset)}
 
         mail_status = send_logo_mail(
             _('Bills issue request'),
@@ -132,7 +139,6 @@ class OrderAdmin(admin.ModelAdmin):
 
     def send_accounts_email_action(self, request, queryset):
         mapper = {
-            'contract': '№ договора',
             'bill_date': 'дата выставления счета',
             'delivery_date': 'дата доставки',
             'order_price': 'стоимость перевозки',
