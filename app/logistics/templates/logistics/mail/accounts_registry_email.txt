@@ -1,0 +1,14 @@
+{% load i18n %}{% load l10n %}
+{{ user.first_name }} {{ user.last_name }} {% trans 'has sent you the request to issue following bills:' %}
+{% trans 'Bill #' %}: {{ bill_number|unlocalize }}
+{% trans 'Bill date' %}: {{ bill_date|date:"d.m.Y" }}
+{% trans 'Payer' %}: {{ payer }}
+{{ payer_id_label }}: {{ payer_id }}
+
+{% for order in queryset %}
+{% trans 'Forwarding services' %} {{ order.sender_addr }} - {{ order.receiver_addr }}{% if order.load_unload %} {% trans 'with loading and unloading operations' %}{% endif %} {% trans 'under contract No.' %}{{ order.contract|unlocalize }} (Receipt No. {{ order.order_number|unlocalize }}{% if order.cargo_spaces %}, {% trans 'Num. of places' %} {{ order.cargo_spaces }}{% endif %}{% if order.cargo_volume %}, {{ order.cargo_volume|floatformat:-2 }} {% trans 'm' %}3{% endif %}{% if order.cargo_weight %}, {{ order.cargo_weight|floatformat:-2 }} {% trans 'kg' %}{% endif %}) - {{ order.order_price|floatformat:-2 }}{% if order.insurance %}
+
+{% trans 'Insurance policy No.' %} {{ order.insurance_number|unlocalize }} - {{ order.insurance_price|floatformat:-2 }}{% endif %}
+
+{% endfor %}
+{% trans 'Total' %}: {{ sum_price|floatformat:-2 }}

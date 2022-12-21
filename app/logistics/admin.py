@@ -1,7 +1,11 @@
+from datetime import datetime
+
 from django import forms
 from django.conf import settings
 from django.contrib import admin, messages
 from django.db import models
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
@@ -61,7 +65,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     inlines = (OrderStatusInline, )
 
-    actions = ['send_accounts_email_action']
+    actions = ['send_accounts_email_action', 'send_registry_email_action']
     change_form_template = 'admin/order_edit.html'
     list_filter = (
         'payer_name', 'picked_up', 'delivered', 'insurance', 'docs_sent', 'delivery_type',
@@ -158,14 +162,77 @@ class OrderAdmin(admin.ModelAdmin):
             )
         else:
             self.send_accounts_email(queryset, request.user)
-            queryset.update(accounts_email_sent=True)
             self.message_user(
                 request,
                 _('Accounts manager ordered to issue bills')
             )
 
-    def send_registry_email_action(self, request, queryset):
-        pass
+    @staticmethod
+    def get_sum_price(queryset):
+        result = float()
+        for order in queryset:
+            result += order.order_price
+            if order.insurance:
+                result += order.insurance_price
+        return result
 
+    def send_registry_email(self, request, queryset, bill_number, bill_date, payer, payer_id):
+        context = {
+            'user': request.user,
+            'queryset': queryset,
+            'payer_id_label': self.get_payer_type_label(queryset),
+            'bill_number': bill_number,
+            'bill_date': bill_date,
+            'payer': payer,
+            'payer_id': payer_id,
+            'sum_price': self.get_sum_price(queryset)
+        }
+        mail_status = send_logo_mail(
+            _('Registry bill issue request'),
+            render_to_string('logistics/mail/accounts_registry_email.txt', context),
+            render_to_string('logistics/mail/accounts_registry_email.html', context),
+            settings.EMAIL_HOST_USER,
+            [settings.EMAIL_ACCOUNTS_ADDRESS]
+        )
+
+        if mail_status == 1:
+            queryset.update(accounts_email_sent=True)
+
+    def send_registry_email_action(self, request, queryset):
+        mapper = {
+            'order_price': 'стоимость перевозки',
+            'insurance_price': 'стоимость страховки',
+            'insurance_number': '№ полиса'
+        }
+        conditional = {
+            'insurance_price': 'insurance',
+            'insurance_number': 'insurance'
+        }
+        errors = self.collect_errors(queryset, mapper, {}, conditional)
+        if errors:
+            error_list = [f'{o_num}: {o_ver}' for o_num, o_ver in errors]
+            self.message_user(
+                request,
+                format_html(_('Essential info is missing in orders:<br>{}').format('<br>'.join(error_list))),
+                messages.ERROR
+            )
+        else:
+            if 'apply' in request.POST:
+
+                self.send_registry_email(
+                    request, queryset,
+                    request.POST.get('bill_number'),
+                    datetime.fromisoformat(request.POST.get('bill_date')).date(),
+                    request.POST.get('payer'),
+                    request.POST.get('payer_id')
+                )
+                queryset.update(accounts_email_sent=True)
+                self.message_user(
+                    request,
+                    _('Accounts manager ordered to issue registry bill')
+                )
+                return HttpResponseRedirect(request.get_full_path())
+            return render(request, 'admin/registry_data.html', {'orders': queryset})
 
     send_accounts_email_action.short_description = _('Send bills request to the accounts manager')
+    send_registry_email_action.short_description = _('Send registry bill request to the accounts manager')
