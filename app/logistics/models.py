@@ -1,5 +1,7 @@
+import time
 import uuid
 
+from django.apps import apps
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -9,6 +11,7 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from app.celery import app
 from log_cats.models import ExtraService, DeliveryType
 from mailer.views import send_logo_mail
 
@@ -49,12 +52,13 @@ DOCS_SENT_CHOICES = (
 def default_order_num():
     return settings.INITIAL_ORDER_NUMBER + Order.objects.count()
 
-
-def send_model_email(subject, template_name, obj, from_email, recipients):
-
+@app.task(bind=True)
+def send_model_email(self, subject, template_name, model_path, obj_pk, from_email, recipients):
+    app_label, _, class_name = model_path.split('.')
+    model = apps.get_model(app_label, class_name)
+    obj = model.objects.get(pk=obj_pk)
     body_text = render_to_string(f'{template_name}.txt', {'object': obj})
     body_html = render_to_string(f'{template_name}.html', {'object': obj})
-
     return send_logo_mail(subject, body_text, body_html, from_email, recipients)
 
 
@@ -189,13 +193,13 @@ class Order(models.Model):
         from_email = 'order@cargo-logika.ru'
         if mail_type == 'admin':
             template_name = 'logistics/mail/order_admin'
-            recipients = [settings.EMAIL_ADMIN_ADDRESS, 'logist@cargo-logika.ru']
+            recipients = [settings.EMAIL_ADMIN_ADDRESS, settings.EMAIL_LOGIST_ADDRESS]
         elif mail_type == 'user':
             template_name = 'logistics/mail/order_user'
             recipients = [self.payer_email]
         else:
             return
-        return send_model_email(subject, template_name, self, from_email, recipients)
+        return send_model_email.delay(subject, template_name, 'logistics.models.Order', self.pk, from_email, recipients)
 
 
     class Meta:
