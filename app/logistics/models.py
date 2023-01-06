@@ -50,7 +50,10 @@ DOCS_SENT_CHOICES = (
 
 
 def default_order_num():
-    return settings.INITIAL_ORDER_NUMBER + Order.objects.count()
+    if Order.objects.exists():
+        return int(Order.objects.first().order_number) + 1
+    else:
+        return settings.INITIAL_ORDER_NUMBER
 
 @app.task(bind=True)
 def send_model_email(self, subject, template_name, model_path, obj_pk, from_email, recipients):
