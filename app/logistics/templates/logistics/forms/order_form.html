@@ -8,17 +8,11 @@
         <tr>
             <td>
                 <ul>
-                    <li>{{ fields.payer_type }}</li>
                     <li>{{ fields.payment_type }}</li>
                 </ul>
             </td>
         </tr>
-        <tr id="payer_passport_row">
-            <td>
-                {{ fields.payer_passport.label_tag }}{{ fields.payer_passport.errors }}{{ fields.payer_passport }}
-            </td>
-        </tr>
-        <tr id="payer_inn_row" style="display: none">
+        <tr id="payer_inn_row">
             <td>
                 {{ fields.payer_tin.label_tag }}{{ fields.payer_tin.errors }}{{ fields.payer_tin }}
             </td>
@@ -85,6 +79,10 @@
                 </label>
                 {{ fields.insurance.errors }}<br>
             </td>
+        </tr>
+        <tr><td><br></td></tr>
+        <tr>
+            <td>{{ fields.delivery_type.label_tag }} {{ fields.delivery_type }} {{ fields.delivery_type.errors }}</td>
         </tr>
     </table>
 </div>
@@ -213,8 +211,6 @@
             </tr>
         </table>
     </div>
-    <br>
-    {{ fields.delivery_type.label_tag }} {{ fields.delivery_type }} {{ fields.delivery_type.errors }}
     <br>
     {{ fields.extra_info.label_tag }} {{ fields.extra_info }} {{ fields.extra_info.errors }}
     <div class="g-recaptcha" data-sitekey="6Lc6AkAUAAAAALYtA6sKTUWTldN7RuW1Auv8fPyu"></div>

@@ -14,38 +14,38 @@ $("#order_form").on('submit', function() {
     return true;
 });
 
-$('#id_payer_type').change(function() {
-    const type = $(this).val();
-
-    if (type === 'individual') {
-        $('tr#payer_passport_row').show();
-        $('#id_payer_passport').prop('required',true);
-        $('label[for="id_payer_passport"]').addClass('required')
-        $('tr#payer_inn_row').hide();
-        $('#id_payer_tin').prop('required',false);
-        $('label[for="id_payer_tin"]').removeClass('required')
-    } else {
-        $('tr#payer_passport_row').hide();
-        $('#id_payer_passport').prop('required',false);
-        $('label[for="id_payer_passport"]').removeClass('required')
-        $('tr#payer_inn_row').show();
-        $('#id_payer_tin').prop('required',true);
-        $('label[for="id_payer_tin"]').addClass('required')
-    }
-
-    if ( $('#sender_payer').is(':checked')) {
-        let target =  $('#id_sender_type')
-        target.val(type);
-        target.change();
-    }
-
-    if ( $('#receiver_payer').is(':checked') ) {
-        let target =  $('#id_receiver_type')
-        target.val(type);
-        target.change();
-    }
-
-});
+// $('#id_payer_type').change(function() {
+//     const type = $(this).val();
+//
+//     if (type === 'individual') {
+//         $('tr#payer_passport_row').show();
+//         $('#id_payer_passport').prop('required',true);
+//         $('label[for="id_payer_passport"]').addClass('required')
+//         $('tr#payer_inn_row').hide();
+//         $('#id_payer_tin').prop('required',false);
+//         $('label[for="id_payer_tin"]').removeClass('required')
+//     } else {
+//         $('tr#payer_passport_row').hide();
+//         $('#id_payer_passport').prop('required',false);
+//         $('label[for="id_payer_passport"]').removeClass('required')
+//         $('tr#payer_inn_row').show();
+//         $('#id_payer_tin').prop('required',true);
+//         $('label[for="id_payer_tin"]').addClass('required')
+//     }
+//
+//     if ( $('#sender_payer').is(':checked')) {
+//         let target =  $('#id_sender_type')
+//         target.val(type);
+//         target.change();
+//     }
+//
+//     if ( $('#receiver_payer').is(':checked') ) {
+//         let target =  $('#id_receiver_type')
+//         target.val(type);
+//         target.change();
+//     }
+//
+// });
 
 $('#id_sender_type').change(function() {
     const type = $(this).val();
@@ -92,8 +92,9 @@ $('#sender_payer').on('change',function(){
         $('#id_sender_name').prop('disabled',true).val($('#id_payer_name').val());
         $('#id_sender_phone').prop('disabled',true).val($('#id_payer_phone').val());
         $('#id_sender_contact').prop('disabled',true).val($('#id_payer_contact').val());
-        $('#id_sender_type').prop('disabled',true).val($('#id_payer_type').val()).change();
-        $('#id_sender_passport').prop('disabled',true).val( $('#id_payer_passport').val() );
+        // $('#id_sender_type').prop('disabled',true).val($('#id_payer_type').val()).change();
+        $('#id_sender_type').prop('disabled',true).val('company').change();
+        $('#id_sender_passport').prop('disabled',true).val('');
         $('#id_sender_tin').prop('disabled',true).val( $('#id_payer_tin').val());
     }else{
         let resetBlank = [
@@ -116,8 +117,9 @@ $('#receiver_payer').on('change',function(){
         $('#id_receiver_name').prop('disabled',true).val($('#id_payer_name').val());
         $('#id_receiver_phone').prop('disabled',true).val($('#id_payer_phone').val());
         $('#id_receiver_contact').prop('disabled',true).val($('#id_payer_contact').val());
-        $('#id_receiver_type').prop('disabled',true).val($('#id_payer_type').val()).change();
-        $('#id_receiver_passport').prop('disabled',true).val($('#id_payer_passport').val());
+        // $('#id_receiver_type').prop('disabled',true).val($('#id_payer_type').val()).change();
+        $('#id_receiver_type').prop('disabled',true).val('company').change();
+        $('#id_receiver_passport').prop('disabled',true).val('');
         $('#id_receiver_tin').prop('disabled',true).val($('#id_payer_tin').val());
     }else{
         let resetBlank = [

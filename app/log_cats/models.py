@@ -16,6 +16,11 @@ class ExtraService(models.Model):
 class DeliveryType(models.Model):
     title = models.CharField(max_length=50, verbose_name=_('title'))
 
+    @classmethod
+    def get_default_pk(cls):
+        delivery_type, created = cls.objects.get_or_create(title=_('Auto'))
+        return delivery_type.pk
+
     def __str__(self):
         return self.title
 

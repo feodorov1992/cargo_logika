@@ -72,12 +72,9 @@ class Order(models.Model):
     order_number = models.CharField(default=default_order_num, verbose_name=_('Order number'), max_length=7) #
     order_date = models.DateField(default=timezone.now, verbose_name=_('Order date')) #
     payer_name = models.CharField(max_length=255, verbose_name=_('Payer')) #
-    payer_type = models.CharField(max_length=15, verbose_name=_('Payer type'), choices=CP_TYPES, #
-                                  default=CP_TYPES[0][0]) #
     payment_type = models.CharField(max_length=15, verbose_name=_('Payment type'), choices=PAYMENT_TYPES, #
                                     default=PAYMENT_TYPES[0][0]) #
-    payer_passport = models.CharField(max_length=30, verbose_name=_('Payer passport'), blank=True, null=True) #
-    payer_tin = models.CharField(max_length=15, verbose_name=_('Payer TIN'), blank=True, null=True) #
+    payer_tin = models.CharField(max_length=15, verbose_name=_('Payer TIN')) #
     payer_email = models.EmailField(verbose_name=_('Payer email')) #
     payer_phone = models.CharField(max_length=50, verbose_name=_('Payer phone')) #
     payer_contact = models.CharField(max_length=100, verbose_name=_('Payer contact')) #
@@ -113,7 +110,8 @@ class Order(models.Model):
                                                 blank=True, null=True) #
     unloading_by = models.CharField(max_length=30, verbose_name=_('Unloading by'), choices=UNLOADING_BY, #
                                     default=UNLOADING_BY[0][0]) #
-    delivery_type = models.ManyToManyField(DeliveryType, verbose_name=_('Type of delivery'), blank=True) #
+    delivery_type = models.ForeignKey(DeliveryType, verbose_name=_('Type of delivery'),
+                                      default=DeliveryType.get_default_pk, on_delete=models.PROTECT) #
     extra_info = models.TextField(verbose_name=_('Extra info'), blank=True, null=True) #
     pickup_date_wanted = models.DateField(verbose_name=_('Wanted date of pickup'))
     pickup_date = models.DateField(verbose_name=_('Date of pickup'), blank=True, null=True) #
@@ -257,16 +255,10 @@ def save_order(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user(sender, instance, created, **kwargs):
     if not instance.is_staff:
-        if instance.type == 'individual':
-            Order.objects.filter(Q(payer_passport=instance.passport) |
-                                 Q(sender_passport=instance.passport) |
-                                 Q(receiver_passport=instance.passport),
-                                 user__isnull=True,).update(user=instance)
-        if instance.type == 'company':
-            Order.objects.filter(Q(payer_tin=instance.tin) |
-                                 Q(sender_tin=instance.tin) |
-                                 Q(receiver_tin=instance.tin),
-                                 user__isnull=True).update(user=instance)
+        Order.objects.filter(Q(payer_tin=instance.tin) |
+                             Q(sender_tin=instance.tin) |
+                             Q(receiver_tin=instance.tin),
+                             user__isnull=True).update(user=instance)
 
 # @receiver(post_save, sender=OrderStatus)
 # def save_status(sender, instance, created, **kwargs):
