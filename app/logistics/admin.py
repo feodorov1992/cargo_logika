@@ -87,15 +87,8 @@ class OrderAdmin(admin.ModelAdmin):
     }
 
     @staticmethod
-    def get_payer_type_label(queryset):
-        if all([i.payer_type == 'individual' for i in queryset]):
-            return _('Passport')
-        elif all([i.payer_type == 'company' for i in queryset]):
-            return _('Payer TIN')
-        return f"{_('Payer TIN')}/{_('Passport')}"
-
-    def send_accounts_email(self, queryset, user):
-        context = {'user': user, 'queryset': queryset, 'payer_id_label': self.get_payer_type_label(queryset)}
+    def send_accounts_email(queryset, user):
+        context = {'user': user, 'queryset': queryset}
 
         mail_status = send_logo_mail(
             _('Bills issue request'),
@@ -183,7 +176,6 @@ class OrderAdmin(admin.ModelAdmin):
         context = {
             'user': request.user,
             'queryset': queryset,
-            'payer_id_label': self.get_payer_type_label(queryset),
             'bill_number': bill_number,
             'bill_date': bill_date,
             'payer': payer,

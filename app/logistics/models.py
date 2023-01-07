@@ -173,10 +173,10 @@ class Order(models.Model):
             if not self.contract:
                 self.contract = self.user.contract
         if not self.picked_up:
-            if self.pickup_date and self.pickup_date <= timezone.now():
+            if self.pickup_date and self.pickup_date <= timezone.now().date():
                 self.picked_up = True
         if not self.delivered:
-            if self.delivery_date and self.delivery_date <= timezone.now():
+            if self.delivery_date and self.delivery_date <= timezone.now().date():
                 self.delivered = True
         super(Order, self).save(force_insert, force_update, using, update_fields)
 
