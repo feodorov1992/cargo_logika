@@ -28,6 +28,7 @@
 {% trans 'Loading by' %}: {{ object.get_loading_by_display }}
 {% trans 'Departure city' %}: {{ object.sender_addr }}
 {% if object.send_precise_address %}{% trans 'Departure address' %}: {{ object.send_precise_address }}{% endif %}
+{% trans 'Wanted date of pickup' %}: {{ object.pickup_date_wanted|date:"d.m.Y" }}
 
 {% trans 'Receiver' %}
 {% if object.receiver_type == 'company' %}{% trans 'Receive organisation name' %}{% else %}{% trans 'Receiver name' %}{% endif %}: {{ object.receiver_name }}
@@ -38,6 +39,7 @@
 {% trans 'Unloading by' %}: {{ object.get_unloading_by_display }}
 {% trans 'Delivery city' %}: {{ object.receiver_addr }}
 {% if object.receiver_precise_address %}{% trans 'Full delivery address' %}: {{ object.receiver_precise_address }}{% endif %}
+{% if object.delivery_date_wanted %}{% trans 'Wanted date of delivery' %}: {{ object.delivery_date_wanted|date:"d.m.Y" }}{% endif %}
 
 {% if object.extra_info %}
 {% trans 'Extra info' %}

@@ -145,6 +145,10 @@
     </tr>
     {% endif %}
     <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Wanted date of pickup' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.pickup_date_wanted|date:"d.m.Y" }}</td>
+    </tr>
+    <tr>
         <th colspan="2" style="border: 1px solid #452f7f; padding: 5px"></th>
     </tr>
     <tr>
@@ -189,6 +193,12 @@
     <tr>
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Full delivery address' %}</th>
         <td style="border: 1px solid #452f7f; padding: 5px">{{ object.receiver_precise_address }}</td>
+    </tr>
+    {% endif %}
+    {% if object.delivery_date_wanted %}
+    <tr>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Wanted date of delivery' %}</th>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.delivery_date_wanted|date:"d.m.Y" }}</td>
     </tr>
     {% endif %}
     {% if object.extra_info %}
