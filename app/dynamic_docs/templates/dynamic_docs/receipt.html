@@ -16,11 +16,11 @@
                                 <td colspan="3"><b>Отправитель: {{ order.sender_name }}</b></td>
                             </tr>
                             <tr>
-                                <td>город: {{ order.sender_addr }}</td>
+                                <td>Город: {{ order.sender_addr }}</td>
                                 <td colspan="2">{% if order.send_precise_address %}адрес: {{ order.send_precise_address }}{% endif %}</td>
                             </tr>
                             <tr>
-                                <td>конт.лицо: {{ order.sender_contact }}</td>
+                                <td>Конт.лицо: {{ order.sender_contact }}</td>
                                 <td colspan="2">тел.: {{ order.sender_phone }}</td>
                             </tr>
                             <tr class="smaller_text">
@@ -38,11 +38,11 @@
                                 <td colspan="3"><b>Получатель: {{ order.receiver_name }}</b></td>
                             </tr>
                             <tr>
-                                <td>город: {{ order.receiver_addr }}</td>
+                                <td>Город: {{ order.receiver_addr }}</td>
                                 <td colspan="2">{% if order.receiver_precise_address %}адрес: {{ order.receiver_precise_address }}{% endif %}</td>
                             </tr>
                             <tr>
-                                <td>конт.лицо: {{ order.receiver_contact }}</td>
+                                <td>Конт.лицо: {{ order.receiver_contact }}</td>
                                 <td colspan="2">тел.: {{ order.receiver_phone }}</td>
                             </tr>
                             <tr class="smaller_text">
@@ -123,14 +123,14 @@
 </table>
 <table class="visible_border even hor_center">
     <tr>
-        <td>характер груза</td>
-        <td>кол.мест</td>
-        <td>вес кг.</td>
-        <td>объём м.куб.</td>
-        <td>характер упаковки</td>
+        <td colspan="2">Характер груза</td>
+        <td>Кол-во мест</td>
+        <td>Вес, кг</td>
+        <td>Объём, м&sup3;</td>
+        <td>Характер упаковки</td>
     </tr>
     <tr>
-        <td class="double_height">{% if order.cargo_name %}{{ order.cargo_name }}{% endif %}</td>
+        <td colspan="2" class="double_height">{% if order.cargo_name %}{{ order.cargo_name }}{% endif %}</td>
         <td class="double_height">{% if order.cargo_spaces %}{{ order.cargo_spaces }}{% endif %}</td>
         <td class="double_height">{% if order.cargo_weight %}{{ order.cargo_weight|floatformat:-2 }}{% endif %}</td>
         <td class="double_height">{% if order.cargo_volume %}{{ order.cargo_volume|floatformat:-2 }}{% endif %}</td>
@@ -143,9 +143,9 @@
             <table>
                 <tr>
                     <td><b>Плательщик:</b></td>
-                    <td>{% if order.payer_name == order.sender_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} отправитель</td>
-                    <td>{% if order.payer_name == order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} получатель</td>
-                    <td colspan="2">{% if order.payer_name != order.sender_name and order.payer_name != order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes"> третье лицо: {{ order.payer_name }}{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no"> третье лицо: _____________________{% endif %}</td>
+                    <td>{% if order.payer_name == order.sender_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Отправитель</td>
+                    <td>{% if order.payer_name == order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Получатель</td>
+                    <td colspan="2">{% if order.payer_name != order.sender_name and order.payer_name != order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes"> Третье лицо: {{ order.payer_name }}{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no"> третье лицо: _____________________{% endif %}</td>
                     <td>{% if order.payment_type == 'cash' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} нал&nbsp;&nbsp;{% if order.payment_type != 'cash' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} б/нал</td>
                 </tr>
             </table>
@@ -168,11 +168,11 @@
 </table>
 <table class="visible_border">
     <tr class="uneven">
-        <td><b>Дополнительная информация:</b><br><br><br></td>
-        <td><b>Примечания:</b> <span class="smaller_text">(заполняется представителем CARGO ЛОГИКА)</span><br><br><br></td>
+        <td class="triple_height"><b>Дополнительная информация:</b><br>{{ order.extra_info }}</td>
+        <td class="triple_height"><b>Примечания:</b> <span class="smaller_text">(заполняется представителем CARGO ЛОГИКА)</span></td>
     </tr>
     <tr>
-        <td colspan="2" class="hor_center vert_center">
+        <td colspan="2" class="hor_center vert_center smaller_text">
             Экспедитор принял груз по количеству мест, без взвешивания, без внутреннего досмотра, без проверки содержимого упаковки на предмет работоспособности и внутренней комплектности.
             Грузоотправитель подтверждает, что переданный Экспедитору груз не содержит предметы, запрещенные к перевозке в соответствии с действующим законодательством.
             Подписание Сторонами данной Экспедиторской расписки в отсутствии Договора траспортной экспедиции, считается принятием условия указанного Договора.
@@ -230,11 +230,11 @@
                                 <td colspan="3"><b>Отправитель: {{ order.sender_name }}</b></td>
                             </tr>
                             <tr>
-                                <td>город: {{ order.sender_addr }}</td>
+                                <td>Город: {{ order.sender_addr }}</td>
                                 <td colspan="2">{% if order.send_precise_address %}адрес: {{ order.send_precise_address }}{% endif %}</td>
                             </tr>
                             <tr>
-                                <td>конт.лицо: {{ order.sender_contact }}</td>
+                                <td>Конт.лицо: {{ order.sender_contact }}</td>
                                 <td colspan="2">тел.: {{ order.sender_phone }}</td>
                             </tr>
                             <tr class="smaller_text">
@@ -252,11 +252,11 @@
                                 <td colspan="3"><b>Получатель: {{ order.receiver_name }}</b></td>
                             </tr>
                             <tr>
-                                <td>город: {{ order.receiver_addr }}</td>
+                                <td>Город: {{ order.receiver_addr }}</td>
                                 <td colspan="2">{% if order.receiver_precise_address %}адрес: {{ order.receiver_precise_address }}{% endif %}</td>
                             </tr>
                             <tr>
-                                <td>конт.лицо: {{ order.receiver_contact }}</td>
+                                <td>Конт.лицо: {{ order.receiver_contact }}</td>
                                 <td colspan="2">тел.: {{ order.receiver_phone }}</td>
                             </tr>
                             <tr class="smaller_text">
@@ -337,14 +337,14 @@
 </table>
 <table class="visible_border even hor_center">
     <tr>
-        <td>характер груза</td>
-        <td>кол.мест</td>
-        <td>вес кг.</td>
-        <td>объём м.куб.</td>
-        <td>характер упаковки</td>
+        <td colspan="2">Характер груза</td>
+        <td>Кол-во мест</td>
+        <td>Вес, кг</td>
+        <td>Объём, м&sup3;</td>
+        <td>Характер упаковки</td>
     </tr>
     <tr>
-        <td class="double_height">{% if order.cargo_name %}{{ order.cargo_name }}{% endif %}</td>
+        <td colspan="2" class="double_height">{% if order.cargo_name %}{{ order.cargo_name }}{% endif %}</td>
         <td class="double_height">{% if order.cargo_spaces %}{{ order.cargo_spaces }}{% endif %}</td>
         <td class="double_height">{% if order.cargo_weight %}{{ order.cargo_weight|floatformat:-2 }}{% endif %}</td>
         <td class="double_height">{% if order.cargo_volume %}{{ order.cargo_volume|floatformat:-2 }}{% endif %}</td>
@@ -357,9 +357,9 @@
             <table>
                 <tr>
                     <td><b>Плательщик:</b></td>
-                    <td>{% if order.payer_name == order.sender_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} отправитель</td>
-                    <td>{% if order.payer_name == order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} получатель</td>
-                    <td colspan="2">{% if order.payer_name != order.sender_name and order.payer_name != order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes"> третье лицо: {{ order.payer_name }}{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no"> третье лицо: _____________________{% endif %}</td>
+                    <td>{% if order.payer_name == order.sender_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Отправитель</td>
+                    <td>{% if order.payer_name == order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Получатель</td>
+                    <td colspan="2">{% if order.payer_name != order.sender_name and order.payer_name != order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes"> Третье лицо: {{ order.payer_name }}{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no"> третье лицо: _____________________{% endif %}</td>
                     <td>{% if order.payment_type == 'cash' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} нал&nbsp;&nbsp;{% if order.payment_type != 'cash' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} б/нал</td>
                 </tr>
             </table>
@@ -382,11 +382,11 @@
 </table>
 <table class="visible_border">
     <tr class="uneven">
-        <td><b>Дополнительная информация:</b><br><br><br></td>
-        <td><b>Примечания:</b> <span class="smaller_text">(заполняется представителем CARGO ЛОГИКА)</span><br><br><br></td>
+        <td class="triple_height"><b>Дополнительная информация:</b><br>{{ order.extra_info }}</td>
+        <td class="triple_height"><b>Примечания:</b> <span class="smaller_text">(заполняется представителем CARGO ЛОГИКА)</span></td>
     </tr>
     <tr>
-        <td colspan="2" class="hor_center vert_center">
+        <td colspan="2" class="hor_center vert_center smaller_text">
             Экспедитор принял груз по количеству мест, без взвешивания, без внутреннего досмотра, без проверки содержимого упаковки на предмет работоспособности и внутренней комплектности.
             Грузоотправитель подтверждает, что переданный Экспедитору груз не содержит предметы, запрещенные к перевозке в соответствии с действующим законодательством.
             Подписание Сторонами данной Экспедиторской расписки в отсутствии Договора траспортной экспедиции, считается принятием условия указанного Договора.

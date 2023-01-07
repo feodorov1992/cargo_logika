@@ -86,3 +86,7 @@ td.double_height {
     vertical-align: middle;
     height: 30px;
 }
+
+td.triple_height {
+    height: 45px;
+}
