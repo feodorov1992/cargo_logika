@@ -16,6 +16,8 @@ from mailer.views import send_logo_mail
 class OrderStatusInline(admin.TabularInline):
     model = OrderStatus
     extra = 0
+    verbose_name = _('order status')
+    verbose_name_plural = _('order statuses (for tracking)')
 
 
 @admin.register(Order)
