@@ -23,20 +23,27 @@ class OrderAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (('order_number', 'order_date',),
-                       ('hidden_status', ),
-                       ('delivery_type', 'extra_services', 'load_unload', 'insurance'),
-                       'extra_info')
+                       ('payer_name', 'payer_tin', 'user'))
+        }),
+        (_('Payer info'), {
+            'fields': (('payment_type', 'contract'),
+                       ('payer_email', 'payer_phone', 'payer_contact')),
+            'classes': ('collapse',),
         }),
         (_('Send/receive info'), {
-            'fields': (('sender_addr', 'receiver_addr'),
-                       ('send_precise_address', 'receiver_precise_address'),
-                       ('loading_by', 'unloading_by'),
-                       ('sender_name', 'receiver_name'),
-                       ('sender_type', 'receiver_type'),
+            'fields': (('sender_name', 'receiver_name'),
                        ('sender_tin', 'receiver_tin'),
                        ('sender_passport', 'receiver_passport'),
+                       ('sender_addr', 'receiver_addr'),
+                       ('send_precise_address', 'receiver_precise_address'),
+                       ('loading_by', 'unloading_by'),
+                       ('sender_type', 'receiver_type'),
                        ('sender_contact', 'receiver_contact'),
-                       ('sender_phone', 'receiver_phone'))
+                       ('sender_phone', 'receiver_phone'),
+                       ('hidden_status',),
+                       ('delivery_type', 'extra_services', 'load_unload', 'insurance'),
+                       'extra_info'
+                       )
         }),
         (_('Pickup/delivery info'), {
             'fields': (('pickup_date_wanted', 'delivery_date_wanted'),
@@ -53,12 +60,6 @@ class OrderAdmin(admin.ModelAdmin):
                        ('insurance_price', 'insurance_number'),
                        ('bill_date', 'bill_sent', 'bill_payed', 'docs_sent'),
                        'accounts_email_sent'),
-            'classes': ('collapse',),
-        }),
-        (_('Payer info'), {
-            'fields': (('payer_name', 'payer_type', 'payment_type'),
-                       ('payer_passport', 'payer_tin', 'contract'),
-                       ('payer_email', 'payer_phone', 'payer_contact')),
             'classes': ('collapse',),
         }),
     )
