@@ -5,6 +5,7 @@ from django.apps import apps
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
@@ -12,13 +13,9 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from app.celery import app
+from app_auth.models import User, CP_TYPES
 from log_cats.models import ExtraService, DeliveryType
 from mailer.views import send_logo_mail
-
-CP_TYPES = (
-    ('individual', _('Individual')),
-    ('company', _('Company'))
-)
 
 
 PAYMENT_TYPES = (
@@ -51,7 +48,10 @@ DOCS_SENT_CHOICES = (
 
 def default_order_num():
     if Order.objects.exists():
-        return int(Order.objects.first().order_number) + 1
+        try:
+            return int(Order.objects.first().order_number) + 1
+        except ValueError:
+            return settings.INITIAL_ORDER_NUMBER + Order.objects.count()
     else:
         return settings.INITIAL_ORDER_NUMBER
 
@@ -136,6 +136,8 @@ class Order(models.Model):
     hidden_status = models.CharField(max_length=255, verbose_name=_('Hidden status'), blank=True, null=True)
     contract = models.CharField(max_length=255, verbose_name=_('Contract number'), blank=True, null=True) #
     accounts_email_sent = models.BooleanField(verbose_name=_('Email to the accounts manager sent'), default=False) #
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=_('Submitted by'),
+                             related_name='orders')
 
     def status(self):
         last_status = None
@@ -167,6 +169,9 @@ class Order(models.Model):
             self.load_unload = True
         else:
             self.load_unload = False
+        if self.user:
+            if not self.contract:
+                self.contract = self.user.contract
         super(Order, self).save(force_insert, force_update, using, update_fields)
 
     def receipt_filename(self):
@@ -232,18 +237,32 @@ class OrderStatus(models.Model):
     class Meta:
         verbose_name = _('order status')
         verbose_name_plural = _('order statuses')
-        ordering = ['date']
+        ordering = ['created_at']
 
 
 @receiver(post_save, sender=Order)
-def save_profile(sender, instance, created, **kwargs):
+def save_order(sender, instance, created, **kwargs):
     if created:
         OrderStatus.objects.create(label=_('New'), order=instance)
         instance.send_creation_email()
         instance.send_creation_email('user')
 
 
+@receiver(post_save, sender=User)
+def save_user(sender, instance, created, **kwargs):
+    if not instance.is_staff:
+        if instance.type == 'individual':
+            Order.objects.filter(Q(payer_passport=instance.passport) |
+                                 Q(sender_passport=instance.passport) |
+                                 Q(receiver_passport=instance.passport),
+                                 user__isnull=True,).update(user=instance)
+        if instance.type == 'company':
+            Order.objects.filter(Q(payer_tin=instance.tin) |
+                                 Q(sender_tin=instance.tin) |
+                                 Q(receiver_tin=instance.tin),
+                                 user__isnull=True).update(user=instance)
+
 # @receiver(post_save, sender=OrderStatus)
-# def save_profile(sender, instance, created, **kwargs):
+# def save_status(sender, instance, created, **kwargs):
 #     if created and instance.label != _('New'):
 #         instance.send_creation_email()

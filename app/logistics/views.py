@@ -19,3 +19,10 @@ class OrderCreateView(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         return reverse('order')
+
+    def form_valid(self, form):
+        response = super(OrderCreateView, self).form_valid(form)
+        if self.request.user.is_authenticated and not self.request.user.is_staff:
+            self.object.user = self.request.user
+            self.object.save()
+        return response

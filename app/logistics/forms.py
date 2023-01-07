@@ -15,7 +15,7 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         exclude = ['order_number', 'order_date', 'pickup_date', 'docs_sent', 'contractor_waybill', 'expenses',
-                   'order_price', 'insurance_price', 'insurance_number', 'bill_sent', 'bill_payed']
+                   'order_price', 'insurance_price', 'insurance_number', 'bill_sent', 'bill_payed', 'user']
         widgets = {
             'extra_cargo_params': forms.CheckboxSelectMultiple(),
             'extra_services': forms.CheckboxSelectMultiple(),
