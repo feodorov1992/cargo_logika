@@ -183,9 +183,7 @@ class Order(models.Model):
 
     def clean(self):
         errors = dict()
-        if self.payer_type == 'individual' and not self.payer_passport:
-            errors['payer_passport'] = _('Passport number is required for paying individuals')
-        if self.payer_type == 'company' and not self.payer_tin:
+        if not self.payer_tin:
             errors['payer_tin'] = _('TIN is required for paying companies')
         if self.sender_type == 'individual' and not self.sender_passport:
             errors['sender_passport'] = _('Passport number is required for sending individuals')
