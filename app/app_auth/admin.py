@@ -7,7 +7,7 @@ from app_auth.models import User
 class UserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'type', 'org_name', 'tin', 'passport')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'org_name', 'tin')}),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),
