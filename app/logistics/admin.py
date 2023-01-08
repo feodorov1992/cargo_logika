@@ -94,7 +94,7 @@ class OrderAdmin(admin.ModelAdmin):
             _('Bills issue request'),
             render_to_string('logistics/mail/accounts_email.txt', context),
             render_to_string('logistics/mail/accounts_email.html', context),
-            settings.EMAIL_HOST_USER,
+            'site@cargo-logika.ru',
             [settings.EMAIL_ACCOUNTS_ADDRESS]
         )
 
@@ -186,7 +186,7 @@ class OrderAdmin(admin.ModelAdmin):
             _('Registry bill issue request'),
             render_to_string('logistics/mail/accounts_registry_email.txt', context),
             render_to_string('logistics/mail/accounts_registry_email.html', context),
-            settings.EMAIL_HOST_USER,
+            'site@cargo-logika.ru',
             [settings.EMAIL_ACCOUNTS_ADDRESS]
         )
 
