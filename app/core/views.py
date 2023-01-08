@@ -1,3 +1,6 @@
+import os
+
+import gspread
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -11,6 +14,13 @@ from django.utils.translation import gettext_lazy as _
 from core.forms import CalcForm, FeedbackForm, StatusForm
 from logistics.models import Order
 from mailer.views import send_logo_mail
+
+
+def get_from_spreadsheet(number):
+    gc = gspread.service_account(os.path.join(settings.BASE_DIR, 'credentials/credentials.json'))
+    sh = gc.open_by_key('1mFOIKA-DY5THkIXfvxfz8iKcHSfIdq0mU0HZu8LFSpU').sheet1
+    status_dict = dict(sh.get_all_values()[1:])
+    return status_dict.get(number)
 
 
 def home(request):
@@ -30,7 +40,12 @@ class HomeView(FormView):
             order = Order.objects.get(order_number=order_num)
             msg = render_to_string('core/messages/status_success.html', {'order': order})
         except ObjectDoesNotExist:
-            msg = render_to_string('core/messages/status_error.html', {'order_num': order_num})
+            old_status = get_from_spreadsheet(order_num)
+            if old_status:
+                msg = render_to_string('core/messages/status_old_school.html',
+                                       {'order_number': order_num, 'status': old_status})
+            else:
+                msg = render_to_string('core/messages/status_error.html', {'order_num': order_num})
 
         messages.info(self.request, msg)
         return super(HomeView, self).form_valid(form)
