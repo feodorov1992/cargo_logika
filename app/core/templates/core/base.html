@@ -13,13 +13,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <script src="{% static '/js/jquery_min.js' %}"></script>
     <link rel="stylesheet" href="{% static '/css/nav-icon.css' %}">
-    <link rel="stylesheet" href="{% static '/css/cargo-logika.css' %}?v=3">
+    <link rel="stylesheet" href="{% static '/css/cargo-logika.css' %}?v=4">
 </head>
 <body>
 <div id="retro_head">
     <div id="logo">
         <a href="/"><img alt="Вернуться на главную" src="{% static '/img/logo_color.png' %}"></a>
-        <p>Транспортно-логистическая компания</p>
+        <div>
+            <p>Транспортно-логистическая компания</p>
+            <table>
+                <tr>
+                    <td class="time_cell rem_3">Москва: <span class="time_span" id="msk"></span></td>
+                    <td class="time_cell rem_2">Новосибирск: <span class="time_span" id="nvs"></span></td>
+                    <td class="time_cell rem_1">Владивосток: <span class="time_span" id="vdv"></span></td>
+                </tr>
+            </table>
+        </div>
+        <script>
+            d = new Date()
+            $('#time').html(d.getTimezoneOffset())
+        </script>
     </div>
 	<div id="retro_right">
 		<div id="contacts">
@@ -212,6 +225,30 @@
         $('#alert').removeAttr('style');
         $('#alert_label').html(null);
     })
+
+    function startTime() {
+        Date.prototype.addHours= function(h){
+            const copiedDate = new Date(this.getTime());
+            copiedDate.setHours(copiedDate.getHours()+h);
+            return copiedDate.getHours();
+        }
+
+        const now = new Date;
+        now.setHours(now.getUTCHours());
+        const msk_h = String(now.addHours(3)).padStart(2, '0');
+        const nvs_h = String(now.addHours(7)).padStart(2, '0');
+        const vdv_h = String(now.addHours(10)).padStart(2, '0');
+        const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+        const secs = String(now.getUTCSeconds()).padStart(2, '0');
+        const msk = `${msk_h}:${minutes}:${secs}`;
+        const nvs = `${nvs_h}:${minutes}:${secs}`;
+        const vdv = `${vdv_h}:${minutes}:${secs}`;
+        $('#msk').html(msk)
+        $('#nvs').html(nvs)
+        $('#vdv').html(vdv)
+    }
+    window.onload = startTime;
+    setInterval(startTime, 1000);
 </script>
 </body>
 </html>
