@@ -239,16 +239,19 @@
         const nvs_h = String(now.addHours(7)).padStart(2, '0');
         const vdv_h = String(now.addHours(10)).padStart(2, '0');
         const minutes = String(now.getUTCMinutes()).padStart(2, '0');
-        const secs = String(now.getUTCSeconds()).padStart(2, '0');
-        const msk = `${msk_h}:${minutes}:${secs}`;
-        const nvs = `${nvs_h}:${minutes}:${secs}`;
-        const vdv = `${vdv_h}:${minutes}:${secs}`;
+        // const secs = String(now.getUTCSeconds()).padStart(2, '0');
+        // const msk = `${msk_h}:${minutes}:${secs}`;
+        const msk = `${msk_h}:${minutes}`;
+        // const nvs = `${nvs_h}:${minutes}:${secs}`;
+        const nvs = `${nvs_h}:${minutes}`;
+        // const vdv = `${vdv_h}:${minutes}`;
+        const vdv = `${vdv_h}:${minutes}`;
         $('#msk').html(msk)
         $('#nvs').html(nvs)
         $('#vdv').html(vdv)
     }
     window.onload = startTime;
-    setInterval(startTime, 1000);
+    setInterval(startTime, 60*1000);
 </script>
 </body>
 </html>
