@@ -10,8 +10,7 @@ RUN mkdir -p /vol/static && \
     chmod 755 /vol/static && \
     touch /etc/nginx/conf.d/default.conf && \
     chown nginx:nginx /etc/nginx/conf.d/default.conf && \
-    chmod +x /run.sh && \
-    chmod 755 /etc/nginx/ssl
+    chmod +x /run.sh
 
 VOLUME /vol/static
 
