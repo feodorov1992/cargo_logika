@@ -15,8 +15,8 @@
 {% if object.cargo_weight %}{% trans 'Cargo weight, kg' %}: {{ object.cargo_weight|floatformat:-2 }}{% endif %}
 {% if object.cargo_volume %}{% trans 'Cargo volume, m3' %}{{ object.cargo_volume|floatformat:-2 }}{% endif %}
 {% trans 'Insurance is required' %}: {% if object.insurance %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}
-{% if object.insurance %}{% trans 'Cargo value' %}: {{ object.cargo_value|floatformat:-2 }}{% endif %}
-{% if object.delivery_type.exists %}{% trans 'Type of delivery' %}: {{ object.delivery_type.all|join:", " }}{% endif %}
+{% trans 'Cargo value' %}: {{ object.cargo_value|floatformat:-2 }}
+{% trans 'Type of delivery' %}: {{ object.delivery_type }}
 
 {% trans 'Sender' %}
 {% if object.sender_type == 'company' %}{% trans 'Send organisation name' %}{% else %}{% trans 'Sender name' %}{% endif %}: {{ object.sender_name }}

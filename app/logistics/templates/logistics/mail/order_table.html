@@ -74,18 +74,14 @@
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Insurance is required' %}</th>
         <td style="border: 1px solid #452f7f; padding: 5px">{% if object.insurance %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
     </tr>
-    {% if object.insurance %}
     <tr>
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Cargo value' %}</th>
         <td style="border: 1px solid #452f7f; padding: 5px">{{ object.cargo_value|floatformat:-2 }}</td>
     </tr>
-    {% endif %}
-    {% if object.delivery_type.exists %}
     <tr>
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Type of delivery' %}</th>
-        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.delivery_type.all|join:", " }}</td>
+        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.delivery_type }}</td>
     </tr>
-    {% endif %}
     <tr>
         <th colspan="2" style="border: 1px solid #452f7f; padding: 5px"></th>
     </tr>
