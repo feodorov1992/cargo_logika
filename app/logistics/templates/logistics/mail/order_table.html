@@ -3,28 +3,17 @@
         <th colspan="2" style="border: 1px solid #452f7f; padding: 5px; text-align: center">{% trans 'Payer' %}</th>
     </tr>
     <tr>
-        <th style="border: 1px solid #452f7f; padding: 5px">{% if object.payer_type == 'company' %}{% trans 'Payment organisation name' %}{% else %}{% trans 'Payer name' %}{% endif %}</th>
+        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payment organisation name' %}</th>
         <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_name }}</td>
-    </tr>
-    <tr>
-        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer type' %}</th>
-        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.get_payer_type_display }}</td>
     </tr>
     <tr>
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payment type' %}</th>
         <td style="border: 1px solid #452f7f; padding: 5px">{{ object.get_payment_type_display }}</td>
     </tr>
-    {% if object.payer_type == 'company' %}
     <tr>
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer TIN' %}</th>
         <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_tin }}</td>
     </tr>
-    {% else %}
-    <tr>
-        <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer passport' %}</th>
-        <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_passport }}</td>
-    </tr>
-    {% endif %}
     <tr>
         <th style="border: 1px solid #452f7f; padding: 5px">{% trans 'Payer email' %}</th>
         <td style="border: 1px solid #452f7f; padding: 5px">{{ object.payer_email }}</td>

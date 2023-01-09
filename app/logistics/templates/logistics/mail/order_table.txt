@@ -1,8 +1,7 @@
 {% load i18n %}{% trans 'Payer' %}
-{% if object.payer_type == 'company' %}{% trans 'Payment organisation name' %}{% else %}{% trans 'Payer name' %}{% endif %}: {{ object.payer_name }}
-{% trans 'Payer type' %}: {{ object.get_payer_type_display }}
+{% trans 'Payment organisation name' %}: {{ object.payer_name }}
 {% trans 'Payment type' %}: {{ object.get_payment_type_display }}
-{% if object.payer_type == 'company' %}{% trans 'Payer TIN' %}: {{ object.payer_tin }}{% else %}{% trans 'Payer passport' %}: {{ object.payer_passport }}{% endif %}
+{% trans 'Payer TIN' %}: {{ object.payer_tin }}
 {% trans 'Payer email' %}: {{ object.payer_email }}
 {% trans 'Payer phone' %}: {{ object.payer_phone }}
 {% trans 'Payer contact' %}: {{ object.payer_contact }}
