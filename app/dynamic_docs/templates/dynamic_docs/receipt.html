@@ -25,7 +25,7 @@
                             </tr>
                             <tr class="smaller_text">
                                 <td colspan="2">{% if order.send_precise_address %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Забор груза с адреса отправителя</td>
-                                <td>{% if order.load_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Погрузка силами CARGO ЛОГИКА</td>
+                                <td>{% if order.loading_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Погрузка силами CARGO ЛОГИКА</td>
                             </tr>
                         </table>
                     </td>
@@ -47,7 +47,7 @@
                             </tr>
                             <tr class="smaller_text">
                                 <td colspan="2">{% if order.receiver_precise_address %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Доставка груза до адреса получателя</td>
-                                <td>{% if order.unload_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Выгрузка силами CARGO ЛОГИКА</td>
+                                <td>{% if order.unloading_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Выгрузка силами CARGO ЛОГИКА</td>
                             </tr>
                         </table>
                     </td>
