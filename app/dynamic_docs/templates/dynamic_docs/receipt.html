@@ -58,7 +58,7 @@
                             <tr class="even">
                                 <td class="vert_center"><b>Вид транспорта:</b></td>
                                 {% for del_type in delivery_types %}
-                                <td class="vert_center">{% if del_type in order.delivery_type.all %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} {{ del_type }}</td>
+                                <td class="vert_center">{% if del_type == order.delivery_type %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} {{ del_type }}</td>
                                 {% endfor %}
                             </tr>
                         </table>
