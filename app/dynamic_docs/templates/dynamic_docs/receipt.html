@@ -239,7 +239,7 @@
                             </tr>
                             <tr class="smaller_text">
                                 <td colspan="2">{% if order.send_precise_address %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Забор груза с адреса отправителя</td>
-                                <td>{% if order.load_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Погрузка силами CARGO ЛОГИКА</td>
+                                <td>{% if order.loading_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Погрузка силами CARGO ЛОГИКА</td>
                             </tr>
                         </table>
                     </td>
@@ -261,7 +261,7 @@
                             </tr>
                             <tr class="smaller_text">
                                 <td colspan="2">{% if order.receiver_precise_address %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Доставка груза до адреса получателя</td>
-                                <td>{% if order.unload_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Выгрузка силами CARGO ЛОГИКА</td>
+                                <td>{% if order.unloading_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Выгрузка силами CARGO ЛОГИКА</td>
                             </tr>
                         </table>
                     </td>
@@ -345,10 +345,10 @@
     </tr>
     <tr>
         <td colspan="2" class="double_height">{% if order.cargo_name %}{{ order.cargo_name }}{% endif %}</td>
-        <td class="double_height">{% if order.cargo_spaces %}{{ order.cargo_spaces }}{% endif %}</td>
-        <td class="double_height">{% if order.cargo_weight %}{{ order.cargo_weight|floatformat:-2 }}{% endif %}</td>
-        <td class="double_height">{% if order.cargo_volume %}{{ order.cargo_volume|floatformat:-2 }}{% endif %}</td>
-        <td class="double_height">{% if order.package_type %}{{ order.get_package_type_display }}{% endif %}</td>
+        <td class="double_height"></td>
+        <td class="double_height"></td>
+        <td class="double_height"></td>
+        <td class="double_height"></td>
     </tr>
 </table>
 <table class="visible_border">
