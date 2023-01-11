@@ -136,6 +136,7 @@ class Order(models.Model):
     accounts_email_sent = models.BooleanField(verbose_name=_('Email to the accounts manager sent'), default=False) #
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=_('Submitted by'),
                              related_name='orders')
+    show_cargo_price_in_receipt = models.BooleanField(verbose_name=_('Show cargo price in receipt'), default=True)
 
     def status(self):
         last_status = None

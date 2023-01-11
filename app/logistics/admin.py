@@ -42,7 +42,7 @@ class OrderAdmin(admin.ModelAdmin):
                        ('sender_type', 'receiver_type'),
                        ('sender_contact', 'receiver_contact'),
                        ('sender_phone', 'receiver_phone'),
-                       ('hidden_status',),
+                       ('hidden_status', 'show_cargo_price_in_receipt'),
                        ('delivery_type', 'extra_services', 'load_unload', 'insurance'),
                        'extra_info'
                        )
