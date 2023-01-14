@@ -24,6 +24,12 @@ PAYMENT_TYPES = (
 )
 
 
+TAXES = (
+    (None, _('No taxes')),
+    (20, _('20%'))
+)
+
+
 PACKAGE_TYPES = (
     ('pallet', _('Pallet')),
     ('bulk', _('Bulk'))
@@ -240,6 +246,22 @@ class OrderStatus(models.Model):
     class Meta:
         verbose_name = _('order status')
         verbose_name_plural = _('order statuses')
+        ordering = ['created_at']
+
+
+class ContractorBill(models.Model):
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
+    order = models.ForeignKey(Order, verbose_name=_('Order'), on_delete=models.CASCADE, related_name='bills')
+    contractor = models.CharField(verbose_name=_('Contractor name'), max_length=255)
+    bill_number = models.CharField(verbose_name=_('Bill number'), max_length=255)
+    bill_price = models.FloatField(verbose_name=_('Bill price'))
+    taxes = models.IntegerField(verbose_name=_('Taxes'), null=True, blank=True, choices=TAXES, default=20)
+
+    class Meta:
+        verbose_name = _('contractor bill')
+        verbose_name_plural = _('contractor bills')
         ordering = ['created_at']
 
 

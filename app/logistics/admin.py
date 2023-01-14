@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
-from logistics.models import Order, OrderStatus
+from logistics.models import Order, OrderStatus, ContractorBill
 from mailer.views import send_logo_mail
 
 
@@ -18,6 +18,13 @@ class OrderStatusInline(admin.TabularInline):
     extra = 0
     verbose_name = _('order status')
     verbose_name_plural = _('order statuses (for tracking)')
+
+
+class ContractorBillInline(admin.TabularInline):
+    model = ContractorBill
+    extra = 0
+    verbose_name = _('contractor bill')
+    verbose_name_plural = _('contractor bills')
 
 
 @admin.register(Order)
@@ -66,7 +73,7 @@ class OrderAdmin(admin.ModelAdmin):
         }),
     )
 
-    inlines = (OrderStatusInline, )
+    inlines = (OrderStatusInline, ContractorBillInline,)
 
     actions = ['send_accounts_email_action', 'send_registry_email_action']
     change_form_template = 'admin/order_edit.html'

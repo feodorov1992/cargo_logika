@@ -8,7 +8,7 @@ from functools import lru_cache
 
 @lru_cache()
 def logo_data():
-    with open(finders.find('img/logo.png'), 'rb') as f:
+    with open(finders.find('img/logo_color.png'), 'rb') as f:
         logo_data = f.read()
     logo = MIMEImage(logo_data)
     logo.add_header('Content-ID', '<logo>')
