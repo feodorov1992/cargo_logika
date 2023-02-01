@@ -1,6 +1,6 @@
 $('#nav-icon').click(function(){
     $(this).toggleClass('open');
-    let menu = $('#menu')
+    let menu = $('#purple_line')
     if (menu.css('display') === 'none') {
         $('html').css('overflow', 'hidden');
 		$('#retro_head').css('position', 'fixed');

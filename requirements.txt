@@ -1,7 +1,8 @@
-Django>4.1.0,<=4.1.3
+Django>4.1.0,<4.2
 psycopg2>2.9.0,<=2.9.5
 uWSGI>=2.0.19.1,<2.1
 celery
 redis
 pdfkit
 gspread
+dadata

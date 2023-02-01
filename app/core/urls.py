@@ -9,5 +9,4 @@ urlpatterns = [
     path('projects/', projects, name='projects'),
     path('calc/', CalcView.as_view(), name='calc'),
     path('feedback/', FeedbackView.as_view(), name='feedback'),
-    path('order/', include('logistics.urls'))
 ]

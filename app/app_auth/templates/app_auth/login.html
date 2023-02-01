@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}{% load static %}{% load i18n %}
+{% block head_title %}{% trans 'Enter' %}{% endblock %}
+{% block content %}
+<div id="content" class="no_main">
+	<h1>{% trans 'Enter to the account' %}</h1>
+    <form id="login_form" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input id="login_form_submit" type="submit" value="{% trans 'Enter' %}">
+        <p>{% trans 'No account?' %} <a href="{% url 'sign_up' %}">{% trans 'Create it' %}</a></p>
+    </form>
+</div>
+{% endblock %}

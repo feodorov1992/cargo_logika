@@ -29,6 +29,7 @@ services:
       - YANDEX_MAPS_LINK=${YANDEX_MAPS_LINK}
       - YANDEX_MAPS_API_LINK=${YANDEX_MAPS_API_LINK}
       - DEBUG=${DEBUG}
+      - DADATA_TOKEN=${DADATA_TOKEN}
     depends_on:
       - db
 
@@ -70,6 +71,7 @@ services:
       - FACT_ADDRESS=${FACT_ADDRESS}
       - YANDEX_MAPS_LINK=${YANDEX_MAPS_LINK}
       - YANDEX_MAPS_API_LINK=${YANDEX_MAPS_API_LINK}
+      - DADATA_TOKEN=${DADATA_TOKEN}
     command: celery -A app worker -l info
     volumes:
       - ./app:/app

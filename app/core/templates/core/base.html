@@ -126,12 +126,17 @@
 	</div>
     <script src="{% static '/js/nav-icon.js' %}"></script>
 </div>
-<div id="menu">
-	<a href="{% url 'home' %}">Главная</a>
-	<a href="/#services">Услуги</a>
-	<a href="{% url 'projects' %}">О нас</a>
-	<a href="{% url 'docs' %}">Документы</a>
-	<a href="{% url 'contacts' %}">Контакты</a>
+<div id="purple_line">
+    <div id="menu">
+        <a href="{% url 'home' %}">Главная</a>
+        <a href="/#services">Услуги</a>
+        <a href="{% url 'projects' %}">О нас</a>
+        <a href="{% url 'docs' %}">Документы</a>
+        <a href="{% url 'contacts' %}">Контакты</a>
+    </div>
+    <div>
+        <a href="{% url 'login' %}" id="lk_enter">Личный кабинет</a>
+    </div>
 </div>
 {% block content %}{% endblock %}
 <div id="alert"{% if messages %} style="display: flex"{% endif %}>

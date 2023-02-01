@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-14 18:40+0300\n"
+"POT-Creation-Date: 2023-02-01 21:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,6 +44,18 @@ msgstr "Важные даты"
 msgid "authorization"
 msgstr "авторизация"
 
+#: app_auth/forms.py:14 app_auth/models.py:14
+msgid "User TIN"
+msgstr "ИНН"
+
+#: app_auth/forms.py:31
+msgid "User with such TIN already exists"
+msgstr "Пользователь с таким ИНН уже существует!"
+
+#: app_auth/forms.py:33
+msgid "Company with such TIN does not exist"
+msgstr "Компания с таким ИНН не найдена!"
+
 #: app_auth/models.py:7
 msgid "Individual"
 msgstr "Физ. лицо"
@@ -56,10 +68,6 @@ msgstr "Юр. лицо"
 msgid "Organisation name"
 msgstr "Наименование организации"
 
-#: app_auth/models.py:14
-msgid "User TIN"
-msgstr "ИНН"
-
 #: app_auth/models.py:15 logistics/models.py:141
 msgid "Contract number"
 msgstr "№ договора"
@@ -71,6 +79,32 @@ msgstr "пользователь"
 #: app_auth/models.py:19
 msgid "users"
 msgstr "пользователи"
+
+#: app_auth/templates/app_auth/login.html:2
+#: app_auth/templates/app_auth/login.html:11
+msgid "Enter"
+msgstr "Вход"
+
+#: app_auth/templates/app_auth/login.html:5
+msgid "Enter to the account"
+msgstr "Вход в личный кабинет"
+
+#: app_auth/templates/app_auth/login.html:12
+msgid "No account?"
+msgstr "Нет учетной записи?"
+
+#: app_auth/templates/app_auth/login.html:12
+msgid "Create it"
+msgstr "Создайте ее"
+
+#: app_auth/templates/app_auth/sign_up.html:2
+#: app_auth/templates/app_auth/sign_up.html:5
+msgid "Sign up"
+msgstr "Регистрация"
+
+#: app_auth/templates/app_auth/sign_up.html:11
+msgid "Save"
+msgstr "Сохранить"
 
 #: core/apps.py:8
 msgid "Content management"
