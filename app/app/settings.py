@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'log_cats',
     'logistics',
     'dynamic_docs',
-    'mailer'
+    'mailer',
+    'clients_area'
 ]
 
 MIDDLEWARE = [

@@ -20,6 +20,15 @@ class OrderCreateView(SuccessMessageMixin, CreateView):
     def get_success_url(self):
         return reverse('order')
 
+    def get_form(self, form_class=None):
+        form = super(OrderCreateView, self).get_form(form_class)
+        order_pk = self.request.GET.get('repeat')
+        if order_pk:
+            repeat_order = Order.objects.get(pk=order_pk)
+            form.initial = repeat_order.__dict__
+            form.initial['extra_services'] = [i.pk for i in repeat_order.extra_services.all()]
+        return form
+
     def form_valid(self, form):
         response = super(OrderCreateView, self).form_valid(form)
         if self.request.user.is_authenticated and not self.request.user.is_staff:

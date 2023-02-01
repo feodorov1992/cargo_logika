@@ -16,6 +16,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/app/core/templates" />
+        <option value="$MODULE_DIR$/app/clients_area/templates" />
       </list>
     </option>
   </component>

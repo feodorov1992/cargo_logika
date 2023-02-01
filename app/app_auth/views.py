@@ -11,7 +11,7 @@ class UserAuthView(LoginView):
     template_name = 'app_auth/login.html'
 
     def get_success_url(self):
-        return super(UserAuthView, self).get_success_url()
+        return reverse('orders_list')
 
 
 class UserCreateView(View):

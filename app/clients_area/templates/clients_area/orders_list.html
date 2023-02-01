@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}{% load static %}{% load i18n %}
+{% block head_title %}Личный кабинет{% endblock %}
+{% block content %}
+<div id="content" class="no_main">
+    {% if object_list %}
+        <table>
+            {% for order in object_list %}
+                <tr>
+                    <td>{{ order.order_number }}</td>
+                    <td>{{ order.sender_addr }}</td>
+                    <td>{{ order.receiver_addr }}</td>
+                    <td>{{ order.statuses.last.label }}</td>
+                    <td><a href="{% url 'order' %}?repeat={{ order.pk }}">{% trans 'Repeat order' %}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        Fuck off nigga
+    {% endif %}
+</div>
+{% endblock %}

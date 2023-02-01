@@ -11,6 +11,7 @@ urlpatterns = [
     path('docs/', include('dynamic_docs.urls')),
     path('order/', include('logistics.urls')),
     path('auth/', include('app_auth.urls')),
+    path('clientsarea/', include('clients_area.urls')),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico')))
 ]
 
