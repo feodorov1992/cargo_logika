@@ -131,3 +131,4 @@ dmypy.json
 /data/
 /certbot/
 /app/credentials/
+/*/.idea/

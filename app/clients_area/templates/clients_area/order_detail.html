@@ -1,0 +1,91 @@
+{% extends 'core/base.html' %}{% load static %}{% load i18n %}
+{% block head_title %}{% trans 'Order No.' %} {{ object.order_number }}{% endblock %}
+{% block content %}
+<div id="content" class="no_main">
+    <h1>{% trans 'Details of the order No.' %} {{ object.order_number }} {% trans 'dated' %} {{ object.order_date|date:"d.m.Y" }}</h1>
+    <div class="centered_links">
+        <div>
+            <a href="{% url 'orders_list' %}">{% trans 'Back to orders list' %}</a>
+            <a href="{% url 'order' %}?repeat={{ object.pk }}">{% trans 'Repeat order' %}</a>
+        </div>
+        <div>
+            <b>{% trans 'Status' %}:</b> {{ object.statuses.last.label }}
+        </div>
+    </div>
+    <div class="order_detail">
+        <div>
+            <table>
+                <tr><th>{% trans 'Payer' %}</th><td>{{ object.payer_name }}</td></tr>
+                <tr><th>{% trans 'Payment type' %}</th><td>{{ object.get_payment_type_display }}</td></tr>
+                <tr><th>{% trans 'Payer TIN' %}</th><td>{{ object.payer_tin }}</td></tr>
+                <tr><th>{% trans 'Payer email' %}</th><td>{{ object.payer_email }}</td></tr>
+                <tr><th>{% trans 'Payer phone' %}</th><td>{{ object.payer_phone }}</td></tr>
+                <tr><th>{% trans 'Payer contact' %}</th><td>{{ object.payer_contact }}</td></tr>
+                <tr><th>{% trans 'Cargo name' %}</th><td>{{ object.cargo_name }}</td></tr>
+                <tr><th>{% trans 'Package type' %}</th><td>{{ object.get_package_type_display }}</td></tr>
+                {% if object.extra_services.exists %}
+                <tr><th>{% trans 'Extra services' %}</th><td>{{ object.extra_services.all|join:", " }}</td></tr>
+                {% endif %}
+                <tr><th>{% trans 'Cargo spaces' %}</th><td>{{ object.cargo_spaces }}</td></tr>
+                <tr><th>{% trans 'Weight' %}</th><td>{{ object.cargo_weight|floatformat:-2 }} {% trans 'kg' %}</td></tr>
+                <tr><th>{% trans 'Volume' %}</th><td>{{ object.cargo_volume|floatformat:-2 }} {% trans 'm' %}&sup3;</td></tr>
+                <tr><th>{% trans 'Value' %}</th><td>{{ object.cargo_value|floatformat:-2 }} {% trans 'rub' %}</td></tr>
+                <tr><th>{% trans 'Insurance is required' %}</th><td>{% if object.insurance %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td></tr>
+                <tr><th>{% trans 'Type of delivery' %}</th><td>{{ object.delivery_type }}</td></tr>
+            </table>
+        </div>
+        <div id="form_right">
+            <div>
+                <table>
+                    <tr><th>{% trans 'Sender' %}</th><td>{{ object.sender_name }}</td></tr>
+                    <tr><th>{% trans 'Sender type' %}</th><td>{{ object.get_sender_type_display }}</td></tr>
+                    {% if object.sender_type == 'individual' %}
+                    <tr><th>{% trans 'Sender passport' %}</th><td>{{ object.sender_passport }}</td></tr>
+                    {% else %}
+                    <tr><th>{% trans 'Sender TIN' %}</th><td>{{ object.sender_tin }}</td></tr>
+                    {% endif %}
+                    <tr><th>{% trans 'Sender phone' %}</th><td>{{ object.sender_phone }}</td></tr>
+                    <tr><th>{% trans 'Sender contact' %}</th><td>{{ object.sender_contact }}</td></tr>
+                    <tr><th>{% trans 'Departure city' %}</th><td>{{ object.sender_addr }}</td></tr>
+                    {% if object.send_precise_address %}
+                    <tr><th>{% trans 'Departure address' %}</th><td>{{ object.send_precise_address }}</td></tr>
+                    {% endif %}
+                    <tr><th>{% trans 'Wanted date of pickup' %}</th><td>{{ object.pickup_date_wanted|date:"d.m.Y" }}</td></tr>
+                    {% if object.pickup_date %}
+                    <tr><th>{% trans 'Date of pickup' %}</th><td>{{ object.pickup_date|date:"d.m.Y" }}</td></tr>
+                    {% endif %}
+                    <tr><th>{% trans 'Loading by' %}</th><td>{{ object.get_loading_by_display }}</td></tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr><th>{% trans 'Receiver' %}</th><td>{{ object.receiver_name }}</td></tr>
+                    <tr><th>{% trans 'Receiver type' %}</th><td>{{ object.get_receiver_type_display }}</td></tr>
+                    {% if object.receiver_type == 'individual' %}
+                    <tr><th>{% trans 'Receiver passport' %}</th><td>{{ object.receiver_passport }}</td></tr>
+                    {% else %}
+                    <tr><th>{% trans 'Receiver TIN' %}</th><td>{{ object.receiver_tin }}</td></tr>
+                    {% endif %}
+                    <tr><th>{% trans 'Receiver phone' %}</th><td>{{ object.receiver_phone }}</td></tr>
+                    <tr><th>{% trans 'Receiver contact' %}</th><td>{{ object.receiver_contact }}</td></tr>
+                    <tr><th>{% trans 'Delivery city' %}</th><td>{{ object.receiver_addr }}</td></tr>
+                    {% if object.receiver_precise_address %}
+                    <tr><th>{% trans 'Full delivery address' %}</th><td>{{ object.receiver_precise_address }}</td></tr>
+                    {% endif %}
+                    {% if object.delivery_date_wanted %}
+                    <tr><th>{% trans 'Wanted date of delivery' %}</th><td>{{ object.delivery_date_wanted|date:"d.m.Y" }}</td></tr>
+                    {% endif %}
+                    {% if object.delivery_date %}
+                    <tr><th>{% trans 'Date of delivery' %}</th><td>{{ object.delivery_date|date:"d.m.Y" }}</td></tr>
+                    {% endif %}
+                    <tr><th>{% trans 'Unloading by' %}</th><td>{{ object.get_unloading_by_display }}</td></tr>
+                </table>
+            </div>
+            {% if object.extra_info %}
+            <h3>{% trans 'Extra info' %}</h3>
+            <p>{{ object.extra_info|linebreaks }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

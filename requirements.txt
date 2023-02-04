@@ -6,3 +6,4 @@ redis
 pdfkit
 gspread
 dadata
+xlwt

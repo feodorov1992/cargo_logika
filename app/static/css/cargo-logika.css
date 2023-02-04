@@ -456,6 +456,39 @@ label.checkbox {
     white-space: nowrap
 }
 
+.centered_links {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.centered_links>div {
+    margin-bottom: 15px;
+}
+
+.centered_links a {
+    color: #452f7f;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.centered_links a:hover {
+    color: #d27100;
+}
+
+.order_detail {
+    width: 95%;
+    margin: 30px auto 0;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row nowrap;
+}
+
+.order_detail th {
+    text-align: left;
+}
+
 #order_form {
     width: 95%;
     margin: 30px auto 0;
@@ -464,8 +497,14 @@ label.checkbox {
     flex-flow: row wrap;
 }
 
+.order_detail table,
 #order_form table {
     width: 95%;
+}
+
+.order_detail>div {
+    display: inline-block;
+    vertical-align: top;
 }
 
 #order_form>div {
@@ -489,9 +528,7 @@ label.checkbox {
     float: right;
 }
 
-#form_right table,
-tbody,
-tr {
+#form_right table, tbody, tr {
     width: 100%;
 }
 
@@ -830,8 +867,22 @@ div#id_delivery_type>div {
         width: 100%;
     }
 
+    .order_detail {
+        flex-flow: row wrap;
+    }
+
+    .order_detail>div,
     #order_form>div {
         min-width: 100%;
+    }
+
+    .order_detail table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .order_detail th {
+        width: 50%;
     }
 
     #form_right>div {

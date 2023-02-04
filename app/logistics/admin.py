@@ -75,6 +75,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     inlines = (OrderStatusInline, ContractorBillInline,)
 
+    # actions = ['send_accounts_email_action', 'send_registry_email_action', 'test_action']
     actions = ['send_accounts_email_action', 'send_registry_email_action']
     change_form_template = 'admin/order_edit.html'
     list_filter = (
@@ -238,3 +239,8 @@ class OrderAdmin(admin.ModelAdmin):
 
     send_accounts_email_action.short_description = _('Send bills request to the accounts manager')
     send_registry_email_action.short_description = _('Send registry bill request to the accounts manager')
+
+    # def test_action(self, request, queryset):
+    #     mapper = self.model._meta._forward_fields_map
+    #     mapper = {key: value.verbose_name for key, value in mapper.items()}
+    #     print(mapper)
