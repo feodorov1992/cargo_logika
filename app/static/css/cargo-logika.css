@@ -477,6 +477,65 @@ label.checkbox {
     color: #d27100;
 }
 
+.orders_list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.orders_list table {
+    border-collapse: collapse;
+}
+
+.orders_list thead {
+    background: #452f7f;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.orders_list thead td,
+.orders_list tbody td{
+    padding: 7px;
+}
+
+.orders_list thead td:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.orders_list thead td:last-child{
+    border-radius:0 5px 5px 0;
+}
+
+.orders_list tbody {
+    background: white;
+}
+
+.orders_list tbody tr:first-child td:first-child {
+    border-radius: 5px 0 0 0;
+}
+
+.orders_list tbody tr:first-child td:last-child {
+    border-radius: 0 5px 0 0;
+}
+
+.orders_list tbody tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+}
+
+.orders_list tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+}
+
+.orders_list a {
+    color: #452f7f;
+    font-weight: 600;
+}
+
+.orders_list a:hover {
+    color: #d27100;
+}
+
 .order_detail {
     width: 95%;
     margin: 30px auto 0;

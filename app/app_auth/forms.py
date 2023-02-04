@@ -47,3 +47,9 @@ class UserCreateForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['email', 'tin']
+
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']
