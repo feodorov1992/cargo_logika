@@ -1,5 +1,5 @@
 {% extends 'mailer/base_wide.html' %}{% load i18n %}{% load l10n %}
-{% block mail_header %}{% trans 'Reset password' %}{% endblock %}
+{% block mail_header %}{% trans 'Thank you for registration on cargo-logika.ru!' %}{% endblock %}
 {% block mail_content %}
     <table>
         <tr>
@@ -10,28 +10,24 @@
         <tr><td><br></td></tr>
         <tr>
             <td width="100%" style="width: 100%; text-align: left">
-                {% trans 'You are receiving this email because you (or someone pretending to be you) requested that your password be reset on the {{ domain }} site. If you do not wish to reset your password, please ignore this message.' %}
+                {% trans "You've been registered as representative of" %} {{ user.org_name }}.
             </td>
         </tr>
         <tr><td><br></td></tr>
         <tr>
             <td width="100%" style="width: 100%; text-align: left">
-                {% trans 'To reset your password, please click the following link, or copy and paste it into your web browser:' %}
+                {% trans "We're glad to have you with us." %}
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" style="width: 100%; text-align: left">
+                {% trans "If you see this email, it means that you have registered correctly and are able to use full functionality of our site" %}
             </td>
         </tr>
         <tr><td><br></td></tr>
         <tr>
             <td width="100%" style="width: 100%; text-align: left">
-                <a rel="noreferrer" href="{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uid token %}">
-                  {{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uid token %}
-                </a>
-            </td>
-        </tr>
-        <tr><td><br></td></tr>
-        <tr>
-            <td width="100%" style="width: 100%; text-align: left">
-                {% trans 'Best regards' %},<br>
-                {% trans 'Management team of' %} {{ site_name }}
+                {% trans "Have a nice day!" %}
             </td>
         </tr>
     </table>

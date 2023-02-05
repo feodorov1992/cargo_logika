@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% blocktrans %}Greetings{% endblocktrans %}
+
+{% trans "You've been registered as representative of" %} {{ user.org_name }}.
+
+{% trans "We're glad to have you with us." %}
+{% trans "If you see this email, it means that you have registered correctly and are able to use full functionality of our site" %}
+
+{% trans "Have a nice day!" %}

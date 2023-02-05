@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-05 20:22+0300\n"
+"POT-Creation-Date: 2023-02-05 21:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,8 @@ msgstr "Важные даты"
 msgid "authorization"
 msgstr "авторизация"
 
-#: app_auth/forms.py:16 app_auth/forms.py:55 app_auth/forms.py:69
+#: app_auth/forms.py:16 app_auth/forms.py:65 app_auth/forms.py:79
+#: app_auth/forms.py:97
 msgid "Login (E-mail)"
 msgstr "Логин (E-mail)"
 
@@ -59,6 +60,10 @@ msgstr "Пользователь с таким ИНН уже существуе�
 #: app_auth/forms.py:37
 msgid "Company with such TIN does not exist"
 msgstr "Компания с таким ИНН не найдена!"
+
+#: app_auth/forms.py:51 app_auth/templates/app_auth/mail/greetings.html:2
+msgid "Thank you for registration on cargo-logika.ru!"
+msgstr "Благодарим за регистрацию на сайте cargo-logika.ru!"
 
 #: app_auth/models.py:7
 msgid "Individual"
@@ -134,6 +139,35 @@ msgstr "Забыли пароль?"
 msgid "Reset it"
 msgstr "Сбросьте его"
 
+#: app_auth/templates/app_auth/mail/greetings.html:7
+#: app_auth/templates/app_auth/mail/greetings.txt:3
+#: app_auth/templates/app_auth/mail/reset_password_email.html:7
+#: app_auth/templates/app_auth/mail/reset_password_email.txt:3
+msgid "Greetings"
+msgstr "Приветствуем"
+
+#: app_auth/templates/app_auth/mail/greetings.html:13
+#: app_auth/templates/app_auth/mail/greetings.txt:5
+msgid "You've been registered as representative of"
+msgstr "Вы были зарегистрированы как представитель"
+
+#: app_auth/templates/app_auth/mail/greetings.html:19
+#: app_auth/templates/app_auth/mail/greetings.txt:7
+msgid "We're glad to have you with us."
+msgstr "Мы рады, что Вы с нами!"
+
+#: app_auth/templates/app_auth/mail/greetings.html:24
+#: app_auth/templates/app_auth/mail/greetings.txt:8
+msgid ""
+"If you see this email, it means that you have registered correctly and are "
+"able to use full functionality of our site"
+msgstr "Если Вы видите данное письмо, это значит, что Вы корректно зарегистрировались и можете использовать полный функционал нашего портала."
+
+#: app_auth/templates/app_auth/mail/greetings.html:30
+#: app_auth/templates/app_auth/mail/greetings.txt:10
+msgid "Have a nice day!"
+msgstr "Хорошего Вам дня!"
+
 #: app_auth/templates/app_auth/mail/reset_password_email.html:2
 #: app_auth/templates/app_auth/password_reset.html:3
 #: app_auth/templates/app_auth/password_reset.html:8
@@ -145,11 +179,6 @@ msgstr "Сбросьте его"
 #: app_auth/templates/app_auth/password_reset_done.html:3
 msgid "Reset password"
 msgstr "Сброс пароля"
-
-#: app_auth/templates/app_auth/mail/reset_password_email.html:7
-#: app_auth/templates/app_auth/mail/reset_password_email.txt:3
-msgid "Greetings"
-msgstr "Приветствуем"
 
 #: app_auth/templates/app_auth/mail/reset_password_email.html:13
 #: app_auth/templates/app_auth/mail/reset_password_email.txt:5
