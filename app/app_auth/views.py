@@ -1,11 +1,10 @@
-from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, \
     PasswordResetConfirmView, PasswordResetCompleteView, LogoutView
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import UpdateView
 
 from app_auth.forms import UserCreateForm, UserEditForm, UserPasswordResetForm, UserLoginForm
 
@@ -59,7 +58,7 @@ class UserPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
 
 
 class UserPasswordResetView(PasswordResetView):
-    from_email = settings.EMAIL_HOST_USER
+    from_email = 'register@cargo-logika.ru'
     template_name = 'app_auth/password_reset.html'
     email_template_name = 'app_auth/mail/reset_password_email.txt'
     html_email_template_name = 'app_auth/mail/reset_password_email.html'

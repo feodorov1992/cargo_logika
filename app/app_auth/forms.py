@@ -51,7 +51,7 @@ class UserCreateForm(UserCreationForm):
                 subject=_('Thank you for registration on cargo-logika.ru!'),
                 body_text=loader.render_to_string('app_auth/mail/greetings.txt', context),
                 body_html=loader.render_to_string('app_auth/mail/greetings.html', context),
-                from_email=settings.EMAIL_HOST_USER,
+                from_email='register@cargo-logika.ru',
                 recipients=[result.email]
             )
         return result
