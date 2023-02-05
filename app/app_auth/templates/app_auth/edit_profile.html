@@ -3,6 +3,12 @@
 {% block content %}
 <div id="content" class="no_main">
 	<h1>{% trans 'Edit profile of' %} {% if form.instance.is_staff %}{{ form.instance }}{% else %}{{ form.instance.org_name }}{% endif %}</h1>
+    <div class="centered_links">
+        <div>
+            <a href="{% url 'password_change' %}">{% trans 'Change password' %}</a>
+            <a href="{% url 'logout' %}">{% trans 'Log out' %}</a>
+        </div>
+    </div>
     <form id="login_form" method="post">
         {% csrf_token %}
         <table>

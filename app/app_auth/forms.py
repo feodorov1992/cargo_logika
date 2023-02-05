@@ -1,6 +1,6 @@
 from django import forms
 from django.conf import settings
-from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, AuthenticationForm, UsernameField
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from app_auth.models import User
@@ -13,7 +13,8 @@ from mailer.views import send_logo_mail
 class UserCreateForm(UserCreationForm):
     required_css_class = 'required'
 
-    email = forms.EmailField(required=True, label=_('Your E-mail'))
+    email = forms.EmailField(label=_('Login (E-mail)'), max_length=254, required=True,
+                             widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
     tin = forms.CharField(required=True, label=_('User TIN'))
 
     def __init__(self, *args, **kwargs):
@@ -51,12 +52,22 @@ class UserCreateForm(UserCreationForm):
 
 
 class UserEditForm(forms.ModelForm):
+    email = forms.EmailField(label=_('Login (E-mail)'), max_length=254,
+                             widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
+
+    def save(self, commit=True):
+        result = super(UserEditForm, self).save(False)
+        result.username = result.email
+        return result
+
     class Meta:
         model = User
         fields = ['email']
 
 
 class UserPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(label=_('Login (E-mail)'), max_length=254,
+                             widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
 
     def send_mail(self, subject_template_name, email_template_name,
                   context, from_email, to_email, html_email_template_name=None):
@@ -69,3 +80,8 @@ class UserPasswordResetForm(PasswordResetForm):
             from_email=from_email,
             recipients=[to_email]
         )
+
+
+class UserLoginForm(AuthenticationForm):
+    username = UsernameField(widget=forms.EmailInput(attrs={'autofocus': True, 'autocomplete': 'email'}),
+                             label=_('Login (E-mail)'))

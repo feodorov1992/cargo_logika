@@ -36,19 +36,25 @@
     <tr><td><br>{{ fields.who_unpacks }}{{ fields.who_unpacks.errors }}</td></tr>
     <tr>
         <td>
-            <ul>
-                <li>{{ fields.cargo_spaces.label_tag }}{{ fields.cargo_spaces.errors }}{{ fields.cargo_spaces }}</li>
-                <li>{{ fields.cargo_weight.label_tag }}{{ fields.cargo_weight.errors }}{{ fields.cargo_weight }}</li>
-                <li>{{ fields.cargo_volume.label_tag }}{{ fields.cargo_volume.errors }}{{ fields.cargo_volume }}</li>
-            </ul>
+            <table class="sub_table">
+                <tr>
+                    <td>{{ fields.cargo_spaces.label_tag }}{{ fields.cargo_spaces.errors }}{{ fields.cargo_spaces }}</td>
+                    <td>{{ fields.cargo_weight.label_tag }}{{ fields.cargo_weight.errors }}{{ fields.cargo_weight }}</td>
+                    <td>{{ fields.cargo_volume.label_tag }}{{ fields.cargo_volume.errors }}{{ fields.cargo_volume }}</td>
+                </tr>
+            </table>
         </td>
     </tr>
     <tr>
         <td>
+            <table class="sub_table">
+                <tr>
+                    <td>{{ fields.package_type.label_tag }}{{ fields.package_type.errors }}{{ fields.package_type }}</td>
+                    <td colspan="2">{{ fields.extra_services.label_tag }}{{ fields.extra_services.errors }}{{ fields.extra_services }}</td>
+                </tr>
+            </table>
             <ul>
-                <li>{{ fields.package_type.label_tag }}{{ fields.package_type.errors }}{{ fields.package_type }}</li>
-                <li>{{ fields.cargo_warns.label_tag }}{{ fields.cargo_warns.errors }}{{ fields.cargo_warns }}</li>
-                <li>{{ fields.extra_services.label_tag }}{{ fields.extra_services.errors }}{{ fields.extra_services }}</li>
+
             </ul>
         </td>
     </tr>

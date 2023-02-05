@@ -12,6 +12,8 @@ class OrderCreateView(SuccessMessageMixin, CreateView):
     model = Order
     form_class = OrderForm
     template_name = 'logistics/order.html'
+    exclude = ('extra_info', 'pickup_date_wanted', 'delivery_date_wanted', 'cargo_name', 'package_type', 'cargo_spaces',
+               'cargo_weight', 'cargo_volume', 'insurance', 'cargo_value', )
 
     def get_success_message(self, cleaned_data):
         return render_to_string('logistics/messages/order_success.html',
@@ -26,6 +28,8 @@ class OrderCreateView(SuccessMessageMixin, CreateView):
         if order_pk:
             repeat_order = Order.objects.get(pk=order_pk)
             form.initial = repeat_order.__dict__
+            for field in self.exclude:
+                form.initial.pop(field)
             form.initial['extra_services'] = [i.pk for i in repeat_order.extra_services.all()]
         return form
 

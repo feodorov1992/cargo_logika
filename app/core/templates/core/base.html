@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <script src="{% static '/js/jquery_min.js' %}"></script>
     <link rel="stylesheet" href="{% static '/css/nav-icon.css' %}">
-    <link rel="stylesheet" href="{% static '/css/cargo-logika.css' %}?v=10">
+    <link rel="stylesheet" href="{% static '/css/cargo-logika.css' %}?v=11">
 </head>
 <body>
 <div id="retro_head">
@@ -129,13 +129,10 @@
 <div id="purple_line">
     <div id="menu">
         <a href="{% url 'home' %}">Главная</a>
-        <a href="/#services">Услуги</a>
+        <a href="{% url 'orders_list' %}" id="lk_enter">Личный кабинет</a>
         <a href="{% url 'projects' %}">О нас</a>
         <a href="{% url 'docs' %}">Документы</a>
         <a href="{% url 'contacts' %}">Контакты</a>
-    </div>
-    <div>
-        <a href="{% url 'orders_list' %}" id="lk_enter">Личный кабинет</a>
     </div>
 </div>
 {% block content %}{% endblock %}

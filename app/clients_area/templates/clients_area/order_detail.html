@@ -32,15 +32,11 @@
                 <tr><th>{% trans 'Value' %}</th><td>{{ object.cargo_value|floatformat:-2 }} {% trans 'rub' %}</td></tr>
                 <tr><th>{% trans 'Insurance is required' %}</th><td>{% if object.insurance %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td></tr>
                 <tr><th>{% trans 'Type of delivery' %}</th><td>{{ object.delivery_type }}</td></tr>
-                {% if object.insurance_number %}
-                <tr><th>{% trans 'Insurance bill number' %}</th><td>{{ object.insurance_number }}</td></tr>
+                {% if object.insurance %}
+                <tr><th>{% trans 'Insurance bill number' %}</th><td>{% if object.insurance_number %}{{ object.insurance_number }}{% else %}-{% endif %}</td></tr>
+                <tr><th>{% trans 'Insurance price' %}</th><td>{% if object.insurance_price %}{{ object.insurance_price|floatformat:-2 }} {% trans 'rub' %}{% else %}{% trans 'Calculating...' %}{% endif %}</td></tr>
                 {% endif %}
-                {% if object.insurance_price %}
-                <tr><th>{% trans 'Insurance price' %}</th><td>{{ object.insurance_price|floatformat:-2 }} {% trans 'rub' %}</td></tr>
-                {% endif %}
-                {% if object.order_price %}
-                <tr><th>{% trans 'Transit price' %}</th><td>{{ object.order_price|floatformat:-2 }}</td></tr>
-                {% endif %}
+                <tr><th>{% trans 'Transit price' %}</th><td>{% if object.order_price %}{{ object.order_price|floatformat:-2 }}{% else %}{% trans 'Calculating...' %}{% endif %}</td></tr>
             </table>
         </div>
         <div id="form_right">

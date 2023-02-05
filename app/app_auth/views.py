@@ -1,17 +1,18 @@
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, \
-    PasswordResetConfirmView, PasswordResetCompleteView
+    PasswordResetConfirmView, PasswordResetCompleteView, LogoutView
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from django.views.generic import CreateView, UpdateView
 
-from app_auth.forms import UserCreateForm, UserEditForm, UserPasswordResetForm
+from app_auth.forms import UserCreateForm, UserEditForm, UserPasswordResetForm, UserLoginForm
 
 
 class UserAuthView(LoginView):
     template_name = 'app_auth/login.html'
+    form_class = UserLoginForm
 
     def get_success_url(self):
         return reverse('orders_list')
@@ -76,3 +77,8 @@ class UserPasswordResetConfirmView(PasswordResetConfirmView):
 class UserPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'app_auth/password_reset_complete.html'
 
+
+class UserLogoutView(LogoutView):
+    next_page = 'home'
+    # def get_next_page(self):
+    #     pass
