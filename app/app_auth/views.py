@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
@@ -38,3 +38,18 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class UserPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'app_auth/password_change.html'
+    login_url = 'login'
+
+    def get_form(self, form_class=None):
+        form = super(UserPasswordChangeView, self).get_form(form_class)
+        form.required_css_class = 'required'
+        form.fields['new_password1'].help_text = None
+        form.fields['new_password2'].help_text = None
+        return form
+
+    def get_success_url(self):
+        return reverse('orders_list')

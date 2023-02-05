@@ -527,12 +527,14 @@ label.checkbox {
     border-radius: 0 0 0 5px;
 }
 
-.orders_list a {
+.orders_list a,
+form a {
     color: #452f7f;
     font-weight: 600;
 }
 
-.orders_list a:hover {
+.orders_list a:hover,
+form a:hover {
     color: #d27100;
 }
 
@@ -699,6 +701,7 @@ fieldset {
     border: none;
 }
 
+#passwd_change_form,
 #login_form {
     width: 95%;
     max-width: 500px;
@@ -712,12 +715,14 @@ fieldset {
     margin: 0 auto;
 }
 
+#passwd_change_form>table,
 #login_form>table,
 #calc_form>table,
 #feedback_form>table {
     width: 100%;
 }
 
+#passwd_change_form input[type=submit],
 #login_form input[type=submit],
 #calc_form input[type=submit],
 #feedback_form input[type=submit] {
