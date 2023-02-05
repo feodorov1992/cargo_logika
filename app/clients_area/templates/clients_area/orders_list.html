@@ -23,7 +23,8 @@
                     <td>{% trans 'Order date' %}</td>
                     <td>{% trans 'Date of pickup' %}</td>
                     <td>{% trans 'Status' %}</td>
-                    <td>{% trans 'Docs sent' %}</td>
+                    <td>{% trans 'Date of delivery' %}</td>
+{#                    <td>{% trans 'Docs sent' %}</td>#}
                     <td>{% trans 'Payer' %}</td>
                     <td>{% trans 'Sender' %}</td>
                     <td>{% trans 'Pickup address' %}</td>
@@ -48,7 +49,8 @@
                     <td>{{ order.order_date|date:"d.m.Y" }}</td>
                     <td>{% if order.pickup_date %}{{ order.pickup_date|date:"d.m.Y" }}{% else %}-{% endif %}</td>
                     <td>{{ order.statuses.last.label }}</td>
-                    <td>{{ order.get_docs_sent_display }}</td>
+                    <td>{% if order.delivery_date %}{{ order.delivery_date|date:"d.m.Y" }}{% else %}-{% endif %}</td>
+{#                    <td>{{ order.get_docs_sent_display }}</td>#}
                     <td>{{ order.payer_name }}</td>
                     <td>{{ order.sender_name }}</td>
                     <td>{{ order.from_addr }}</td>
