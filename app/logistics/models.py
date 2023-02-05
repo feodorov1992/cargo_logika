@@ -1,4 +1,3 @@
-import time
 import uuid
 
 from django.apps import apps
@@ -17,18 +16,15 @@ from app_auth.models import User, CP_TYPES
 from log_cats.models import ExtraService, DeliveryType
 from mailer.views import send_logo_mail
 
-
 PAYMENT_TYPES = (
     ('cash', _('Cash payment')),
     ('cashless', _('Cashless payment'))
 )
 
-
 TAXES = (
     (None, _('No taxes')),
     (20, _('20%'))
 )
-
 
 PACKAGE_TYPES = (
     ('pallet', _('Pallet')),
@@ -61,6 +57,7 @@ def default_order_num():
     else:
         return settings.INITIAL_ORDER_NUMBER
 
+
 @app.task(bind=True)
 def send_model_email(self, subject, template_name, model_path, obj_pk, from_email, recipients):
     app_label, _, class_name = model_path.split('.')
@@ -72,74 +69,75 @@ def send_model_email(self, subject, template_name, model_path, obj_pk, from_emai
 
 
 class Order(models.Model):
-    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4) #
-    created_at = models.DateTimeField(auto_now_add=True, editable=False) #
-    updated_at = models.DateTimeField(auto_now=True, editable=False) #
-    order_number = models.CharField(default=default_order_num, verbose_name=_('Order number'), max_length=7) #
-    order_date = models.DateField(default=timezone.now, verbose_name=_('Order date')) #
-    payer_name = models.CharField(max_length=255, verbose_name=_('Payer')) #
-    payment_type = models.CharField(max_length=15, verbose_name=_('Payment type'), choices=PAYMENT_TYPES, #
-                                    default=PAYMENT_TYPES[0][0]) #
-    payer_tin = models.CharField(max_length=15, verbose_name=_('Payer TIN')) #
-    payer_email = models.EmailField(verbose_name=_('Payer email')) #
-    payer_phone = models.CharField(max_length=50, verbose_name=_('Payer phone')) #
-    payer_contact = models.CharField(max_length=100, verbose_name=_('Payer contact')) #
-    cargo_name = models.CharField(max_length=255, verbose_name=_('Cargo name')) #
-    package_type = models.CharField(max_length=15, verbose_name=_('Package type'), choices=PACKAGE_TYPES, #
-                                    default=PACKAGE_TYPES[0][0]) #
-    extra_services = models.ManyToManyField(ExtraService, verbose_name=_('Extra services'), blank=True) #
-    cargo_spaces = models.IntegerField(verbose_name=_('Cargo spaces')) #
-    cargo_weight = models.FloatField(verbose_name=_('Cargo weight, kg')) #
-    cargo_volume = models.FloatField(verbose_name=_('Cargo volume, m3')) #
-    insurance = models.BooleanField(verbose_name=_('Insurance is required'), default=False) #
-    cargo_value = models.FloatField(verbose_name=_('Cargo value')) #
-    sender_name = models.CharField(max_length=255, verbose_name=_('Sender')) #
-    sender_type = models.CharField(max_length=15, verbose_name=_('Sender type'), choices=CP_TYPES, #
-                                   default=CP_TYPES[0][0]) #
-    sender_passport = models.CharField(max_length=30, verbose_name=_('Sender passport'), blank=True, null=True) #
-    sender_tin = models.CharField(max_length=15, verbose_name=_('Sender TIN'), blank=True, null=True) #
-    sender_phone = models.CharField(max_length=50, verbose_name=_('Sender phone')) #
-    sender_contact = models.CharField(max_length=100, verbose_name=_('Sender contact')) #
-    sender_addr = models.CharField(max_length=255, verbose_name=_('Departure city')) #
-    send_precise_address = models.CharField(max_length=255, verbose_name=_('Departure address'), blank=True, null=True) #
-    loading_by = models.CharField(max_length=30, verbose_name=_('Loading by'), choices=LOADING_BY, #
-                                  default=LOADING_BY[0][0]) #
-    receiver_name = models.CharField(max_length=255, verbose_name=_('Receiver')) #
-    receiver_type = models.CharField(max_length=15, verbose_name=_('Receiver type'), choices=CP_TYPES, #
-                                     default=CP_TYPES[0][0]) #
-    receiver_passport = models.CharField(max_length=30, verbose_name=_('Receiver passport'), blank=True, null=True) #
-    receiver_tin = models.CharField(max_length=15, verbose_name=_('Receiver TIN'), blank=True, null=True) #
-    receiver_phone = models.CharField(max_length=50, verbose_name=_('Receiver phone')) #
-    receiver_contact = models.CharField(max_length=100, verbose_name=_('Receiver contact')) #
-    receiver_addr = models.CharField(max_length=255, verbose_name=_('Delivery city')) #
-    receiver_precise_address = models.CharField(max_length=255, verbose_name=_('Full delivery address'), #
-                                                blank=True, null=True) #
-    unloading_by = models.CharField(max_length=30, verbose_name=_('Unloading by'), choices=UNLOADING_BY, #
-                                    default=UNLOADING_BY[0][0]) #
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
+    order_number = models.CharField(default=default_order_num, verbose_name=_('Order number'), max_length=7)
+    order_date = models.DateField(default=timezone.now, verbose_name=_('Order date'))
+    payer_name = models.CharField(max_length=255, verbose_name=_('Payer'))
+    payment_type = models.CharField(max_length=15, verbose_name=_('Payment type'), choices=PAYMENT_TYPES,
+                                    default=PAYMENT_TYPES[0][0])
+    payer_tin = models.CharField(max_length=15, verbose_name=_('Payer TIN'))
+    payer_email = models.EmailField(verbose_name=_('Payer email'))
+    payer_phone = models.CharField(max_length=50, verbose_name=_('Payer phone'))
+    payer_contact = models.CharField(max_length=100, verbose_name=_('Payer contact'))
+    cargo_name = models.CharField(max_length=255, verbose_name=_('Cargo name'))
+    package_type = models.CharField(max_length=15, verbose_name=_('Package type'), choices=PACKAGE_TYPES,
+                                    default=PACKAGE_TYPES[0][0])
+    extra_services = models.ManyToManyField(ExtraService, verbose_name=_('Extra services'), blank=True)
+    cargo_spaces = models.IntegerField(verbose_name=_('Cargo spaces'))
+    cargo_weight = models.FloatField(verbose_name=_('Cargo weight, kg'))
+    cargo_volume = models.FloatField(verbose_name=_('Cargo volume, m3'))
+    insurance = models.BooleanField(verbose_name=_('Insurance is required'), default=False)
+    cargo_value = models.FloatField(verbose_name=_('Cargo value'))
+    sender_name = models.CharField(max_length=255, verbose_name=_('Sender'))
+    sender_type = models.CharField(max_length=15, verbose_name=_('Sender type'), choices=CP_TYPES,
+                                   default=CP_TYPES[0][0])
+    sender_passport = models.CharField(max_length=30, verbose_name=_('Sender passport'), blank=True, null=True)
+    sender_tin = models.CharField(max_length=15, verbose_name=_('Sender TIN'), blank=True, null=True)
+    sender_phone = models.CharField(max_length=50, verbose_name=_('Sender phone'))
+    sender_contact = models.CharField(max_length=100, verbose_name=_('Sender contact'))
+    sender_addr = models.CharField(max_length=255, verbose_name=_('Departure city'))
+    send_precise_address = models.CharField(max_length=255, verbose_name=_('Departure address'), blank=True, null=True)
+    loading_by = models.CharField(max_length=30, verbose_name=_('Loading by'), choices=LOADING_BY,
+                                  default=LOADING_BY[0][0])
+    receiver_name = models.CharField(max_length=255, verbose_name=_('Receiver'))
+    receiver_type = models.CharField(max_length=15, verbose_name=_('Receiver type'), choices=CP_TYPES,
+                                     default=CP_TYPES[0][0])
+    receiver_passport = models.CharField(max_length=30, verbose_name=_('Receiver passport'), blank=True, null=True)
+    receiver_tin = models.CharField(max_length=15, verbose_name=_('Receiver TIN'), blank=True, null=True)
+    receiver_phone = models.CharField(max_length=50, verbose_name=_('Receiver phone'))
+    receiver_contact = models.CharField(max_length=100, verbose_name=_('Receiver contact'))
+    receiver_addr = models.CharField(max_length=255, verbose_name=_('Delivery city'))
+    receiver_precise_address = models.CharField(max_length=255, verbose_name=_('Full delivery address'),
+                                                blank=True, null=True)
+    unloading_by = models.CharField(max_length=30, verbose_name=_('Unloading by'), choices=UNLOADING_BY,
+                                    default=UNLOADING_BY[0][0])
     delivery_type = models.ForeignKey(DeliveryType, verbose_name=_('Type of delivery'),
-                                      default=DeliveryType.get_default_pk, on_delete=models.PROTECT) #
-    extra_info = models.TextField(verbose_name=_('Extra info'), blank=True, null=True) #
+                                      default=DeliveryType.get_default_pk, on_delete=models.PROTECT)
+    extra_info = models.TextField(verbose_name=_('Extra info'), blank=True, null=True)
     pickup_date_wanted = models.DateField(verbose_name=_('Wanted date of pickup'))
-    pickup_date = models.DateField(verbose_name=_('Date of pickup'), blank=True, null=True) #
-    picked_up = models.BooleanField(verbose_name=_('Cargo picked up'), default=False) #
+    pickup_date = models.DateField(verbose_name=_('Date of pickup'), blank=True, null=True)
+    picked_up = models.BooleanField(verbose_name=_('Cargo picked up'), default=False)
     delivery_date_wanted = models.DateField(verbose_name=_('Wanted date of delivery'), blank=True, null=True)
-    delivery_date = models.DateField(verbose_name=_('Date of delivery'), blank=True, null=True) #
-    delivered = models.BooleanField(verbose_name=_('Cargo delivered'), default=False) #
-    docs_sent = models.CharField(max_length=5, verbose_name=_('Docs sent'), choices=DOCS_SENT_CHOICES, #
-                                    default=DOCS_SENT_CHOICES[0][0]) #
-    contractor = models.CharField(max_length=255, verbose_name=_('Contractor'), blank=True, null=True) #
-    contractor_waybill = models.CharField(max_length=50, verbose_name=_('Contractor waybill'), blank=True, null=True) #
-    expenses = models.FloatField(verbose_name=_('Transit expenses, rub'), blank=True, null=True) #
-    order_price = models.FloatField(verbose_name=_('Transit price, rub'), blank=True, null=True) #
-    insurance_price = models.FloatField(verbose_name=_('Insurance price, rub'), blank=True, null=True) #
-    insurance_number = models.CharField(max_length=50, verbose_name=_('Insurance bill number'), blank=True, null=True) #
-    bill_date = models.DateField(verbose_name=_('Date of bill'), blank=True, null=True) #
-    bill_sent = models.BooleanField(verbose_name=_('Bill sent'), default=False) #
-    bill_payed = models.BooleanField(verbose_name=_('Bill payed'), default=False) #
-    load_unload = models.BooleanField(verbose_name=_('Loading/unloading required'), default=True) #
+    delivery_date = models.DateField(verbose_name=_('Date of delivery'), blank=True, null=True)
+    delivered = models.BooleanField(verbose_name=_('Cargo delivered'), default=False)
+    docs_sent = models.CharField(max_length=5, verbose_name=_('Docs sent'), choices=DOCS_SENT_CHOICES,
+                                 default=DOCS_SENT_CHOICES[0][0])
+    contractor = models.CharField(max_length=255, verbose_name=_('Contractor'), blank=True, null=True)
+    contractor_waybill = models.CharField(max_length=50, verbose_name=_('Contractor waybill'), blank=True, null=True)
+    expenses = models.FloatField(verbose_name=_('Transit expenses, rub'), blank=True, null=True)
+    order_price = models.FloatField(verbose_name=_('Transit price, rub'), blank=True, null=True)
+    insurance_price = models.FloatField(verbose_name=_('Insurance price, rub'), blank=True, null=True)
+    insurance_number = models.CharField(max_length=50, verbose_name=_('Insurance bill number'), blank=True,
+                                        null=True)
+    bill_date = models.DateField(verbose_name=_('Date of bill'), blank=True, null=True)
+    bill_sent = models.BooleanField(verbose_name=_('Bill sent'), default=False)
+    bill_payed = models.BooleanField(verbose_name=_('Bill payed'), default=False)
+    load_unload = models.BooleanField(verbose_name=_('Loading/unloading required'), default=True)
     hidden_status = models.CharField(max_length=255, verbose_name=_('Hidden status'), blank=True, null=True)
-    contract = models.CharField(max_length=255, verbose_name=_('Contract number'), blank=True, null=True) #
-    accounts_email_sent = models.BooleanField(verbose_name=_('Email to the accounts manager sent'), default=False) #
+    contract = models.CharField(max_length=255, verbose_name=_('Contract number'), blank=True, null=True)
+    accounts_email_sent = models.BooleanField(verbose_name=_('Email to the accounts manager sent'), default=False)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=_('Submitted by'),
                              related_name='orders')
     show_cargo_price_in_receipt = models.BooleanField(verbose_name=_('Show cargo price in receipt'), default=True)
@@ -217,7 +215,6 @@ class Order(models.Model):
         else:
             return
         return send_model_email.delay(subject, template_name, 'logistics.models.Order', self.pk, from_email, recipients)
-
 
     class Meta:
         ordering = ['-order_number']

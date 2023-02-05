@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-05 18:16+0300\n"
+"POT-Creation-Date: 2023-02-05 18:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,7 +72,7 @@ msgstr "Юр. лицо"
 msgid "Organisation name"
 msgstr "Наименование организации"
 
-#: app_auth/models.py:15 logistics/models.py:141
+#: app_auth/models.py:15 logistics/models.py:139
 msgid "Contract number"
 msgstr "№ договора"
 
@@ -124,36 +124,48 @@ msgid "Reset it"
 msgstr "Сбросьте его"
 
 #: app_auth/templates/app_auth/mail/reset_password_email.html:2
-#: logistics/templates/logistics/mail/accounts_email.html:2
-msgid "Request for bills issue"
-msgstr "Запрос на выставление счетов"
+#: app_auth/templates/app_auth/password_reset.html:3
+#: app_auth/templates/app_auth/password_reset.html:8
+#: app_auth/templates/app_auth/password_reset.html:20
+#: app_auth/templates/app_auth/password_reset_complete.html:3
+#: app_auth/templates/app_auth/password_reset_confirm.html:3
+#: app_auth/templates/app_auth/password_reset_confirm.html:8
+#: app_auth/templates/app_auth/password_reset_confirm.html:20
+#: app_auth/templates/app_auth/password_reset_done.html:3
+msgid "Reset password"
+msgstr "Сброс пароля"
 
 #: app_auth/templates/app_auth/mail/reset_password_email.html:7
 #: app_auth/templates/app_auth/mail/reset_password_email.txt:3
 msgid "Greetings"
 msgstr "Приветствуем"
 
-#: app_auth/templates/app_auth/mail/reset_password_email.html:12
+#: app_auth/templates/app_auth/mail/reset_password_email.html:13
 #: app_auth/templates/app_auth/mail/reset_password_email.txt:5
 msgid ""
 "You are receiving this email because you (or someone pretending to be you) "
 "requested that your password be reset on the {{ domain }} site. If you do "
 "not wish to reset your password, please ignore this message."
-msgstr "Вы получили данное письмо, потому что Вы (или кто-то притворяющийся Вами) запросил сброс пароля от Вашей учетной записи на сайте cargo-logika.ru. Если Вы не хотите менять пароль, пожалуйста, игнорируйте это письмо."
+msgstr ""
+"Вы получили данное письмо, потому что Вы (или кто-то притворяющийся Вами) "
+"запросил сброс пароля от Вашей учетной записи на сайте cargo-logika.ru. Если "
+"Вы не хотите менять пароль, пожалуйста, игнорируйте это письмо."
 
-#: app_auth/templates/app_auth/mail/reset_password_email.html:17
+#: app_auth/templates/app_auth/mail/reset_password_email.html:19
 #: app_auth/templates/app_auth/mail/reset_password_email.txt:7
 msgid ""
 "To reset your password, please click the following link, or copy and paste "
 "it into your web browser:"
-msgstr "Чтобы сбросить Ваш пароль, пожалуйста перейдите по ссылке ниже, либо скопируйте ее в адресную строку Вашего браузера:"
+msgstr ""
+"Чтобы сбросить Ваш пароль, пожалуйста перейдите по ссылке ниже, либо "
+"скопируйте ее в адресную строку Вашего браузера:"
 
-#: app_auth/templates/app_auth/mail/reset_password_email.html:29
+#: app_auth/templates/app_auth/mail/reset_password_email.html:33
 #: app_auth/templates/app_auth/mail/reset_password_email.txt:13
 msgid "Best regards"
 msgstr "С уважением"
 
-#: app_auth/templates/app_auth/mail/reset_password_email.html:30
+#: app_auth/templates/app_auth/mail/reset_password_email.html:34
 #: app_auth/templates/app_auth/mail/reset_password_email.txt:14
 msgid "Management team of"
 msgstr "Команда"
@@ -173,22 +185,13 @@ msgstr "Изменение пароля"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: app_auth/templates/app_auth/password_reset.html:3
-#: app_auth/templates/app_auth/password_reset.html:8
-#: app_auth/templates/app_auth/password_reset.html:20
-#: app_auth/templates/app_auth/password_reset_complete.html:3
-#: app_auth/templates/app_auth/password_reset_confirm.html:3
-#: app_auth/templates/app_auth/password_reset_confirm.html:8
-#: app_auth/templates/app_auth/password_reset_confirm.html:20
-#: app_auth/templates/app_auth/password_reset_done.html:3
-msgid "Reset password"
-msgstr "Сброс пароля"
-
 #: app_auth/templates/app_auth/password_reset.html:10
 msgid ""
 "Forgot your password? Enter your email in the form below, and we'll send you "
 "instructions for creating a new one."
-msgstr "Забыли пароль? Укажите Ваш email, и мы пришлем Вам инструкции по созданию нового."
+msgstr ""
+"Забыли пароль? Укажите Ваш email, и мы пришлем Вам инструкции по созданию "
+"нового."
 
 #: app_auth/templates/app_auth/password_reset_complete.html:8
 msgid "Your password has been reset!"
@@ -210,7 +213,9 @@ msgstr "Пожалуйста, введите (и подтвердите) Ваш 
 msgid ""
 "We have sent you an email with a link to reset your password. Please check "
 "your email and click the link to continue."
-msgstr "Мы отправили Вам письмо, содержащее ссылку на сброс Вашего пароля. Пожалуйста, проверьте Вашу почту и перейдите по ссылке, чтобы продолжить"
+msgstr ""
+"Мы отправили Вам письмо, содержащее ссылку на сброс Вашего пароля. "
+"Пожалуйста, проверьте Вашу почту и перейдите по ссылке, чтобы продолжить"
 
 #: app_auth/templates/app_auth/sign_up.html:2
 #: app_auth/templates/app_auth/sign_up.html:5
@@ -251,12 +256,12 @@ msgstr "Повторить заявку"
 
 #: clients_area/templates/clients_area/order_detail.html:12
 #: clients_area/templates/clients_area/orders_list.html:28
-#: logistics/models.py:154
+#: logistics/models.py:152
 msgid "Status"
 msgstr "Статус"
 
 #: clients_area/templates/clients_area/order_detail.html:18
-#: logistics/models.py:80 logistics/templates/admin/registry_data.html:18
+#: logistics/models.py:77 logistics/templates/admin/registry_data.html:18
 #: logistics/templates/logistics/mail/accounts_email.html:17
 #: logistics/templates/logistics/mail/accounts_email.txt:4
 #: logistics/templates/logistics/mail/accounts_email.txt:8
@@ -268,14 +273,14 @@ msgid "Payer"
 msgstr "Плательщик"
 
 #: clients_area/templates/clients_area/order_detail.html:19
-#: logistics/models.py:81
+#: logistics/models.py:78
 #: logistics/templates/logistics/mail/order_table.html:10
 #: logistics/templates/logistics/mail/order_table.txt:3
 msgid "Payment type"
 msgstr "Тип оплаты"
 
 #: clients_area/templates/clients_area/order_detail.html:20
-#: logistics/models.py:83 logistics/templates/admin/registry_data.html:22
+#: logistics/models.py:80 logistics/templates/admin/registry_data.html:22
 #: logistics/templates/logistics/mail/accounts_email.html:18
 #: logistics/templates/logistics/mail/accounts_registry_email.html:11
 #: logistics/templates/logistics/mail/order_table.html:14
@@ -284,21 +289,21 @@ msgid "Payer TIN"
 msgstr "ИНН"
 
 #: clients_area/templates/clients_area/order_detail.html:21
-#: logistics/models.py:84
+#: logistics/models.py:81
 #: logistics/templates/logistics/mail/order_table.html:18
 #: logistics/templates/logistics/mail/order_table.txt:5
 msgid "Payer email"
 msgstr "Электронная почта"
 
 #: clients_area/templates/clients_area/order_detail.html:22
-#: logistics/models.py:85
+#: logistics/models.py:82
 #: logistics/templates/logistics/mail/order_table.html:22
 #: logistics/templates/logistics/mail/order_table.txt:6
 msgid "Payer phone"
 msgstr "Номер телефона"
 
 #: clients_area/templates/clients_area/order_detail.html:23
-#: logistics/models.py:86
+#: logistics/models.py:83
 #: logistics/templates/logistics/mail/order_table.html:26
 #: logistics/templates/logistics/mail/order_table.txt:7
 msgid "Payer contact"
@@ -306,7 +311,7 @@ msgstr "Контактное лицо"
 
 #: clients_area/templates/clients_area/order_detail.html:24
 #: clients_area/templates/clients_area/orders_list.html:24
-#: logistics/models.py:87
+#: logistics/models.py:84
 #: logistics/templates/logistics/mail/order_table.html:36
 #: logistics/templates/logistics/mail/order_table.txt:10
 msgid "Cargo name"
@@ -314,7 +319,7 @@ msgstr "Наименование груза"
 
 #: clients_area/templates/clients_area/order_detail.html:25 core/forms.py:29
 #: core/templates/core/mail/calc.html:53 core/templates/core/mail/calc.txt:16
-#: logistics/models.py:88
+#: logistics/models.py:85
 #: logistics/templates/logistics/mail/order_table.html:40
 #: logistics/templates/logistics/mail/order_table.txt:11
 msgid "Package type"
@@ -322,7 +327,7 @@ msgstr "Тип упаковки"
 
 #: clients_area/templates/clients_area/order_detail.html:27 core/forms.py:31
 #: core/templates/core/mail/calc.html:64 core/templates/core/mail/calc.txt:18
-#: logistics/models.py:90
+#: logistics/models.py:87
 #: logistics/templates/logistics/mail/accounts_email.html:35
 #: logistics/templates/logistics/mail/accounts_email.txt:6
 #: logistics/templates/logistics/mail/accounts_registry_email.html:30
@@ -333,7 +338,7 @@ msgid "Extra services"
 msgstr "Дополнительные услуги"
 
 #: clients_area/templates/clients_area/order_detail.html:29 core/forms.py:24
-#: logistics/models.py:91
+#: logistics/models.py:88
 #: logistics/templates/logistics/mail/order_table.html:57
 #: logistics/templates/logistics/mail/order_table.txt:14
 msgid "Cargo spaces"
@@ -370,12 +375,13 @@ msgid "Value"
 msgstr "Объявленная стоимость груза"
 
 #: clients_area/templates/clients_area/order_detail.html:32
+#: clients_area/templates/clients_area/order_detail.html:36
 msgid "rub"
 msgstr "руб"
 
 #: clients_area/templates/clients_area/order_detail.html:33 core/forms.py:30
 #: core/templates/core/mail/calc.html:69 core/templates/core/mail/calc.txt:19
-#: logistics/models.py:94
+#: logistics/models.py:91
 #: logistics/templates/logistics/mail/order_table.html:74
 #: logistics/templates/logistics/mail/order_table.txt:17
 msgid "Insurance is required"
@@ -383,7 +389,7 @@ msgstr "Страхование требуется"
 
 #: clients_area/templates/clients_area/order_detail.html:33
 #: core/templates/core/mail/calc.html:70 core/templates/core/mail/calc.txt:19
-#: logistics/models.py:50
+#: logistics/models.py:46
 #: logistics/templates/logistics/mail/order_table.html:75
 #: logistics/templates/logistics/mail/order_table.txt:17
 msgid "Yes"
@@ -391,7 +397,7 @@ msgstr "Да"
 
 #: clients_area/templates/clients_area/order_detail.html:33
 #: core/templates/core/mail/calc.html:70 core/templates/core/mail/calc.txt:19
-#: logistics/models.py:49
+#: logistics/models.py:45
 #: logistics/templates/logistics/mail/order_table.html:75
 #: logistics/templates/logistics/mail/order_table.txt:17
 msgid "No"
@@ -399,172 +405,185 @@ msgstr "Нет"
 
 #: clients_area/templates/clients_area/order_detail.html:34
 #: clients_area/templates/clients_area/orders_list.html:27
-#: logistics/models.py:119
+#: logistics/models.py:116
 #: logistics/templates/logistics/mail/order_table.html:82
 #: logistics/templates/logistics/mail/order_table.txt:19
 msgid "Type of delivery"
 msgstr "Тип перевозки"
 
-#: clients_area/templates/clients_area/order_detail.html:40
-#: logistics/models.py:96
+#: clients_area/templates/clients_area/order_detail.html:35
+#: logistics/models.py:132
+msgid "Insurance bill number"
+msgstr "№ страхового полиса"
+
+#: clients_area/templates/clients_area/order_detail.html:36
+msgid "Insurance price"
+msgstr "Стоимость страховки"
+
+#: clients_area/templates/clients_area/order_detail.html:37
+msgid "Transit price"
+msgstr "Стоимость перевозки"
+
+#: clients_area/templates/clients_area/order_detail.html:43
+#: logistics/models.py:93
 #: logistics/templates/logistics/mail/order_table.html:89
 #: logistics/templates/logistics/mail/order_table.txt:21
 msgid "Sender"
 msgstr "Отправитель"
 
-#: clients_area/templates/clients_area/order_detail.html:41
-#: logistics/models.py:97
+#: clients_area/templates/clients_area/order_detail.html:44
+#: logistics/models.py:94
 #: logistics/templates/logistics/mail/order_table.html:96
 #: logistics/templates/logistics/mail/order_table.txt:23
 msgid "Sender type"
 msgstr "Тип отправителя"
 
-#: clients_area/templates/clients_area/order_detail.html:43
-#: logistics/models.py:99
+#: clients_area/templates/clients_area/order_detail.html:46
+#: logistics/models.py:96
 #: logistics/templates/logistics/mail/order_table.html:106
 #: logistics/templates/logistics/mail/order_table.txt:24
 msgid "Sender passport"
 msgstr "Серия/номер паспорта"
 
-#: clients_area/templates/clients_area/order_detail.html:45
-#: logistics/models.py:100
+#: clients_area/templates/clients_area/order_detail.html:48
+#: logistics/models.py:97
 #: logistics/templates/logistics/mail/order_table.html:101
 #: logistics/templates/logistics/mail/order_table.txt:24
 msgid "Sender TIN"
 msgstr "ИНН"
 
-#: clients_area/templates/clients_area/order_detail.html:47
-#: logistics/models.py:101
+#: clients_area/templates/clients_area/order_detail.html:50
+#: logistics/models.py:98
 #: logistics/templates/logistics/mail/order_table.html:111
 #: logistics/templates/logistics/mail/order_table.txt:25
 msgid "Sender phone"
 msgstr "Номер телефона"
 
-#: clients_area/templates/clients_area/order_detail.html:48
-#: logistics/models.py:102
+#: clients_area/templates/clients_area/order_detail.html:51
+#: logistics/models.py:99
 #: logistics/templates/logistics/mail/order_table.html:115
 #: logistics/templates/logistics/mail/order_table.txt:26
 msgid "Sender contact"
 msgstr "Контактное лицо"
 
-#: clients_area/templates/clients_area/order_detail.html:49
+#: clients_area/templates/clients_area/order_detail.html:52
 #: clients_area/templates/clients_area/orders_list.html:25 core/forms.py:12
 #: core/templates/core/mail/calc.html:19 core/templates/core/mail/calc.txt:7
-#: logistics/models.py:103
+#: logistics/models.py:100
 #: logistics/templates/logistics/mail/order_table.html:123
 #: logistics/templates/logistics/mail/order_table.txt:28
 msgid "Departure city"
 msgstr "Пункт отправления"
 
-#: clients_area/templates/clients_area/order_detail.html:51 core/forms.py:14
+#: clients_area/templates/clients_area/order_detail.html:54 core/forms.py:14
 #: core/templates/core/mail/calc.html:24 core/templates/core/mail/calc.txt:8
-#: logistics/models.py:104
+#: logistics/models.py:101
 #: logistics/templates/logistics/mail/order_table.html:128
 #: logistics/templates/logistics/mail/order_table.txt:29
 msgid "Departure address"
 msgstr "Отправить с адреса"
 
-#: clients_area/templates/clients_area/order_detail.html:53
-#: logistics/models.py:122
+#: clients_area/templates/clients_area/order_detail.html:56
+#: logistics/models.py:119
 #: logistics/templates/logistics/mail/order_table.html:133
 #: logistics/templates/logistics/mail/order_table.txt:30
 msgid "Wanted date of pickup"
 msgstr "Желаемая дата забора груза"
 
-#: clients_area/templates/clients_area/order_detail.html:55
-#: logistics/models.py:123
+#: clients_area/templates/clients_area/order_detail.html:58
+#: logistics/models.py:120
 msgid "Date of pickup"
 msgstr "Дата забора (факт)"
 
-#: clients_area/templates/clients_area/order_detail.html:57 core/forms.py:16
+#: clients_area/templates/clients_area/order_detail.html:60 core/forms.py:16
 #: core/templates/core/mail/calc.html:29 core/templates/core/mail/calc.txt:9
-#: logistics/models.py:105
+#: logistics/models.py:102
 #: logistics/templates/logistics/mail/order_table.html:119
 #: logistics/templates/logistics/mail/order_table.txt:27
 msgid "Loading by"
 msgstr "Погрузка силами"
 
-#: clients_area/templates/clients_area/order_detail.html:62
-#: logistics/models.py:107
+#: clients_area/templates/clients_area/order_detail.html:65
+#: logistics/models.py:104
 #: logistics/templates/logistics/mail/order_table.html:140
 #: logistics/templates/logistics/mail/order_table.txt:32
 msgid "Receiver"
 msgstr "Получатель"
 
-#: clients_area/templates/clients_area/order_detail.html:63
-#: logistics/models.py:108
+#: clients_area/templates/clients_area/order_detail.html:66
+#: logistics/models.py:105
 #: logistics/templates/logistics/mail/order_table.html:147
 #: logistics/templates/logistics/mail/order_table.txt:34
 msgid "Receiver type"
 msgstr "Тип получателя"
 
-#: clients_area/templates/clients_area/order_detail.html:65
-#: logistics/models.py:110
+#: clients_area/templates/clients_area/order_detail.html:68
+#: logistics/models.py:107
 #: logistics/templates/logistics/mail/order_table.html:157
 #: logistics/templates/logistics/mail/order_table.txt:35
 msgid "Receiver passport"
 msgstr "Серия/номер паспорта"
 
-#: clients_area/templates/clients_area/order_detail.html:67
-#: logistics/models.py:111
+#: clients_area/templates/clients_area/order_detail.html:70
+#: logistics/models.py:108
 #: logistics/templates/logistics/mail/order_table.html:152
 #: logistics/templates/logistics/mail/order_table.txt:35
 msgid "Receiver TIN"
 msgstr "ИНН"
 
-#: clients_area/templates/clients_area/order_detail.html:69
-#: logistics/models.py:112
+#: clients_area/templates/clients_area/order_detail.html:72
+#: logistics/models.py:109
 #: logistics/templates/logistics/mail/order_table.html:162
 #: logistics/templates/logistics/mail/order_table.txt:36
 msgid "Receiver phone"
 msgstr "Номер телефона"
 
-#: clients_area/templates/clients_area/order_detail.html:70
-#: logistics/models.py:113
+#: clients_area/templates/clients_area/order_detail.html:73
+#: logistics/models.py:110
 #: logistics/templates/logistics/mail/order_table.html:166
 #: logistics/templates/logistics/mail/order_table.txt:37
 msgid "Receiver contact"
 msgstr "Контактное лицо"
 
-#: clients_area/templates/clients_area/order_detail.html:71
+#: clients_area/templates/clients_area/order_detail.html:74
 #: clients_area/templates/clients_area/orders_list.html:26 core/forms.py:19
 #: core/templates/core/mail/calc.html:34 core/templates/core/mail/calc.txt:11
-#: logistics/models.py:114
+#: logistics/models.py:111
 #: logistics/templates/logistics/mail/order_table.html:174
 #: logistics/templates/logistics/mail/order_table.txt:39
 msgid "Delivery city"
 msgstr "Пункт назначения"
 
-#: clients_area/templates/clients_area/order_detail.html:73 core/forms.py:21
+#: clients_area/templates/clients_area/order_detail.html:76 core/forms.py:21
 #: core/templates/core/mail/calc.html:39 core/templates/core/mail/calc.txt:12
-#: logistics/models.py:115
+#: logistics/models.py:112
 #: logistics/templates/logistics/mail/order_table.html:179
 #: logistics/templates/logistics/mail/order_table.txt:40
 msgid "Full delivery address"
 msgstr "Доставить по адресу"
 
-#: clients_area/templates/clients_area/order_detail.html:76
-#: logistics/models.py:125
+#: clients_area/templates/clients_area/order_detail.html:79
+#: logistics/models.py:122
 #: logistics/templates/logistics/mail/order_table.html:185
 #: logistics/templates/logistics/mail/order_table.txt:41
 msgid "Wanted date of delivery"
 msgstr "Желаемая дата доставки"
 
-#: clients_area/templates/clients_area/order_detail.html:79
-#: logistics/models.py:126
+#: clients_area/templates/clients_area/order_detail.html:82
+#: logistics/models.py:123
 msgid "Date of delivery"
 msgstr "Дата доставки (факт)"
 
-#: clients_area/templates/clients_area/order_detail.html:81 core/forms.py:23
+#: clients_area/templates/clients_area/order_detail.html:84 core/forms.py:23
 #: core/templates/core/mail/calc.html:45 core/templates/core/mail/calc.txt:14
-#: logistics/models.py:117
+#: logistics/models.py:114
 #: logistics/templates/logistics/mail/order_table.html:170
 #: logistics/templates/logistics/mail/order_table.txt:38
 msgid "Unloading by"
 msgstr "Разгрузка силами"
 
-#: clients_area/templates/clients_area/order_detail.html:85
-#: logistics/models.py:121
+#: clients_area/templates/clients_area/order_detail.html:88
+#: logistics/models.py:118
 #: logistics/templates/logistics/mail/order_table.html:194
 #: logistics/templates/logistics/mail/order_table.txt:44
 msgid "Extra info"
@@ -583,12 +602,12 @@ msgid "New order"
 msgstr "Новая заявка"
 
 #: clients_area/templates/clients_area/orders_list.html:22
-#: logistics/models.py:78
+#: logistics/models.py:75
 msgid "Order number"
 msgstr "Номер заявки"
 
 #: clients_area/templates/clients_area/orders_list.html:23
-#: logistics/models.py:79
+#: logistics/models.py:76
 msgid "Order date"
 msgstr "Дата заявки"
 
@@ -617,20 +636,20 @@ msgstr "Внутри области"
 msgid "Deliver to address"
 msgstr "Доставить по адресу"
 
-#: core/forms.py:25 logistics/models.py:92
+#: core/forms.py:25 logistics/models.py:89
 #: logistics/templates/logistics/mail/order_table.html:63
 #: logistics/templates/logistics/mail/order_table.txt:15
 msgid "Cargo weight, kg"
 msgstr "Вес, кг"
 
-#: core/forms.py:26 logistics/models.py:93
+#: core/forms.py:26 logistics/models.py:90
 #: logistics/templates/logistics/mail/order_table.html:69
 #: logistics/templates/logistics/mail/order_table.txt:16
 msgid "Cargo volume, m3"
 msgstr "Объем, м3"
 
 #: core/forms.py:27 core/templates/core/mail/calc.html:74
-#: core/templates/core/mail/calc.txt:20 logistics/models.py:95
+#: core/templates/core/mail/calc.txt:20 logistics/models.py:92
 #: logistics/templates/logistics/mail/order_table.html:78
 #: logistics/templates/logistics/mail/order_table.txt:18
 msgid "Cargo value"
@@ -764,7 +783,7 @@ msgstr "тип перевозки"
 msgid "delivery types"
 msgstr "типы перевозки"
 
-#: logistics/admin.py:19 logistics/models.py:247
+#: logistics/admin.py:19 logistics/models.py:244
 msgid "order status"
 msgstr "статус заявки"
 
@@ -772,11 +791,11 @@ msgstr "статус заявки"
 msgid "order statuses (for tracking)"
 msgstr "статусы заявки (для отслеживания)"
 
-#: logistics/admin.py:26 logistics/models.py:263
+#: logistics/admin.py:26 logistics/models.py:260
 msgid "contractor bill"
 msgstr "счет подрядчика"
 
-#: logistics/admin.py:27 logistics/models.py:264
+#: logistics/admin.py:27 logistics/models.py:261
 msgid "contractor bills"
 msgstr "счета подрядчиков"
 
@@ -837,155 +856,151 @@ msgstr "Отправить бухгалтеру запрос на выставл
 msgid "logistics"
 msgstr "логистика"
 
-#: logistics/models.py:22
+#: logistics/models.py:20
 msgid "Cash payment"
 msgstr "Наличный расчет"
 
-#: logistics/models.py:23
+#: logistics/models.py:21
 msgid "Cashless payment"
 msgstr "Безналичный расчет"
 
-#: logistics/models.py:28
+#: logistics/models.py:25
 msgid "No taxes"
 msgstr "Без НДС"
 
-#: logistics/models.py:29
+#: logistics/models.py:26
 msgid "20%"
 msgstr "20%"
 
-#: logistics/models.py:34
+#: logistics/models.py:30
 msgid "Pallet"
 msgstr "Паллет"
 
-#: logistics/models.py:35
+#: logistics/models.py:31
 msgid "Bulk"
 msgstr "Россыпь"
 
-#: logistics/models.py:39
+#: logistics/models.py:35
 msgid "Loading by \"CARGO LOGIKA\""
 msgstr "Погрузка силами \"КАРГО ЛОГИКА\""
 
-#: logistics/models.py:40
+#: logistics/models.py:36
 msgid "Loading by sender"
 msgstr "Погрузка силами отправителя"
 
-#: logistics/models.py:44
+#: logistics/models.py:40
 msgid "Unloading by \"CARGO LOGIKA\""
 msgstr "Разгрузка силами \"КАРГО ЛОГИКА\""
 
-#: logistics/models.py:45
+#: logistics/models.py:41
 msgid "Unloading by receiver"
 msgstr "Разгрузка силами получателя"
 
-#: logistics/models.py:51
+#: logistics/models.py:47
 msgid "EDM"
 msgstr "ЭДО"
 
-#: logistics/models.py:124
+#: logistics/models.py:121
 msgid "Cargo picked up"
 msgstr "Груз забран"
 
-#: logistics/models.py:127
+#: logistics/models.py:124
 msgid "Cargo delivered"
 msgstr "Груз доставлен"
 
-#: logistics/models.py:128
+#: logistics/models.py:125
 msgid "Docs sent"
 msgstr "Оригиналы переданы"
 
-#: logistics/models.py:130
+#: logistics/models.py:127
 msgid "Contractor"
 msgstr "ТК"
 
-#: logistics/models.py:131
+#: logistics/models.py:128
 msgid "Contractor waybill"
 msgstr "Накладная ТК"
 
-#: logistics/models.py:132
+#: logistics/models.py:129
 msgid "Transit expenses, rub"
 msgstr "Расходы на перевозку, руб"
 
-#: logistics/models.py:133
+#: logistics/models.py:130
 msgid "Transit price, rub"
 msgstr "Стоимость перевозки, руб"
 
-#: logistics/models.py:134
+#: logistics/models.py:131
 msgid "Insurance price, rub"
 msgstr "Стоимость страховки, руб"
 
-#: logistics/models.py:135
-msgid "Insurance bill number"
-msgstr "№ страхового полиса"
-
-#: logistics/models.py:136
+#: logistics/models.py:134
 msgid "Date of bill"
 msgstr "Дата выставления счета"
 
-#: logistics/models.py:137
+#: logistics/models.py:135
 msgid "Bill sent"
 msgstr "Счет выставлен"
 
-#: logistics/models.py:138
+#: logistics/models.py:136
 msgid "Bill payed"
 msgstr "Счет оплачен"
 
-#: logistics/models.py:139
+#: logistics/models.py:137
 msgid "Loading/unloading required"
 msgstr "ПРР"
 
-#: logistics/models.py:140
+#: logistics/models.py:138
 msgid "Hidden status"
 msgstr "Доп. статус (не виден клиенту)"
 
-#: logistics/models.py:142
+#: logistics/models.py:140
 msgid "Email to the accounts manager sent"
 msgstr "Запрос на выставление счета отправлен бухгалтеру"
 
-#: logistics/models.py:143
+#: logistics/models.py:141
 msgid "Submitted by"
 msgstr "Заявка создана"
 
-#: logistics/models.py:145
+#: logistics/models.py:143
 msgid "Show cargo price in receipt"
 msgstr "Отображать стоимость груза в ЭР"
 
-#: logistics/models.py:160
+#: logistics/models.py:158
 msgid "Pickup address"
 msgstr "Адрес забора"
 
-#: logistics/models.py:166
+#: logistics/models.py:164
 msgid "Delivery address"
 msgstr "Адрес доставки"
 
-#: logistics/models.py:169
+#: logistics/models.py:167
 msgid "Order #{} dated {}"
 msgstr "Заявка №{} от {}"
 
-#: logistics/models.py:194
+#: logistics/models.py:192
 msgid "TIN is required for paying companies"
 msgstr "При указании юр. лица плательщиком ИНН обязателен!"
 
-#: logistics/models.py:196
+#: logistics/models.py:194
 msgid "Passport number is required for sending individuals"
 msgstr "При указании физ. лица отправителем номер паспорта обязателен!"
 
-#: logistics/models.py:198
+#: logistics/models.py:196
 msgid "TIN is required for sending companies"
 msgstr "При указании юр. лица отправителем ИНН обязателен!"
 
-#: logistics/models.py:200
+#: logistics/models.py:198
 msgid "Passport number is required for receiving individuals"
 msgstr "При указании физ. лица получателем номер паспорта обязателен!"
 
-#: logistics/models.py:202
+#: logistics/models.py:200
 msgid "TIN is required for receiving companies"
 msgstr "При указании юр. лица получателем ИНН обязателен!"
 
-#: logistics/models.py:204
+#: logistics/models.py:202
 msgid "Cargo value is required for insurance"
 msgstr "Стоимость груза необходима для оформления страховки!"
 
-#: logistics/models.py:209
+#: logistics/models.py:207
 #: logistics/templates/logistics/mail/order_admin.html:2
 #: logistics/templates/logistics/mail/order_admin.txt:1
 #: logistics/templates/logistics/mail/order_user.html:2
@@ -993,51 +1008,51 @@ msgstr "Стоимость груза необходима для оформле
 msgid "New order No."
 msgstr "Новая заявка №"
 
-#: logistics/models.py:224
+#: logistics/models.py:221
 msgid "order"
 msgstr "заявка на перевозку"
 
-#: logistics/models.py:225
+#: logistics/models.py:222
 msgid "orders"
 msgstr "заявки на перевозку"
 
-#: logistics/models.py:232 logistics/models.py:256
+#: logistics/models.py:229 logistics/models.py:253
 msgid "Order"
 msgstr "Заявка на перевозку"
 
-#: logistics/models.py:233
+#: logistics/models.py:230
 msgid "Status label"
 msgstr "Текст статуса"
 
-#: logistics/models.py:234
+#: logistics/models.py:231
 msgid "Date of status change"
 msgstr "Дата статуса"
 
-#: logistics/models.py:237
+#: logistics/models.py:234
 msgid "{}: {} (order #{})"
 msgstr "{}: {} (заявка №{})"
 
-#: logistics/models.py:248
+#: logistics/models.py:245
 msgid "order statuses"
 msgstr "статусы заявки"
 
-#: logistics/models.py:257
+#: logistics/models.py:254
 msgid "Contractor name"
 msgstr "Наименование подрядчика"
 
-#: logistics/models.py:258 logistics/templates/admin/registry_data.html:10
+#: logistics/models.py:255 logistics/templates/admin/registry_data.html:10
 msgid "Bill number"
 msgstr "№ счета"
 
-#: logistics/models.py:259
+#: logistics/models.py:256
 msgid "Bill price"
 msgstr "Сумма счета"
 
-#: logistics/models.py:260
+#: logistics/models.py:257
 msgid "Taxes"
 msgstr "НДС"
 
-#: logistics/models.py:271
+#: logistics/models.py:268
 msgid "New"
 msgstr "Заявка получена"
 
@@ -1061,6 +1076,10 @@ msgstr "Отправить email"
 #: logistics/templates/logistics/forms/order_form.html:158
 msgid "Fill by payer"
 msgstr "Заполнить по Плательщику"
+
+#: logistics/templates/logistics/mail/accounts_email.html:2
+msgid "Request for bills issue"
+msgstr "Запрос на выставление счетов"
 
 #: logistics/templates/logistics/mail/accounts_email.html:7
 #: logistics/templates/logistics/mail/accounts_email.txt:2
