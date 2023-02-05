@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-05 15:29+0300\n"
+"POT-Creation-Date: 2023-02-05 18:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,19 +44,19 @@ msgstr "Важные даты"
 msgid "authorization"
 msgstr "авторизация"
 
-#: app_auth/forms.py:15 core/forms.py:11 core/forms.py:45
+#: app_auth/forms.py:16 core/forms.py:11 core/forms.py:45
 msgid "Your E-mail"
 msgstr "E-mail"
 
-#: app_auth/forms.py:16 app_auth/models.py:14
+#: app_auth/forms.py:17 app_auth/models.py:14
 msgid "User TIN"
 msgstr "ИНН"
 
-#: app_auth/forms.py:33
+#: app_auth/forms.py:34
 msgid "User with such TIN already exists"
 msgstr "Пользователь с таким ИНН уже существует!"
 
-#: app_auth/forms.py:35
+#: app_auth/forms.py:36
 msgid "Company with such TIN does not exist"
 msgstr "Компания с таким ИНН не найдена!"
 
@@ -115,6 +115,49 @@ msgstr "Нет учетной записи?"
 msgid "Create it"
 msgstr "Создайте ее"
 
+#: app_auth/templates/app_auth/login.html:13
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
+#: app_auth/templates/app_auth/login.html:13
+msgid "Reset it"
+msgstr "Сбросьте его"
+
+#: app_auth/templates/app_auth/mail/reset_password_email.html:2
+#: logistics/templates/logistics/mail/accounts_email.html:2
+msgid "Request for bills issue"
+msgstr "Запрос на выставление счетов"
+
+#: app_auth/templates/app_auth/mail/reset_password_email.html:7
+#: app_auth/templates/app_auth/mail/reset_password_email.txt:3
+msgid "Greetings"
+msgstr "Приветствуем"
+
+#: app_auth/templates/app_auth/mail/reset_password_email.html:12
+#: app_auth/templates/app_auth/mail/reset_password_email.txt:5
+msgid ""
+"You are receiving this email because you (or someone pretending to be you) "
+"requested that your password be reset on the {{ domain }} site. If you do "
+"not wish to reset your password, please ignore this message."
+msgstr "Вы получили данное письмо, потому что Вы (или кто-то притворяющийся Вами) запросил сброс пароля от Вашей учетной записи на сайте cargo-logika.ru. Если Вы не хотите менять пароль, пожалуйста, игнорируйте это письмо."
+
+#: app_auth/templates/app_auth/mail/reset_password_email.html:17
+#: app_auth/templates/app_auth/mail/reset_password_email.txt:7
+msgid ""
+"To reset your password, please click the following link, or copy and paste "
+"it into your web browser:"
+msgstr "Чтобы сбросить Ваш пароль, пожалуйста перейдите по ссылке ниже, либо скопируйте ее в адресную строку Вашего браузера:"
+
+#: app_auth/templates/app_auth/mail/reset_password_email.html:29
+#: app_auth/templates/app_auth/mail/reset_password_email.txt:13
+msgid "Best regards"
+msgstr "С уважением"
+
+#: app_auth/templates/app_auth/mail/reset_password_email.html:30
+#: app_auth/templates/app_auth/mail/reset_password_email.txt:14
+msgid "Management team of"
+msgstr "Команда"
+
 #: app_auth/templates/app_auth/password_change.html:2
 #: app_auth/templates/app_auth/password_change.html:13
 #: clients_area/templates/clients_area/orders_list.html:13
@@ -126,8 +169,48 @@ msgid "Changing password of"
 msgstr "Изменение пароля"
 
 #: app_auth/templates/app_auth/password_change.html:14
+#: app_auth/templates/app_auth/password_reset.html:21
 msgid "Cancel"
 msgstr "Отмена"
+
+#: app_auth/templates/app_auth/password_reset.html:3
+#: app_auth/templates/app_auth/password_reset.html:8
+#: app_auth/templates/app_auth/password_reset.html:20
+#: app_auth/templates/app_auth/password_reset_complete.html:3
+#: app_auth/templates/app_auth/password_reset_confirm.html:3
+#: app_auth/templates/app_auth/password_reset_confirm.html:8
+#: app_auth/templates/app_auth/password_reset_confirm.html:20
+#: app_auth/templates/app_auth/password_reset_done.html:3
+msgid "Reset password"
+msgstr "Сброс пароля"
+
+#: app_auth/templates/app_auth/password_reset.html:10
+msgid ""
+"Forgot your password? Enter your email in the form below, and we'll send you "
+"instructions for creating a new one."
+msgstr "Забыли пароль? Укажите Ваш email, и мы пришлем Вам инструкции по созданию нового."
+
+#: app_auth/templates/app_auth/password_reset_complete.html:8
+msgid "Your password has been reset!"
+msgstr "Ваш пароль был сброшен!"
+
+#: app_auth/templates/app_auth/password_reset_complete.html:9
+msgid "You may now"
+msgstr "Теперь вы можете"
+
+#: app_auth/templates/app_auth/password_reset_complete.html:9
+msgid "log in"
+msgstr "войти в личный кабинет"
+
+#: app_auth/templates/app_auth/password_reset_confirm.html:10
+msgid "Please enter (and confirm) your new password."
+msgstr "Пожалуйста, введите (и подтвердите) Ваш новый пароль."
+
+#: app_auth/templates/app_auth/password_reset_done.html:8
+msgid ""
+"We have sent you an email with a link to reset your password. Please check "
+"your email and click the link to continue."
+msgstr "Мы отправили Вам письмо, содержащее ссылку на сброс Вашего пароля. Пожалуйста, проверьте Вашу почту и перейдите по ссылке, чтобы продолжить"
 
 #: app_auth/templates/app_auth/sign_up.html:2
 #: app_auth/templates/app_auth/sign_up.html:5
@@ -978,10 +1061,6 @@ msgstr "Отправить email"
 #: logistics/templates/logistics/forms/order_form.html:158
 msgid "Fill by payer"
 msgstr "Заполнить по Плательщику"
-
-#: logistics/templates/logistics/mail/accounts_email.html:2
-msgid "Request for bills issue"
-msgstr "Запрос на выставление счетов"
 
 #: logistics/templates/logistics/mail/accounts_email.html:7
 #: logistics/templates/logistics/mail/accounts_email.txt:2

@@ -1,12 +1,13 @@
 from django import forms
 from django.conf import settings
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from app_auth.models import User
 from dadata import Dadata
-
+from django.template import loader
 from logistics.models import Order
+from mailer.views import send_logo_mail
 
 
 class UserCreateForm(UserCreationForm):
@@ -53,3 +54,18 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['email']
+
+
+class UserPasswordResetForm(PasswordResetForm):
+
+    def send_mail(self, subject_template_name, email_template_name,
+                  context, from_email, to_email, html_email_template_name=None):
+        subject = loader.render_to_string(subject_template_name, context)
+        subject = ''.join(subject.splitlines())
+        return send_logo_mail(
+            subject=subject,
+            body_text=loader.render_to_string(email_template_name, context),
+            body_html=loader.render_to_string(html_email_template_name, context),
+            from_email=from_email,
+            recipients=[to_email]
+        )

@@ -14,6 +14,7 @@ def logo_data():
     logo.add_header('Content-ID', '<logo>')
     return logo
 
+
 def send_logo_mail(subject, body_text, body_html, from_email, recipients, **kwargs):
     message = EmailMultiAlternatives(
         subject=subject,
