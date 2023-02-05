@@ -149,7 +149,7 @@ msgstr "Приветствуем"
 #: app_auth/templates/app_auth/mail/greetings.html:13
 #: app_auth/templates/app_auth/mail/greetings.txt:5
 msgid "You've been registered as representative of"
-msgstr "Вы были зарегистрированы как представитель"
+msgstr "Вы были зарегистрированы в качестве представителя"
 
 #: app_auth/templates/app_auth/mail/greetings.html:19
 #: app_auth/templates/app_auth/mail/greetings.txt:7
