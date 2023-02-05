@@ -21,11 +21,23 @@
                 <tr>
                     <td>{% trans 'Order number' %}</td>
                     <td>{% trans 'Order date' %}</td>
-                    <td>{% trans 'Cargo name' %}</td>
-                    <td>{% trans 'Departure city' %}</td>
-                    <td>{% trans 'Delivery city' %}</td>
-                    <td>{% trans 'Type of delivery' %}</td>
+                    <td>{% trans 'Date of pickup' %}</td>
                     <td>{% trans 'Status' %}</td>
+                    <td>{% trans 'Docs sent' %}</td>
+                    <td>{% trans 'Payer' %}</td>
+                    <td>{% trans 'Sender' %}</td>
+                    <td>{% trans 'Pickup address' %}</td>
+                    <td>{% trans 'Cargo spaces' %}</td>
+                    <td>{% trans 'Cargo weight, kg' %}</td>
+                    <td>{% trans 'Cargo volume, m3' %}</td>
+                    <td>{% trans 'Receiver' %}</td>
+                    <td>{% trans 'Delivery address' %}</td>
+                    <td>{% trans 'Loading/unloading required' %}</td>
+                    <td>{% trans 'Extra services' %}</td>
+                    <td>{% trans 'Transit price, rub' %}</td>
+                    <td>{% trans 'Cargo value' %}</td>
+                    <td>{% trans 'Insurance bill number' %}</td>
+                    <td>{% trans 'Insurance price, rub' %}</td>
                     <td></td>
                 </tr>
             </thead>
@@ -34,12 +46,24 @@
                 <tr>
                     <td><a href="{% url 'order_detail' pk=order.pk %}">{{ order.order_number }}</a></td>
                     <td>{{ order.order_date|date:"d.m.Y" }}</td>
-                    <td>{{ order.cargo_name }}</td>
-                    <td>{{ order.sender_addr }}</td>
-                    <td>{{ order.receiver_addr }}</td>
-                    <td>{{ order.delivery_type }}</td>
+                    <td>{% if order.pickup_date %}{{ order.pickup_date|date:"d.m.Y" }}{% else %}-{% endif %}</td>
                     <td>{{ order.statuses.last.label }}</td>
-                    <td><a href="{% url 'order' %}?repeat={{ order.pk }}">{% trans 'Repeat order' %}</td>
+                    <td>{{ order.get_docs_sent_display }}</td>
+                    <td>{{ order.payer_name }}</td>
+                    <td>{{ order.sender_name }}</td>
+                    <td>{{ order.from_addr }}</td>
+                    <td>{{ order.cargo_spaces }}</td>
+                    <td>{{ order.cargo_weight|floatformat:-2 }}</td>
+                    <td>{{ order.cargo_volume|floatformat:-2 }}</td>
+                    <td>{{ order.receiver_name }}</td>
+                    <td>{{ order.to_addr }}</td>
+                    <td>{% if order.load_unload %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
+                    <td>{% if order.extra_services.exists %}{{ order.extra_services.all|join:", " }}{% else %}-{% endif %}</td>
+                    <td>{{ order.order_price|floatformat:-2 }}</td>
+                    <td>{{ order.cargo_value|floatformat:-2 }}</td>
+                    <td>{% if order.insurance and order.insurance_number %}{{ order.insurance_number }}{% else %}-{% endif %}</td>
+                    <td>{% if order.insurance and order.insurance_price %}{{ order.insurance_price|floatformat:-2 }}{% else %}-{% endif %}</td>
+                    <td><a href="{% url 'order' %}?repeat={{ order.pk }}">{% trans 'Repeat order' %}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

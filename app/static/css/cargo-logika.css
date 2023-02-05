@@ -478,20 +478,25 @@ label.checkbox {
 }
 
 .orders_list {
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
     margin-bottom: 15px;
+    width: 100%;
+    overflow-y: scroll;
 }
 
 .orders_list table {
+    display: block;
+    margin: 0 auto;
     border-collapse: collapse;
+    font-size: 0.8em;
 }
 
 .orders_list thead {
     background: #452f7f;
     color: white;
     text-align: center;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .orders_list thead td,
