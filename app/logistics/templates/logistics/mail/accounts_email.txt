@@ -2,6 +2,7 @@
 {{ user.first_name }} {{ user.last_name }} {% trans 'has sent you the request to issue following bills:' %}
 {% for order in queryset %}
 {% trans 'Payer' %} {{ order.payer_name }} ({{ order.payer_tin }})
+{% trans 'Payer email' %} {{ order.payer_name }}
 {% trans 'Bill No.' %} {{ order.order_number|unlocalize }} {% trans 'dated' %} {% if order.bill_date %}{{ order.bill_date|date:"d.m.Y" }}{% elif order.delivery_date|date:"d.m.Y" %}{% else %}-{% endif %}
 {% trans 'Forwarding services' %} {{ order.sender_addr }} - {{ order.receiver_addr }}{% if order.load_unload %} {% trans 'with loading and unloading operations' %}{% endif %} {% trans 'under contract No.' %}{{ order.contract|unlocalize }} (Receipt No. {{ order.order_number|unlocalize }} {% trans 'dated' %} {{ order.pickup_date|date:"d.m.Y" }}, {% trans 'Num. of places' %} {{ order.cargo_spaces }}, {% trans 'volume' %} {{ order.cargo_volume|floatformat:-2 }} {% trans 'm' %}3, {% trans 'weight' %} {{ order.cargo_weight|floatformat:-2 }} {% trans 'kg' %}){% if order.extra_services.exists %} {% trans 'Extra services' %}: {{ order.extra_services.all|join:", " }}{% endif %} - {{ order.order_price|floatformat:-2 }}{% if order.insurance %}
 

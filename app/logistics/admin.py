@@ -96,7 +96,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     @staticmethod
     def send_accounts_email(queryset, user):
-        context = {'user': user, 'queryset': queryset}
+        context = {'user': user, 'queryset': queryset.order_by('order_number')}
 
         mail_status = send_logo_mail(
             _('Bills issue request - {} ({})').format(queryset.first().payer_name, queryset.first().payer_tin),
@@ -182,7 +182,7 @@ class OrderAdmin(admin.ModelAdmin):
     def send_registry_email(self, request, queryset, bill_number, bill_date, payer, payer_id, payer_email):
         context = {
             'user': request.user,
-            'queryset': queryset,
+            'queryset': queryset.order_by('order_number'),
             'bill_number': bill_number,
             'bill_date': bill_date,
             'payer': payer,

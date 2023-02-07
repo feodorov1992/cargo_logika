@@ -46,6 +46,7 @@
                             <td style="border: 1px solid #452f7f; padding: 5px">{% if order.bill_date %}{{ order.bill_date|date:"d.m.Y" }}{% elif order.delivery_date %}{{ order.delivery_date|date:"d.m.Y" }}{% else %}-{% endif %}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ order.payer_name }}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ order.payer_tin }}</td>
+                            <td style="border: 1px solid #452f7f; padding: 5px">{{ order.payer_email }}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{% trans 'Insurance policy No.' %} {{ order.insurance_number|unlocalize }} ({% trans 'Receipt No.' %} {{ order.order_number|unlocalize }} {% trans 'dated' %} {{ order.pickup_date|date:"d.m.Y" }})</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ order.insurance_price|floatformat:-2 }}</td>
                         </tr>
