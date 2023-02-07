@@ -255,7 +255,7 @@ body {
 }
 
 .dark_plate {
-    height: 200px;
+    min-height: 200px;
     width: 370px;
     padding: 15px;
     background-color: rgb(69, 47, 127, 0.8);
@@ -990,10 +990,6 @@ div#id_delivery_type>div {
         width: 90% !important;
     }
 
-    #alert>div {
-        width: 100%
-    }
-
     #alert_label {
         margin-top: -35px;
     }
@@ -1090,7 +1086,11 @@ div#id_delivery_type>div {
 	#retro_head {
 		height: 70px;
 	}
-	
+
+    #alert>div {
+        max-width: 100%
+    }
+
 	#logo {
 		margin: 0;
 	}
