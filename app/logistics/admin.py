@@ -179,16 +179,26 @@ class OrderAdmin(admin.ModelAdmin):
                 result += order.insurance_price
         return result
 
+    @staticmethod
+    def get_sum_transit_price(queryset):
+        return sum([i.order_price for i in queryset])
+
+    @staticmethod
+    def get_sum_insurance_price(queryset):
+        return sum([i.insurance_price for i in queryset.filter(insurance=True)])
+
     def send_registry_email(self, request, queryset, bill_number, bill_date, payer, payer_id, payer_email):
         context = {
             'user': request.user,
             'queryset': queryset.order_by('order_number'),
+            'insurances': queryset.filter(insurance=True).order_by('order_number'),
             'bill_number': bill_number,
             'bill_date': bill_date,
             'payer': payer,
             'payer_id': payer_id,
             'payer_email': payer_email,
-            'sum_price': self.get_sum_price(queryset)
+            'sum_transit_price': self.get_sum_transit_price(queryset),
+            'sum_insurance_price': self.get_sum_insurance_price(queryset)
         }
         mail_status = send_logo_mail(
             _('Registry bill issue request - {} ({})').format(payer, payer_id),
