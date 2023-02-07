@@ -14,14 +14,6 @@
             <th><label class="required inline" for="id_bill_date">{% trans 'Bill date' %}:</label></th>
             <td><input type="date" name="bill_date" class="vDateField" size="10" required id="id_bill_date"></td>
         </tr>
-        <tr>
-            <th><label class="required" for="id_payer">{% trans 'Payer' %}:</label></th>
-            <td><input type="text" name="payer" id="id_payer" required></td>
-        </tr>
-        <tr>
-            <th><label class="required" for="id_payer_id">{% trans 'Payer TIN' %}:</label></th>
-            <td><input type="text" name="payer_id" id="id_payer_id" required></td>
-        </tr>
     </table>
     <input type="hidden" name="action" value="send_registry_email_action" />
     <input type="submit" name="apply" value="{% trans 'Send email' %}"/>

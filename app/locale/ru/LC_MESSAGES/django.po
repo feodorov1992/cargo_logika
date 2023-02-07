@@ -889,8 +889,8 @@ msgid "Financial info"
 msgstr "Информация для расчетов"
 
 #: logistics/admin.py:102
-msgid "Bills issue request"
-msgstr "Запрос на выставление счетов"
+msgid "Bills issue request - {} ({})"
+msgstr "Запрос на выставление счетов - {} ({})"
 
 #: logistics/admin.py:123 logistics/admin.py:124
 msgid "{} or {}"
@@ -905,8 +905,8 @@ msgid "Accounts manager ordered to issue bills"
 msgstr "Письмо о выставлении счетов отправлено бухгалтеру"
 
 #: logistics/admin.py:194
-msgid "Registry bill issue request"
-msgstr "Запрос на выставление реестрового счета"
+msgid "Registry bill issue request - {} ({})"
+msgstr "Запрос на выставление реестрового счета - {} ({})"
 
 #: logistics/admin.py:235
 msgid "Accounts manager ordered to issue registry bill"

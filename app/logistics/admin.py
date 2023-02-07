@@ -73,7 +73,7 @@ class OrderAdmin(admin.ModelAdmin):
         }),
     )
 
-    inlines = (OrderStatusInline, ContractorBillInline,)
+    inlines = (ContractorBillInline, OrderStatusInline)
 
     # actions = ['send_accounts_email_action', 'send_registry_email_action', 'test_action']
     actions = ['send_accounts_email_action', 'send_registry_email_action']
@@ -99,7 +99,7 @@ class OrderAdmin(admin.ModelAdmin):
         context = {'user': user, 'queryset': queryset}
 
         mail_status = send_logo_mail(
-            _('Bills issue request'),
+            _('Bills issue request - {} ({})').format(queryset.first().payer_name, queryset.first().payer_tin),
             render_to_string('logistics/mail/accounts_email.txt', context),
             render_to_string('logistics/mail/accounts_email.html', context),
             'site@cargo-logika.ru',
@@ -131,7 +131,6 @@ class OrderAdmin(admin.ModelAdmin):
             else:
                 if not obj.__getattribute__(field_name):
                     missing_verbose.append(field_verbose)
-
 
         return ', '.join(missing_verbose)
 
@@ -191,7 +190,7 @@ class OrderAdmin(admin.ModelAdmin):
             'sum_price': self.get_sum_price(queryset)
         }
         mail_status = send_logo_mail(
-            _('Registry bill issue request'),
+            _('Registry bill issue request - {} ({})').format(payer, payer_id),
             render_to_string('logistics/mail/accounts_registry_email.txt', context),
             render_to_string('logistics/mail/accounts_registry_email.html', context),
             'site@cargo-logika.ru',
@@ -226,8 +225,8 @@ class OrderAdmin(admin.ModelAdmin):
                     request, queryset,
                     request.POST.get('bill_number'),
                     datetime.fromisoformat(request.POST.get('bill_date')).date(),
-                    request.POST.get('payer'),
-                    request.POST.get('payer_id')
+                    queryset.first().payer_name,
+                    queryset.first().payer_tin
                 )
                 queryset.update(accounts_email_sent=True)
                 self.message_user(
