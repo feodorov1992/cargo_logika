@@ -179,7 +179,7 @@ class OrderAdmin(admin.ModelAdmin):
                 result += order.insurance_price
         return result
 
-    def send_registry_email(self, request, queryset, bill_number, bill_date, payer, payer_id):
+    def send_registry_email(self, request, queryset, bill_number, bill_date, payer, payer_id, payer_email):
         context = {
             'user': request.user,
             'queryset': queryset,
@@ -187,6 +187,7 @@ class OrderAdmin(admin.ModelAdmin):
             'bill_date': bill_date,
             'payer': payer,
             'payer_id': payer_id,
+            'payer_email': payer_email,
             'sum_price': self.get_sum_price(queryset)
         }
         mail_status = send_logo_mail(
@@ -226,7 +227,8 @@ class OrderAdmin(admin.ModelAdmin):
                     request.POST.get('bill_number'),
                     datetime.fromisoformat(request.POST.get('bill_date')).date(),
                     queryset.first().payer_name,
-                    queryset.first().payer_tin
+                    queryset.first().payer_tin,
+                    queryset.first().payer_email
                 )
                 queryset.update(accounts_email_sent=True)
                 self.message_user(

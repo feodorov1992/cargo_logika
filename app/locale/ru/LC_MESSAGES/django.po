@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-05 21:14+0300\n"
+"POT-Creation-Date: 2023-02-07 22:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,7 +161,9 @@ msgstr "Мы рады, что Вы с нами!"
 msgid ""
 "If you see this email, it means that you have registered correctly and are "
 "able to use full functionality of our site"
-msgstr "Если Вы видите данное письмо, это значит, что Вы корректно зарегистрировались и можете использовать полный функционал нашего портала."
+msgstr ""
+"Если Вы видите данное письмо, это значит, что Вы корректно "
+"зарегистрировались и можете использовать полный функционал нашего портала."
 
 #: app_auth/templates/app_auth/mail/greetings.html:30
 #: app_auth/templates/app_auth/mail/greetings.txt:10
@@ -266,8 +268,8 @@ msgid "Details of the order No."
 msgstr "Детализация заявки №"
 
 #: clients_area/templates/clients_area/order_detail.html:5
-#: logistics/templates/logistics/mail/accounts_email.html:34
-#: logistics/templates/logistics/mail/accounts_email.html:47
+#: logistics/templates/logistics/mail/accounts_email.html:36
+#: logistics/templates/logistics/mail/accounts_email.html:49
 #: logistics/templates/logistics/mail/accounts_email.txt:5
 #: logistics/templates/logistics/mail/accounts_email.txt:6
 #: logistics/templates/logistics/mail/accounts_email.txt:9
@@ -296,7 +298,7 @@ msgstr "Статус"
 
 #: clients_area/templates/clients_area/order_detail.html:18
 #: clients_area/templates/clients_area/orders_list.html:27
-#: logistics/models.py:77 logistics/templates/admin/registry_data.html:18
+#: logistics/models.py:77
 #: logistics/templates/logistics/mail/accounts_email.html:17
 #: logistics/templates/logistics/mail/accounts_email.txt:4
 #: logistics/templates/logistics/mail/accounts_email.txt:8
@@ -315,7 +317,7 @@ msgid "Payment type"
 msgstr "Тип оплаты"
 
 #: clients_area/templates/clients_area/order_detail.html:20
-#: logistics/models.py:80 logistics/templates/admin/registry_data.html:22
+#: logistics/models.py:80
 #: logistics/templates/logistics/mail/accounts_email.html:18
 #: logistics/templates/logistics/mail/accounts_registry_email.html:11
 #: logistics/templates/logistics/mail/order_table.html:14
@@ -325,6 +327,7 @@ msgstr "ИНН"
 
 #: clients_area/templates/clients_area/order_detail.html:21
 #: logistics/models.py:81
+#: logistics/templates/logistics/mail/accounts_email.html:19
 #: logistics/templates/logistics/mail/order_table.html:18
 #: logistics/templates/logistics/mail/order_table.txt:5
 msgid "Payer email"
@@ -362,7 +365,7 @@ msgstr "Тип упаковки"
 #: clients_area/templates/clients_area/order_detail.html:27 core/forms.py:31
 #: core/templates/core/mail/calc.html:64 core/templates/core/mail/calc.txt:18
 #: logistics/models.py:87
-#: logistics/templates/logistics/mail/accounts_email.html:35
+#: logistics/templates/logistics/mail/accounts_email.html:37
 #: logistics/templates/logistics/mail/accounts_email.txt:6
 #: logistics/templates/logistics/mail/accounts_registry_email.html:30
 #: logistics/templates/logistics/mail/accounts_registry_email.txt:9
@@ -385,7 +388,7 @@ msgstr "Вес"
 
 #: clients_area/templates/clients_area/order_detail.html:30
 #: core/templates/core/mail/calc.html:50 core/templates/core/mail/calc.txt:15
-#: logistics/templates/logistics/mail/accounts_email.html:34
+#: logistics/templates/logistics/mail/accounts_email.html:36
 #: logistics/templates/logistics/mail/accounts_email.txt:6
 #: logistics/templates/logistics/mail/accounts_registry_email.html:29
 #: logistics/templates/logistics/mail/accounts_registry_email.txt:9
@@ -398,7 +401,7 @@ msgstr "Объем"
 
 #: clients_area/templates/clients_area/order_detail.html:31
 #: core/templates/core/mail/calc.html:50 core/templates/core/mail/calc.txt:15
-#: logistics/templates/logistics/mail/accounts_email.html:34
+#: logistics/templates/logistics/mail/accounts_email.html:36
 #: logistics/templates/logistics/mail/accounts_email.txt:6
 #: logistics/templates/logistics/mail/accounts_registry_email.html:29
 #: logistics/templates/logistics/mail/accounts_registry_email.txt:9
@@ -896,27 +899,27 @@ msgstr "Запрос на выставление счетов - {} ({})"
 msgid "{} or {}"
 msgstr "{} или {}"
 
-#: logistics/admin.py:164 logistics/admin.py:219
+#: logistics/admin.py:163 logistics/admin.py:218
 msgid "Essential info is missing in orders:<br>{}"
 msgstr "Необходимая информация отсутствует в заявках:<br>{}"
 
-#: logistics/admin.py:171
+#: logistics/admin.py:170
 msgid "Accounts manager ordered to issue bills"
 msgstr "Письмо о выставлении счетов отправлено бухгалтеру"
 
-#: logistics/admin.py:194
+#: logistics/admin.py:193
 msgid "Registry bill issue request - {} ({})"
 msgstr "Запрос на выставление реестрового счета - {} ({})"
 
-#: logistics/admin.py:235
+#: logistics/admin.py:234
 msgid "Accounts manager ordered to issue registry bill"
 msgstr "Письмо о выставлении реестрового счета отправлено бухгалтеру"
 
-#: logistics/admin.py:240
+#: logistics/admin.py:239
 msgid "Send bills request to the accounts manager"
 msgstr "Отправить бухгалтеру запрос на выставление счетов"
 
-#: logistics/admin.py:241
+#: logistics/admin.py:240
 msgid "Send registry bill request to the accounts manager"
 msgstr "Отправить бухгалтеру запрос на выставление реестрового счета"
 
@@ -1119,7 +1122,7 @@ msgstr "Сформировать ЭР"
 msgid "Bill date"
 msgstr "Дата счета"
 
-#: logistics/templates/admin/registry_data.html:27
+#: logistics/templates/admin/registry_data.html:19
 #: static/admin/registry_number_form.html:7
 msgid "Send email"
 msgstr "Отправить email"
@@ -1145,38 +1148,38 @@ msgstr "отправил(а) Вам запрос на выставление с�
 msgid "Bill #"
 msgstr "№ счета"
 
-#: logistics/templates/logistics/mail/accounts_email.html:19
+#: logistics/templates/logistics/mail/accounts_email.html:20
 #: logistics/templates/logistics/mail/accounts_registry_email.html:19
 msgid "Service name"
 msgstr "Наименование услуги"
 
-#: logistics/templates/logistics/mail/accounts_email.html:20
+#: logistics/templates/logistics/mail/accounts_email.html:21
 #: logistics/templates/logistics/mail/accounts_registry_email.html:20
 msgid "Price, RUB"
 msgstr "Цена, руб"
 
-#: logistics/templates/logistics/mail/accounts_email.html:31
+#: logistics/templates/logistics/mail/accounts_email.html:33
 #: logistics/templates/logistics/mail/accounts_email.txt:6
 #: logistics/templates/logistics/mail/accounts_registry_email.html:27
 #: logistics/templates/logistics/mail/accounts_registry_email.txt:9
 msgid "Forwarding services"
 msgstr "Траспортно-экспедиционные услуги"
 
-#: logistics/templates/logistics/mail/accounts_email.html:32
+#: logistics/templates/logistics/mail/accounts_email.html:34
 #: logistics/templates/logistics/mail/accounts_email.txt:6
 #: logistics/templates/logistics/mail/accounts_registry_email.html:28
 #: logistics/templates/logistics/mail/accounts_registry_email.txt:9
 msgid "with loading and unloading operations"
 msgstr "с погрузочно-разгрузочными работами"
 
-#: logistics/templates/logistics/mail/accounts_email.html:33
+#: logistics/templates/logistics/mail/accounts_email.html:35
 #: logistics/templates/logistics/mail/accounts_email.txt:6
 #: logistics/templates/logistics/mail/accounts_registry_email.txt:9
 msgid "under contract No."
 msgstr "по договору №"
 
-#: logistics/templates/logistics/mail/accounts_email.html:34
-#: logistics/templates/logistics/mail/accounts_email.html:47
+#: logistics/templates/logistics/mail/accounts_email.html:36
+#: logistics/templates/logistics/mail/accounts_email.html:49
 #: logistics/templates/logistics/mail/accounts_email.txt:10
 #: logistics/templates/logistics/mail/accounts_registry_email.html:29
 #: logistics/templates/logistics/mail/accounts_registry_email.html:38
@@ -1184,19 +1187,27 @@ msgstr "по договору №"
 msgid "Receipt No."
 msgstr "ЭР №"
 
-#: logistics/templates/logistics/mail/accounts_email.html:34
+#: logistics/templates/logistics/mail/accounts_email.html:36
 #: logistics/templates/logistics/mail/accounts_email.txt:6
 #: logistics/templates/logistics/mail/accounts_registry_email.html:29
 #: logistics/templates/logistics/mail/accounts_registry_email.txt:9
 msgid "Num. of places"
-msgstr "к-во мест"
+msgstr "кол-во мест"
 
-#: logistics/templates/logistics/mail/accounts_email.html:43
+#: logistics/templates/logistics/mail/accounts_email.html:36
+msgid "volume"
+msgstr "объем"
+
+#: logistics/templates/logistics/mail/accounts_email.html:36
+msgid "weight"
+msgstr "вес"
+
+#: logistics/templates/logistics/mail/accounts_email.html:45
 #: logistics/templates/logistics/mail/accounts_email.txt:9
 msgid "C"
 msgstr "С"
 
-#: logistics/templates/logistics/mail/accounts_email.html:47
+#: logistics/templates/logistics/mail/accounts_email.html:49
 #: logistics/templates/logistics/mail/accounts_email.txt:10
 #: logistics/templates/logistics/mail/accounts_registry_email.html:38
 #: logistics/templates/logistics/mail/accounts_registry_email.txt:11

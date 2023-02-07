@@ -9,6 +9,7 @@
                 <p><b>{% trans 'Bill date' %}:</b> {{ bill_date|date:"d.m.Y" }}</p>
                 <p><b>{% trans 'Payer' %}:</b> {{ payer }}</p>
                 <p><b>{% trans 'Payer TIN' %}:</b> {{ payer_id }}</p>
+                <p><b>{% trans 'Payer email' %}:</b> {{ payer_email }}</p>
             </td>
         </tr>
         <tr>
@@ -26,7 +27,7 @@
                             <td style="border: 1px solid #452f7f; padding: 5px">
                                 {% trans 'Forwarding services' %} {{ order.sender_addr }} - {{ order.receiver_addr }}
                                 {% if order.load_unload %}{% trans 'with loading and unloading operations' %}{% endif %}
-                                ({% trans 'Receipt No.' %} {{ order.order_number|unlocalize }} {% trans 'dated' %} {{ order.pickup_date|date:"d.m.Y" }}{% if order.cargo_spaces %}, {% trans 'Num. of places' %}: {{ order.cargo_spaces }}{% endif %}{% if order.cargo_volume %}, {{ order.cargo_volume|floatformat:-2 }} {% trans 'm' %}&sup3;{% endif %}{% if order.cargo_weight %}, {{ order.cargo_weight|floatformat:-2 }} {% trans 'kg' %}{% endif %})
+                                ({% trans 'Receipt No.' %} {{ order.order_number|unlocalize }} {% trans 'dated' %} {{ order.pickup_date|date:"d.m.Y" }}, {% trans 'Num. of places' %}: {{ order.cargo_spaces }}, {% trans 'volume' %}: {{ order.cargo_volume|floatformat:-2 }} {% trans 'm' %}&sup3;, {% trans 'weight' %}: {{ order.cargo_weight|floatformat:-2 }} {% trans 'kg' %})
                                 {% if order.extra_services.exists %}<br>{% trans 'Extra services' %}: {{ order.extra_services.all|join:", " }}{% endif %}
                             </td>
                             <td style="border: 1px solid #452f7f; padding: 5px">
