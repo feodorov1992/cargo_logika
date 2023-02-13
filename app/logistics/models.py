@@ -141,15 +141,30 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=_('Submitted by'),
                              related_name='orders')
     show_cargo_price_in_receipt = models.BooleanField(verbose_name=_('Show cargo price in receipt'), default=True)
+    __last_status = None
+
+    def last_status(self):
+        if self.__last_status is None:
+            self.__last_status = self.statuses.last()
+        print(self.__last_status)
+        return self.__last_status
 
     def status(self):
-        last_status = None
-        if self.statuses.exists():
-            last_status = self.statuses.last()
-        result = [i for i in (last_status.label, self.hidden_status) if i]
+        last_status = self.last_status()
+        if last_status is not None:
+            result = [i for i in (last_status.label, self.hidden_status) if i]
+        else:
+            result = [self.hidden_status]
         return ', '.join(result) if result else None
 
     status.short_description = _('Status')
+
+    def status_date(self):
+        last_status = self.last_status()
+        if last_status:
+            return last_status.date
+
+    status_date.short_description = _('Date of status change')
 
     def from_addr(self):
         result = [i for i in (self.sender_addr, self.send_precise_address) if i]

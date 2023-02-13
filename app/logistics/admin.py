@@ -85,10 +85,10 @@ class OrderAdmin(admin.ModelAdmin):
 
     search_fields = ('order_number', )
 
-    list_display = ('order_number', 'order_date', 'pickup_date', 'status', 'docs_sent', 'payer_name', 'sender_name',
-                    'from_addr', 'cargo_spaces', 'cargo_weight', 'cargo_volume', 'receiver_name', 'to_addr',
-                    'load_unload', 'contractor', 'contractor_waybill', 'expenses', 'order_price', 'cargo_value',
-                    'insurance_price', 'insurance_number')
+    list_display = ('order_number', 'order_date', 'pickup_date', 'status', 'status_date', 'docs_sent', 'payer_name',
+                    'sender_name', 'from_addr', 'cargo_spaces', 'cargo_weight', 'cargo_volume', 'receiver_name',
+                    'to_addr', 'load_unload', 'contractor', 'contractor_waybill', 'expenses', 'order_price',
+                    'cargo_value', 'insurance_price', 'insurance_number')
 
     formfield_overrides = {
         models.ManyToManyField: {'widget': forms.CheckboxSelectMultiple}
