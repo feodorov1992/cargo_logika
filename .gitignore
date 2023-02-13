@@ -132,3 +132,5 @@ dmypy.json
 /certbot/
 /app/credentials/
 /*/.idea/
+/*/.uuid
+fonts/truetype/
