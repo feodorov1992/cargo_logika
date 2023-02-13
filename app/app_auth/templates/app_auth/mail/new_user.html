@@ -1,0 +1,21 @@
+{% extends 'mailer/base_wide.html' %}{% load i18n %}{% load l10n %}
+{% block mail_header %}{% trans 'New user has been registered:' %} {{ object.org_name }}{% endblock %}
+{% block mail_content %}
+    <table>
+        <tr>
+            <td width="100%" style="width: 100%; text-align: left">
+                {% trans 'Your E-mail' %}: {{ object.email }}
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" style="width: 100%; text-align: left">
+                {% trans 'Organisation name' %}: {{ object.org_name }}
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" style="width: 100%; text-align: left">
+                {% trans 'User TIN' %}: {{ object.tin }}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

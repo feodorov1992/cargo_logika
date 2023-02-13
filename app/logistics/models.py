@@ -1,20 +1,17 @@
 import uuid
 
-from django.apps import apps
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from app.celery import app
 from app_auth.models import User, CP_TYPES
 from log_cats.models import ExtraService, DeliveryType
-from mailer.views import send_logo_mail
+from mailer.views import send_model_email
 
 PAYMENT_TYPES = (
     ('cash', _('Cash payment')),
@@ -56,16 +53,6 @@ def default_order_num():
             return settings.INITIAL_ORDER_NUMBER + Order.objects.count()
     else:
         return settings.INITIAL_ORDER_NUMBER
-
-
-@app.task(bind=True)
-def send_model_email(self, subject, template_name, model_path, obj_pk, from_email, recipients):
-    app_label, _, class_name = model_path.split('.')
-    model = apps.get_model(app_label, class_name)
-    obj = model.objects.get(pk=obj_pk)
-    body_text = render_to_string(f'{template_name}.txt', {'object': obj})
-    body_html = render_to_string(f'{template_name}.html', {'object': obj})
-    return send_logo_mail(subject, body_text, body_html, from_email, recipients)
 
 
 class Order(models.Model):
@@ -288,6 +275,8 @@ def save_order(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user(sender, instance, created, **kwargs):
     if not instance.is_staff:
+        if created:
+            instance.send_creation_email()
         Order.objects.filter(Q(payer_tin=instance.tin) |
                              Q(sender_tin=instance.tin) |
                              Q(receiver_tin=instance.tin),

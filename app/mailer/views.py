@@ -4,6 +4,9 @@ from django.core.mail import EmailMultiAlternatives
 from email.mime.image import MIMEImage
 from django.contrib.staticfiles import finders
 from functools import lru_cache
+from django.apps import apps
+from django.template.loader import render_to_string
+from app.celery import app
 
 
 @lru_cache()
@@ -31,3 +34,13 @@ def send_logo_mail(subject, body_text, body_html, from_email, recipients, **kwar
         return message.send(fail_silently=False)
     except SMTPRecipientsRefused:
         return 0
+
+
+@app.task(bind=True)
+def send_model_email(self, subject, template_name, model_path, obj_pk, from_email, recipients):
+    app_label, _, class_name = model_path.split('.')
+    model = apps.get_model(app_label, class_name)
+    obj = model.objects.get(pk=obj_pk)
+    body_text = render_to_string(f'{template_name}.txt', {'object': obj})
+    body_html = render_to_string(f'{template_name}.html', {'object': obj})
+    return send_logo_mail(subject, body_text, body_html, from_email, recipients)

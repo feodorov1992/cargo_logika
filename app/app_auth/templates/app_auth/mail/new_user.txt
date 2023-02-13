@@ -1,0 +1,7 @@
+{% load i18n %}
+
+{% trans 'New user has been registered:' %} {{ object.org_name }}
+
+{% trans 'Your E-mail' %}: {{ object.email }}
+{% trans 'Organisation name' %}: {{ object.org_name }}
+{% trans 'User TIN' %}: {{ object.tin }}
