@@ -103,7 +103,7 @@ class OrderAdmin(admin.ModelAdmin):
             render_to_string('logistics/mail/accounts_email.txt', context),
             render_to_string('logistics/mail/accounts_email.html', context),
             'site@cargo-logika.ru',
-            [settings.EMAIL_ACCOUNTS_ADDRESS]
+            [settings.EMAIL_ACCOUNTS_ADDRESS, settings.EMAIL_ADMIN_ADDRESS]
         )
 
         if mail_status == 1:
@@ -205,7 +205,7 @@ class OrderAdmin(admin.ModelAdmin):
             render_to_string('logistics/mail/accounts_registry_email.txt', context),
             render_to_string('logistics/mail/accounts_registry_email.html', context),
             'site@cargo-logika.ru',
-            [settings.EMAIL_ACCOUNTS_ADDRESS]
+            [settings.EMAIL_ACCOUNTS_ADDRESS, settings.EMAIL_ADMIN_ADDRESS]
         )
 
         if mail_status == 1:
