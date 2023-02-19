@@ -255,7 +255,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     def xls_report_action(self, request, queryset):
         fields_list = [i for i in self.model._meta._forward_fields_map.keys() if not i.endswith('id')]
-        fields_list = fields_list[:4] + ['status', 'status_date'] + fields_list[4:]
+        fields_list = fields_list[2:4] + ['status', 'status_date'] + fields_list[4:]
         gen = XLSGenerator(self.model, fields_list,
                            {'status': _('Status'), 'status_date': _('Date of status change')})
         return gen.response(queryset, 'report.xls')
