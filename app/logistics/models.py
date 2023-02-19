@@ -133,7 +133,6 @@ class Order(models.Model):
     def last_status(self):
         if self.__last_status is None:
             self.__last_status = self.statuses.last()
-        print(self.__last_status)
         return self.__last_status
 
     def status(self):
