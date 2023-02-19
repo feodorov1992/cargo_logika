@@ -1184,7 +1184,7 @@ msgstr "Цена, руб"
 #: logistics/templates/logistics/mail/accounts_registry_email.html:29
 #: logistics/templates/logistics/mail/accounts_registry_email.txt:10
 msgid "Forwarding services"
-msgstr "Транспортно-экспедиционные услуги"
+msgstr "Траспортно-экспедиционные услуги"
 
 #: logistics/templates/logistics/mail/accounts_email.html:34
 #: logistics/templates/logistics/mail/accounts_email.txt:7

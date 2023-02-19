@@ -74,7 +74,7 @@ class CalcView(FormView):
         email = form.cleaned_data.get('sub_email')
 
         machine_fields = ('who_packs', 'who_unpacks', 'package_type')
-        fields_to_join = ('extra_services', )
+        fields_to_join = ('cargo_warns', 'extra_services')
 
         context = {key: value for key, value in form.cleaned_data.items() if key not in machine_fields + fields_to_join}
 
