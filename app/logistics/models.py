@@ -145,6 +145,11 @@ class Order(models.Model):
 
     status.short_description = _('Status')
 
+    def status_pub(self):
+        last_status = self.last_status()
+        if last_status is not None:
+            return last_status.label
+
     def status_date(self):
         last_status = self.last_status()
         if last_status:
