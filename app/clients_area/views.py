@@ -40,15 +40,11 @@ class XLSReportView(LoginRequiredMixin, ListView):
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        fields = ['order_number', 'order_date', 'status_pub', 'payer_name', 'payment_type', 'payer_tin', 'payer_email',
-                  'payer_phone', 'payer_contact', 'cargo_name', 'package_type', 'extra_services', 'cargo_spaces',
-                  'cargo_weight', 'cargo_volume', 'cargo_value', 'insurance', 'delivery_type', 'insurance_number',
-                  'insurance_price', 'order_price', 'sender_name', 'sender_type', 'sender_passport', 'sender_tin',
-                  'sender_phone', 'sender_contact', 'sender_addr', 'send_precise_address', 'pickup_date_wanted',
-                  'pickup_date', 'loading_by', 'receiver_name', 'receiver_type', 'receiver_passport', 'receiver_tin',
-                  'receiver_phone', 'receiver_contact', 'receiver_addr', 'receiver_precise_address',
-                  'delivery_date_wanted', 'delivery_date', 'unloading_by', 'extra_info']
-        mapper = {'status_pub': _('Status'), 'status_date': _('Date of status change')}
+        fields = ['order_number', 'order_date', 'status_pub', 'status_date', 'docs_sent', 'payer_name', 'sender_name',
+                  'from_addr', 'cargo_spaces', 'cargo_weight', 'cargo_volume', 'receiver_name', 'to_addr',
+                  'load_unload', 'extra_services', 'order_price', 'cargo_value', 'insurance_price', 'insurance_number']
+        mapper = {'status_pub': _('Status'), 'status_date': _('Date of status change'),
+                  'from_addr': _('Pickup address'), 'to_addr': _('Delivery address')}
 
         if request.user.is_staff:
             filename = 'report.xls'
