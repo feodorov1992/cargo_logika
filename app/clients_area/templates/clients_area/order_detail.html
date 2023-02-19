@@ -9,7 +9,7 @@
             <a href="{% url 'order' %}?repeat={{ object.pk }}">{% trans 'Repeat order' %}</a>
         </div>
         <div>
-            <b>{% trans 'Status' %}:</b> {{ object.statuses.last.label }}
+            <b>{% trans 'Status' %}:</b> {{ object.status_pub }}
         </div>
     </div>
     <div class="order_detail">

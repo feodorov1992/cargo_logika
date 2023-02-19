@@ -1,11 +1,10 @@
 from datetime import datetime
 
-import xlwt
 from django import forms
 from django.conf import settings
 from django.contrib import admin, messages
 from django.db import models
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.html import format_html
