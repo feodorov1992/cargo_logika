@@ -1,14 +1,17 @@
 from datetime import datetime
 
+import xlwt
 from django import forms
 from django.conf import settings
 from django.contrib import admin, messages
 from django.db import models
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+
+from dynamic_docs.generator import XLSGenerator
 from logistics.models import Order, OrderStatus, ContractorBill
 from mailer.views import send_logo_mail
 
@@ -75,8 +78,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     inlines = (ContractorBillInline, OrderStatusInline)
 
-    # actions = ['send_accounts_email_action', 'send_registry_email_action', 'test_action']
-    actions = ['send_accounts_email_action', 'send_registry_email_action']
+    actions = ['send_accounts_email_action', 'send_registry_email_action', 'xls_report_action']
     change_form_template = 'admin/order_edit.html'
     list_filter = (
         'payer_name', 'picked_up', 'delivered', 'insurance', 'docs_sent', 'delivery_type',
@@ -251,7 +253,11 @@ class OrderAdmin(admin.ModelAdmin):
     send_accounts_email_action.short_description = _('Send bills request to the accounts manager')
     send_registry_email_action.short_description = _('Send registry bill request to the accounts manager')
 
-    # def test_action(self, request, queryset):
-    #     mapper = self.model._meta._forward_fields_map
-    #     mapper = {key: value.verbose_name for key, value in mapper.items()}
-    #     print(mapper)
+    def xls_report_action(self, request, queryset):
+        fields_list = [i for i in self.model._meta._forward_fields_map.keys() if not i.endswith('id')]
+        fields_list = fields_list[:4] + ['status', 'status_date'] + fields_list[4:]
+        gen = XLSGenerator(self.model, fields_list,
+                           {'status': _('Status'), 'status_date': _('Date of status change')})
+        return gen.response(queryset, 'report.xls')
+
+    xls_report_action.short_description = _('Export to Excel')
