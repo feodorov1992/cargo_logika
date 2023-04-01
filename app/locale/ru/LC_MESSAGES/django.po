@@ -86,7 +86,7 @@ msgstr "№ договора"
 
 #: app_auth/models.py:20
 msgid "New user has been registered"
-msgstr "Зарегистрирован ноый пользователь"
+msgstr "Зарегистрирован новый пользователь"
 
 #: app_auth/models.py:29
 msgid "user"
