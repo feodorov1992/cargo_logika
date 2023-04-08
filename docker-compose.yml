@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./app:/app
       - static-data:/vol/web
@@ -35,7 +35,7 @@ services:
 
   db:
     image: postgres:13-alpine
-    restart: always
+    restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
@@ -45,10 +45,10 @@ services:
 
   redis:
     image: redis:alpine
-    restart: always
+    restart: unless-stopped
 
   celery:
-    restart: always
+    restart: unless-stopped
     build:
       context: .
     environment:
@@ -83,7 +83,7 @@ services:
   proxy:
     build:
       context: ./proxy
-    restart: always
+    restart: unless-stopped
     depends_on:
       - app
     ports:
