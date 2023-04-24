@@ -38,13 +38,11 @@ class OrderCreateView(SuccessMessageMixin, CreateView):
         response = super(OrderCreateView, self).form_valid(form)
         if self.request.user.is_authenticated and not self.request.user.is_staff:
             self.object.user = self.request.user
-            self.object.payer_name = self.request.user.org_name
             self.object.save()
         else:
             possible_owners = User.objects.filter(tin=self.object.payer_tin)
             if possible_owners.exists():
                 owner = possible_owners.first()
                 self.object.user = owner
-                self.object.payer_name = owner.org_name
                 self.object.save()
         return response
