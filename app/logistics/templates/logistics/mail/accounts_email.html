@@ -12,6 +12,7 @@
                 <table style="background: #fafafa; border-collapse: collapse; border: 1px solid #452f7f; border-radius: 3px">
                     <thead>
                         <tr>
+                            <th style="white-space: nowrap; border: none; padding: 5px; background: #d27100; color: #fafafa">{% trans 'No.' %}</th>
                             <th style="white-space: nowrap; border: none; padding: 5px; background: #d27100; color: #fafafa">{% trans 'Bill #' %}</th>
                             <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Bill date' %}</th>
                             <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Payer' %}</th>
@@ -24,6 +25,7 @@
                     <tbody>
                         {% for order in queryset %}
                         <tr style="text-align: start">
+                            <td style="border: 1px solid #452f7f; padding: 5px">{{ count }}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ order.order_number|unlocalize }}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{% if order.bill_date %}{{ order.bill_date|date:"d.m.Y" }}{% elif order.delivery_date|date:"d.m.Y" %}{{ order.delivery_date|date:"d.m.Y" }}{% else %}-{% endif %}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ order.payer_name }}</td>
@@ -42,6 +44,7 @@
                         </tr>
                         {% if order.insurance %}
                         <tr style="text-align: start">
+                            <td style="border: 1px solid #452f7f; padding: 5px">{{ count }}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ order.order_number|unlocalize }}{% trans 'C' %}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{% if order.bill_date %}{{ order.bill_date|date:"d.m.Y" }}{% elif order.delivery_date %}{{ order.delivery_date|date:"d.m.Y" }}{% else %}-{% endif %}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ order.payer_name }}</td>

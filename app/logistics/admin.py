@@ -95,14 +95,31 @@ class OrderAdmin(admin.ModelAdmin):
         models.ManyToManyField: {'widget': forms.CheckboxSelectMultiple}
     }
 
+    def __init__(self, model, admin_site):
+        super().__init__(model, admin_site)
+        self.counter = None
+
     @staticmethod
-    def send_accounts_email(queryset, user):
-        context = {'user': user, 'queryset': queryset.order_by('order_number')}
+    def __counter():
+        i = 1
+        while True:
+            yield i
+            i += 1
+
+    def count(self):
+        return next(self.counter)
+
+    def send_accounts_email(self, queryset, user):
+        context = {'user': user, 'queryset': queryset.order_by('order_number'), 'count': self.count}
+        self.counter = self.__counter()
+        txt_email = render_to_string('logistics/mail/accounts_email.txt', context)
+        self.counter = self.__counter()
+        html_email = render_to_string('logistics/mail/accounts_email.html', context)
 
         mail_status = send_logo_mail(
             _('Bills issue request - {} ({})').format(queryset.first().payer_name, queryset.first().payer_tin),
-            render_to_string('logistics/mail/accounts_email.txt', context),
-            render_to_string('logistics/mail/accounts_email.html', context),
+            txt_email,
+            html_email,
             'site@cargo-logika.ru',
             [settings.EMAIL_ACCOUNTS_ADDRESS, settings.EMAIL_ADMIN_ADDRESS]
         )

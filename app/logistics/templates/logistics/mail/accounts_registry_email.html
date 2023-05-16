@@ -15,9 +15,10 @@
                 <table style="background: #fafafa; border-collapse: collapse; border: 1px solid #452f7f; border-radius: 3px">
                     <thead>
                         <tr>
-                            <th colspan="2" style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Bill No.' %}{{ bill_number|unlocalize }} {% trans 'dated' %} {{ bill_date|date:"d.m.Y" }} ({% trans 'for transits' %})</th>
+                            <th colspan="3" style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Bill No.' %}{{ bill_number|unlocalize }} {% trans 'dated' %} {{ bill_date|date:"d.m.Y" }} ({% trans 'for transits' %})</th>
                         </tr>
                         <tr>
+                            <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'No.' %}</th>
                             <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Service name' %}</th>
                             <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Price, RUB' %}</th>
                         </tr>
@@ -25,6 +26,9 @@
                     <tbody>
                         {% for order in queryset %}
                         <tr style="text-align: start">
+                            <td style="border: 1px solid #452f7f; padding: 5px">
+                                {{ forloop.counter }}
+                            </td>
                             <td style="border: 1px solid #452f7f; padding: 5px">
                                 {% trans 'Forwarding services' %} {{ order.sender_addr }} - {{ order.receiver_addr }}
                                 {% if order.load_unload %}{% trans 'with loading and unloading operations' %}{% endif %}
@@ -37,7 +41,7 @@
                         </tr>
                         {% endfor %}
                         <tr style="text-align: start">
-                            <td style="border: 1px solid #452f7f; padding: 5px; text-align: right; font-weight: bold">{% trans 'Total' %}</td>
+                            <td colspan="2" style="border: 1px solid #452f7f; padding: 5px; text-align: right; font-weight: bold">{% trans 'Total' %}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ sum_transit_price|floatformat:-2 }}</td>
                         </tr>
                     </tbody>
@@ -51,9 +55,10 @@
                 <table style="background: #fafafa; border-collapse: collapse; border: 1px solid #452f7f; border-radius: 3px; width: 100%">
                     <thead>
                         <tr>
-                            <th colspan="2" style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Bill No.' %}{{ bill_number|unlocalize }}{% trans 'C' %} {% trans 'dated' %} {{ bill_date|date:"d.m.Y" }} ({% trans 'for insurance' %})</th>
+                            <th colspan="3" style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Bill No.' %}{{ bill_number|unlocalize }}{% trans 'C' %} {% trans 'dated' %} {{ bill_date|date:"d.m.Y" }} ({% trans 'for insurance' %})</th>
                         </tr>
                         <tr>
+                            <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'No.' %}</th>
                             <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Service name' %}</th>
                             <th style="white-space: nowrap; border: none; padding: 5px; background: #d27109; color: #fafafa">{% trans 'Price, RUB' %}</th>
                         </tr>
@@ -61,12 +66,13 @@
                     <tbody>
                         {% for order in insurances %}
                         <tr style="text-align: start">
+                            <td style="border: 1px solid #452f7f; padding: 5px">{{ forloop.counter }}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{% trans 'Insurance policy No.' %} {{ order.insurance_number|unlocalize }} ({% trans 'Receipt No.' %} {{ order.order_number|unlocalize }} {% trans 'dated' %} {{ order.pickup_date|date:"d.m.Y" }})</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ order.insurance_price|floatformat:-2 }}</td>
                         </tr>
                         {% endfor %}
                         <tr style="text-align: start">
-                            <td style="border: 1px solid #452f7f; padding: 5px; text-align: right; font-weight: bold">{% trans 'Total' %}</td>
+                            <td colspan="2" style="border: 1px solid #452f7f; padding: 5px; text-align: right; font-weight: bold">{% trans 'Total' %}</td>
                             <td style="border: 1px solid #452f7f; padding: 5px">{{ sum_insurance_price|floatformat:-2 }}</td>
                         </tr>
                     </tbody>
