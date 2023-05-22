@@ -13,7 +13,7 @@
 {% trans 'Total' %}: {{ sum_transit_price|floatformat:-2 }}
 
 {% for order in insurances %}
-{% forloop.counter %}. {% trans 'Insurance policy No.' %} {{ order.insurance_number|unlocalize }} ({% trans 'Receipt No.' %} {{ order.order_number|unlocalize }} {% trans 'dated' %} {{ order.pickup_date|date:"d.m.Y" }}) - {{ order.insurance_price|floatformat:-2 }}
+{{ forloop.counter }}. {% trans 'Insurance policy No.' %} {{ order.insurance_number|unlocalize }} ({% trans 'Receipt No.' %} {{ order.order_number|unlocalize }} {% trans 'dated' %} {{ order.pickup_date|date:"d.m.Y" }}) - {{ order.insurance_price|floatformat:-2 }}
 
 {% endfor %}
 {% trans 'Total' %}: {{ sum_insurance_price|floatformat:-2 }}
