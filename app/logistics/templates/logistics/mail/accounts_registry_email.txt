@@ -7,7 +7,7 @@
 {% trans 'Payer email' %}: {{ payer_email }}
 
 {% for order in queryset %}
-{% forloop.counter %}. {% trans 'Forwarding services' %} {{ order.sender_addr }} - {{ order.receiver_addr }}{% if order.load_unload %} {% trans 'with loading and unloading operations' %}{% endif %} {% trans 'under contract No.' %}{{ order.contract|unlocalize }} (Receipt No. {{ order.order_number|unlocalize }} {% trans 'dated' %} {{ order.pickup_date|date:"d.m.Y" }}, {% trans 'Num. of places' %} {{ order.cargo_spaces }}, {% trans 'volume' %} {{ order.cargo_volume|floatformat:-2 }} {% trans 'm' %}3, {% trans 'weight' %} {{ order.cargo_weight|floatformat:-2 }} {% trans 'kg' %}) {% if order.extra_services.exists %} {% trans 'Extra services' %}: {{ order.extra_services.all|join:", " }}{% endif %} - {{ order.order_price|floatformat:-2 }}
+{{ forloop.counter }}. {% trans 'Forwarding services' %} {{ order.sender_addr }} - {{ order.receiver_addr }}{% if order.load_unload %} {% trans 'with loading and unloading operations' %}{% endif %} {% trans 'under contract No.' %}{{ order.contract|unlocalize }} (Receipt No. {{ order.order_number|unlocalize }} {% trans 'dated' %} {{ order.pickup_date|date:"d.m.Y" }}, {% trans 'Num. of places' %} {{ order.cargo_spaces }}, {% trans 'volume' %} {{ order.cargo_volume|floatformat:-2 }} {% trans 'm' %}3, {% trans 'weight' %} {{ order.cargo_weight|floatformat:-2 }} {% trans 'kg' %}) {% if order.extra_services.exists %} {% trans 'Extra services' %}: {{ order.extra_services.all|join:", " }}{% endif %} - {{ order.order_price|floatformat:-2 }}
 
 {% endfor %}
 {% trans 'Total' %}: {{ sum_transit_price|floatformat:-2 }}
