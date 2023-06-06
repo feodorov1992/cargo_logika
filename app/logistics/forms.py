@@ -16,7 +16,7 @@ class OrderForm(forms.ModelForm):
         model = Order
         exclude = ['order_number', 'order_date', 'pickup_date', 'docs_sent', 'contractor_waybill', 'expenses',
                    'order_price', 'insurance_price', 'insurance_number', 'bill_sent', 'bill_payed', 'user',
-                   'show_cargo_price_in_receipt']
+                   'show_cargo_price_in_receipt', 'payment_receiver']
         widgets = {
             'extra_services': forms.CheckboxSelectMultiple(),
             'delivery_type': forms.RadioSelect(),
