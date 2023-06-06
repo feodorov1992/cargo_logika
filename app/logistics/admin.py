@@ -33,7 +33,7 @@ class ContractorBillInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            'fields': (('order_number', 'order_date',),
+            'fields': (('order_number', 'order_date', 'payment_receiver'),
                        ('payer_name', 'payer_tin', 'user'))
         }),
         (_('Payer info'), {

@@ -44,6 +44,11 @@ DOCS_SENT_CHOICES = (
     ('edm', _('EDM'))
 )
 
+PAYMENT_RECEIVER_CHOICES = (
+    ('llc', _('Cargo Logika LLC')),
+    ('ie', _('IE Nikulin Eugene'))
+)
+
 
 def default_order_num():
     if Order.objects.exists():
@@ -64,6 +69,8 @@ class Order(models.Model):
     payer_name = models.CharField(max_length=255, verbose_name=_('Payer'))
     payment_type = models.CharField(max_length=15, verbose_name=_('Payment type'), choices=PAYMENT_TYPES,
                                     default=PAYMENT_TYPES[0][0])
+    payment_receiver = models.CharField(max_length=5, choices=PAYMENT_RECEIVER_CHOICES,
+                                        default=PAYMENT_RECEIVER_CHOICES[0][0], verbose_name=_('Payment receiver'))
     payer_tin = models.CharField(max_length=15, verbose_name=_('Payer TIN'))
     payer_email = models.EmailField(verbose_name=_('Payer email'))
     payer_phone = models.CharField(max_length=50, verbose_name=_('Payer phone'))

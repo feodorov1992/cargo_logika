@@ -8,6 +8,7 @@
                 <p><b>{% trans 'Payer' %}:</b> {{ payer }}</p>
                 <p><b>{% trans 'Payer TIN' %}:</b> {{ payer_id }}</p>
                 <p><b>{% trans 'Payer email' %}:</b> {{ payer_email }}</p>
+                <p><b>{% trans 'Payment receiver' %}:</b> {{ queryset.first.get_payment_receiver_display }}</p>
             </td>
         </tr>
         <tr>

@@ -18,8 +18,10 @@ class DeliveryType(models.Model):
 
     @classmethod
     def get_default_pk(cls):
-        delivery_type, created = cls.objects.get_or_create(title=_('Auto'))
-        return delivery_type.pk
+        if not cls.objects.exists():
+            delivery_type = cls.objects.create(title=_('Auto'))
+            return delivery_type.pk
+        return cls.objects.first().pk
 
     def __str__(self):
         return self.title

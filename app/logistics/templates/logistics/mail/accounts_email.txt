@@ -1,5 +1,6 @@
 {% load i18n %}{% load l10n %}
 {{ user.first_name }} {{ user.last_name }} {% trans 'has sent you the request to issue following bills:' %}
+{% trans 'Payment receiver' %}: {{ queryset.first.get_payment_receiver_display }}
 {% for order in queryset %}
 {{ count }}.
 {% trans 'Payer' %} {{ order.payer_name }} ({{ order.payer_tin }})

@@ -4,7 +4,8 @@
     <table>
         <tr>
             <td width="100%" style="width: 100%">
-                <b>{{ user.first_name }} {{ user.last_name }}</b> {% trans 'has sent you the request to issue following bills:' %}
+                <p><b>{{ user.first_name }} {{ user.last_name }}</b> {% trans 'has sent you the request to issue following bills:' %}</p>
+                <p><b>{% trans 'Payment receiver' %}:</b> {{ queryset.first.get_payment_receiver_display }}</p>
             </td>
         </tr>
         <tr>
