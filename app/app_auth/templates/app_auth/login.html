@@ -8,6 +8,7 @@
         <table>
             {{ form.as_table }}
         </table>
+        <div class="g-recaptcha" data-sitekey="6Lc6AkAUAAAAALYtA6sKTUWTldN7RuW1Auv8fPyu" data-callback="onSubmit" data-size="invisible"></div>
         <input id="login_form_submit" type="submit" value="{% trans 'Enter' %}">
         <p>{% trans 'No account?' %} <a href="{% url 'sign_up' %}">{% trans 'Create it' %}</a></p>
         <p>{% trans 'Forgot password?' %} <a href="{% url 'reset_password' %}">{% trans 'Reset it' %}</a></p>
