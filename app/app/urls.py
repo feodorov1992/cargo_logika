@@ -12,7 +12,8 @@ urlpatterns = [
     path('order/', include('logistics.urls')),
     path('auth/', include('app_auth.urls')),
     path('clientsarea/', include('clients_area.urls')),
-    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico')))
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico'))),
+    path('robots.txt', RedirectView.as_view(url=staticfiles_storage.url('robots.txt')))
 ]
 
 if settings.DEBUG:
