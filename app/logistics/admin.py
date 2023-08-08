@@ -84,7 +84,7 @@ class OrderAdmin(admin.ModelAdmin):
         'accounts_email_sent', 'bill_sent', 'bill_payed', 'load_unload', 'extra_services',
     )
 
-    search_fields = ('order_number', )
+    search_fields = ('order_number', 'sender_addr', 'receiver_addr')
 
     list_display = ('order_number', 'order_date', 'pickup_date', 'status', 'status_date', 'docs_sent', 'payer_name',
                     'sender_name', 'from_addr', 'cargo_spaces', 'cargo_weight', 'cargo_volume', 'receiver_name',
