@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'app.context_processors.app_settings',
+                'app.context_processors.meta_tags',
             ],
             'libraries': {
                 'pdf_static': 'app.templatetags.pdf_static'

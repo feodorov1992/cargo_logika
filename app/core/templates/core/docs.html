@@ -1,27 +1,17 @@
 {% extends 'core/base.html' %}
 {% block head_title %}Документы{% endblock %}
-{% block content %}{% load static %}
+{% block content %}{% load static %}{% load i18n %}
 <div id="content" class="no_main">
 	<h1>Документы</h1>
     <div id="doc_links">
-        <a class="link" target="_blank" href="{% static '/docs/Реквизиты ООО КАРГО ЛОГИКА.pdf' %}">
+        {% for doc in docs %}
+        <a class="link" target="_blank" href="{{ doc.file.url }}">
             <div class="doc_img">
-                <img src="{% static '/img/doc.svg' %}" alt="Документ">
+                <img src="{% static '/img/doc.svg' %}" alt="{% trans 'Document' %}">
             </div>
-            <div class="doc_label">Реквизиты</div>
+            <div class="doc_label">{{ doc.label }}</div>
         </a>
-        <a class="link" target="_blank" href="{% static '/docs/Договор ООО КАРГО ЛОГИКА о ТЭО.pdf' %}">
-            <div class="doc_img">
-                <img src="{% static '/img/doc.svg' %}" alt="Документ">
-            </div>
-            <div class="doc_label">Договор ТЭО</div>
-        </a>
-        <a class="link" target="_blank" href="{% static '/docs/Поручение экспедитору КАРГО ЛОГИКА (образец).pdf' %}">
-            <div class="doc_img">
-                <img src="{% static '/img/doc.svg' %}" alt="Документ">
-            </div>
-            <div class="doc_label">Образец поручения экспедитору</div>
-        </a>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

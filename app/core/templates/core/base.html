@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>CARGO ЛОГИКА | {% block head_title %}Перевозки медицинского оборудования{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Перевозим все типы грузов под ключ с надежной страховой защитой. Автомобильные, железнодорожные и авиаперевозки по всему миру. Такелаж. Звоните!">
+    {% for tag in meta_tags %}
+    <meta name="{{ tag.name }}" content="{{ tag.content }}">
+    {% endfor %}
 	<link type="image/x-icon" href="{% static 'img/favicon.ico' %}" rel="shortcut icon">
 	<link type="Image/x-icon" href="{% static 'img/favicon.ico' %}" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Prosto+One&amp;subset=cyrillic" rel="stylesheet" type="text/css">

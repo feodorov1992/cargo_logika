@@ -1,5 +1,7 @@
 from django.conf import settings
 
+from core.models import MetaTag
+
 
 def app_settings(request):
     return {'settings': {
@@ -10,3 +12,7 @@ def app_settings(request):
         'YANDEX_MAPS_LINK': settings.YANDEX_MAPS_LINK,
         'YANDEX_MAPS_API_LINK': settings.YANDEX_MAPS_API_LINK,
     }}
+
+
+def meta_tags(request):
+    return {'meta_tags': MetaTag.objects.all()}

@@ -12,6 +12,7 @@ from django.views import View
 from django.views.generic import FormView
 from django.utils.translation import gettext_lazy as _
 from core.forms import CalcForm, FeedbackForm, StatusForm
+from core.models import Document, IconBlock
 from logistics.models import Order
 from mailer.views import send_logo_mail
 
@@ -24,7 +25,10 @@ def get_from_spreadsheet(number):
 
 
 def home(request):
-    return render(request, 'core/home.html', {})
+    icon_blocks = IconBlock.objects.all()
+    print(icon_blocks)
+    return render(request, 'core/home.html', {'icon_blocks': icon_blocks})
+
 
 class HomeView(FormView):
     form_class = StatusForm
@@ -33,6 +37,11 @@ class HomeView(FormView):
 
     def get_success_url(self):
         return reverse(self.success_url)
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['icon_blocks'] = IconBlock.objects.all()
+        return context
 
     def form_valid(self, form):
         order_num = form.cleaned_data.get('order_num')
@@ -54,8 +63,11 @@ class HomeView(FormView):
 def contacts(request):
     return render(request, 'core/contacts.html', {})
 
+
 def docs(request):
-    return render(request, 'core/docs.html', {})
+    documents = Document.objects.all()
+    return render(request, 'core/docs.html', {'docs': documents})
+
 
 def projects(request):
     return render(request, 'core/projects.html', {})
