@@ -194,6 +194,8 @@ class Order(models.Model):
         if not self.delivered:
             if self.delivery_date and self.delivery_date <= timezone.now().date():
                 self.delivered = True
+        if not self.cargo_value:
+            self.cargo_value = 1
         super(Order, self).save(force_insert, force_update, using, update_fields)
 
     def receipt_filename(self):
