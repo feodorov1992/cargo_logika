@@ -65,8 +65,7 @@ def contacts(request):
 
 
 def docs(request):
-    documents = Document.objects.all()
-    return render(request, 'core/docs.html', {'docs': documents})
+    return render(request, 'core/docs.html', {})
 
 
 def projects(request):

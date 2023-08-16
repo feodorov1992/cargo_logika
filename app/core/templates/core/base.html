@@ -158,9 +158,9 @@
     <div id="footer_content">
 		<div style="color:rgb(210, 113, 9)" class="footer_links">
 			<h3>Документы</h3>
-			<a target="_blank" href="{% static '/docs/Реквизиты ООО КАРГО ЛОГИКА.pdf' %}">Реквизиты</a>
-			<a target="_blank" href="{% static '/docs/Договор ООО КАРГО ЛОГИКА о ТЭО.pdf' %}">Договор ТЭО</a>
-			<a target="_blank" href="{% static '/docs/Поручение экспедитору КАРГО ЛОГИКА (образец).pdf' %}">Образец поручения экспедитору</a>
+            {% for doc in docs %}
+            <a target="_blank" href="{{ doc.file.url }}">{{ doc.label }}</a>
+            {% endfor %}
 		</div>
         <div style="color:rgb(210, 113, 9)" class="footer_links">
 			<h3>Услуги</h3>

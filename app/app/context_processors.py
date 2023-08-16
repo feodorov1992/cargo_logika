@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from core.models import MetaTag
+from core.models import MetaTag, Document
 
 
 def app_settings(request):
@@ -15,4 +15,4 @@ def app_settings(request):
 
 
 def meta_tags(request):
-    return {'meta_tags': MetaTag.objects.all()}
+    return {'meta_tags': MetaTag.objects.all(), 'docs': Document.objects.all()}
