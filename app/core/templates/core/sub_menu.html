@@ -20,6 +20,32 @@
         <div id="slogan">
             <h2>Выберите нужное Вам - мы сделаем остальное</h2>
         </div>
+        <script>
+            $(document).ready(function() {
+                const sticky = $('#sub_buttons')
+                const menu = $('#sub_menu')
+                const slogan = $('#slogan')
+                const sloganOffset = slogan.offset()
+                const menuTop = menu.offset().top;
+                const menuHeight = menu.height()
+
+                $(window).scroll(function() {
+                    const windowTop = $(window).scrollTop();
+                    if (menuTop <= windowTop) {
+                        sticky.css('position', 'fixed');
+                        sticky.css('top', '0');
+                        menu.css('height', menuHeight)
+                        slogan.css('position', 'absolute')
+                        slogan.css('top', sloganOffset.top)
+                        slogan.css('left', sloganOffset.left)
+                    } else {
+                        sticky.removeAttr('style')
+                        menu.removeAttr('style')
+                        slogan.removeAttr('style')
+                    }
+                });
+            });
+        </script>
     </div>
     {% block sub_content %}{% endblock %}
 </div>
