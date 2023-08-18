@@ -30,19 +30,11 @@ def home(request):
     return render(request, 'core/home.html', {'icon_blocks': icon_blocks})
 
 
-class HomeView(FormView):
+class StatusFormView(FormView):
     form_class = StatusForm
-    template_name = 'core/home.html'
-    success_url = 'home'
 
     def get_success_url(self):
-        return reverse(self.success_url)
-
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        context['icon_blocks'] = IconBlock.objects.all()
-        context['photo_blocks'] = PhotoBlock.objects.all()
-        return context
+        return self.request.path
 
     def form_valid(self, form):
         order_num = form.cleaned_data.get('order_num')
@@ -58,19 +50,29 @@ class HomeView(FormView):
                 msg = render_to_string('core/messages/status_error.html', {'order_num': order_num})
 
         messages.info(self.request, msg)
-        return super(HomeView, self).form_valid(form)
+        return super(StatusFormView, self).form_valid(form)
 
 
-def contacts(request):
-    return render(request, 'core/contacts.html', {})
+class HomeView(StatusFormView):
+    template_name = 'core/home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['icon_blocks'] = IconBlock.objects.all()
+        context['photo_blocks'] = PhotoBlock.objects.all()
+        return context
 
 
-def docs(request):
-    return render(request, 'core/docs.html', {})
+class ContactsView(StatusFormView):
+    template_name = 'core/contacts.html'
 
 
-def projects(request):
-    return render(request, 'core/projects.html', {})
+class DocsView(StatusFormView):
+    template_name = 'core/docs.html'
+
+
+class ProjectsView(StatusFormView):
+    template_name = 'core/projects.html'
 
 
 class CalcView(FormView):
