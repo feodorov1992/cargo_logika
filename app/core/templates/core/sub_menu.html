@@ -25,7 +25,7 @@
                 const sticky = $('#sub_buttons')
                 const menu = $('#sub_menu')
                 const slogan = $('#slogan')
-                const sloganOffset = slogan.offset()
+                const sloganLeft = slogan.offset().left;
                 const menuTop = menu.offset().top;
                 const menuHeight = menu.height()
 
@@ -36,8 +36,7 @@
                         sticky.css('top', '0');
                         menu.css('height', menuHeight)
                         slogan.css('position', 'absolute')
-                        slogan.css('top', sloganOffset.top)
-                        slogan.css('left', sloganOffset.left)
+                        slogan.css('left', sloganLeft)
                     } else {
                         sticky.removeAttr('style')
                         menu.removeAttr('style')
