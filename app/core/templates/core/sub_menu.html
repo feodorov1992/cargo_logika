@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block content %}{% load static %}
+<div id="content">
+    <div id="sub_menu">
+        <div id="sub_buttons">
+            <a class="sub_button orange" href="{% url 'order' %}">
+                Оформить заявку
+            </a>
+            <div class="sub_button">
+                <p>Отследить груз онлайн:</p>
+                <form id="status_form" method="post">
+                    {% csrf_token %}
+                    {{ form.order_num }}
+                    <button type="submit">
+                        <img src="{% static '/img/next.svg' %}" alt="Далее">
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div id="slogan">
+            <h2>Выберите нужное Вам - мы сделаем остальное</h2>
+        </div>
+    </div>
+    {% block sub_content %}{% endblock %}
+</div>
+{% endblock %}

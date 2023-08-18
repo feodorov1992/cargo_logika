@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}{% load static %}{% load i18n %}
 {% block head_title %}{% trans 'Edit profile' %}{% endblock %}
 {% block content %}
-<div id="content" class="no_main">
+<div id="content">
 	<h1>{% trans 'Edit profile of' %} {% if form.instance.is_staff %}{{ form.instance }}{% else %}{{ form.instance.org_name }}{% endif %}</h1>
     <div class="centered_links">
         <div>

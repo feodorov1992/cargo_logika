@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}{% load static %}{% load i18n %}
 {% block head_title %}{% trans 'Enter' %}{% endblock %}
 {% block content %}
-<div id="content" class="no_main">
+<div id="content">
 	<h1>{% trans 'Enter to the account' %}</h1>
     <form id="login_form" method="post">
         {% csrf_token %}

@@ -1,17 +1,15 @@
-{% extends 'core/base.html' %}
+{% extends 'core/sub_menu.html' %}
 {% block head_title %}Документы{% endblock %}
-{% block content %}{% load static %}{% load i18n %}
-<div id="content" class="no_main">
-	<h1>Документы</h1>
-    <div id="doc_links">
-        {% for doc in docs %}
-        <a class="link" target="_blank" href="{{ doc.file.url }}">
-            <div class="doc_img">
-                <img src="{% static '/img/doc.svg' %}" alt="{% trans 'Document' %}">
-            </div>
-            <div class="doc_label">{{ doc.label }}</div>
-        </a>
-        {% endfor %}
-    </div>
+{% block sub_content %}{% load static %}{% load i18n %}
+<h1>Документы</h1>
+<div id="doc_links">
+    {% for doc in docs %}
+    <a class="link" target="_blank" href="{{ doc.file.url }}">
+        <div class="doc_img">
+            <img src="{% static '/img/doc.svg' %}" alt="{% trans 'Document' %}">
+        </div>
+        <div class="doc_label">{{ doc.label }}</div>
+    </a>
+    {% endfor %}
 </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}{% load static %}{% load i18n %}
 {% block head_title %}{% trans 'Order No.' %} {{ object.order_number }}{% endblock %}
 {% block content %}
-<div id="content" class="no_main">
+<div id="content">
     <h1>{% trans 'Details of the order No.' %} {{ object.order_number }} {% trans 'dated' %} {{ object.order_date|date:"d.m.Y" }}</h1>
     <div class="centered_links">
         <div>

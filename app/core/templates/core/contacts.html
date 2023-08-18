@@ -1,28 +1,26 @@
-{% extends 'core/base.html' %}
+{% extends 'core/sub_menu.html' %}
 {% block head_title %}Контакты{% endblock %}
-{% block content %}{% load static %}
-<div id="content" class="no_main">
-	<h1>Контакты</h1>
-    <div id="doc_links">
-        <a class="link" href="tel:+{{ settings.MAIN_PHONE_RAW }}">
-            <div class="doc_img">
-                <img src="{% static '/img/phone.svg' %}" alt="Телефон">
-            </div>
-            <div class="doc_label">{{  settings.MAIN_PHONE }}</div>
-        </a>
-        <a class="link" href="mailto:{{ settings.EMAIL_ADMIN_ADDRESS }}">
-            <div class="doc_img">
-                <img src="{% static '/img/email.svg' %}" alt="E-mail">
-            </div>
-            <div class="doc_label">{{ settings.EMAIL_ADMIN_ADDRESS }}</div>
-        </a>
-        <a class="link" target="_blank" href="{{ settings.YANDEX_MAPS_LINK }}">
-            <div class="doc_img">
-                <img src="{% static '/img/addr.svg' %}" alt="Адрес">
-            </div>
-            <div class="doc_label">{{ settings.FACT_ADDRESS }}</div>
-        </a>
-    </div>
+{% block sub_content %}{% load static %}
+<h1>Контакты</h1>
+<div id="doc_links">
+    <a class="link" href="tel:+{{ settings.MAIN_PHONE_RAW }}">
+        <div class="doc_img">
+            <img src="{% static '/img/phone.svg' %}" alt="Телефон">
+        </div>
+        <div class="doc_label">{{  settings.MAIN_PHONE }}</div>
+    </a>
+    <a class="link" href="mailto:{{ settings.EMAIL_ADMIN_ADDRESS }}">
+        <div class="doc_img">
+            <img src="{% static '/img/email.svg' %}" alt="E-mail">
+        </div>
+        <div class="doc_label">{{ settings.EMAIL_ADMIN_ADDRESS }}</div>
+    </a>
+    <a class="link" target="_blank" href="{{ settings.YANDEX_MAPS_LINK }}">
+        <div class="doc_img">
+            <img src="{% static '/img/addr.svg' %}" alt="Адрес">
+        </div>
+        <div class="doc_label">{{ settings.FACT_ADDRESS }}</div>
+    </a>
 </div>
 <div style="width: 100%;">
     <script type="text/javascript" charset="utf-8" async src="{{ settings.YANDEX_MAPS_API_LINK }}"></script>

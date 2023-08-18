@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}{% load static %}{% load i18n %}
 {% block head_title %}Личный кабинет{% endblock %}
 {% block content %}
-<div id="content" class="no_main">
+<div id="content">
     {% if request.user.is_staff %}
     <h1>{% trans 'Management account' %}</h1>
     {% else %}

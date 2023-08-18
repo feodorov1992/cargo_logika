@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% block head_title %}Обратная связь{% endblock %}
 {% block content %}{% load static %}
-<div id="content" class="no_main">
+<div id="content">
 	<h1>Обратная связь</h1>
     <form id="feedback_form" method="post">
         {% csrf_token %}

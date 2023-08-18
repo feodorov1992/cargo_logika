@@ -132,10 +132,11 @@
 <div id="purple_line">
     <div id="menu">
         <a href="{% url 'home' %}">Главная</a>
-        <a href="{% url 'orders_list' %}" id="lk_enter">Личный кабинет</a>
         <a href="{% url 'projects' %}">О нас</a>
         <a href="{% url 'docs' %}">Документы</a>
         <a href="{% url 'contacts' %}">Контакты</a>
+        <a href="{% url 'calc' %}">Запросить стоимость</a>
+        <a href="{% url 'orders_list' %}" id="lk_enter" class="orange">Личный кабинет</a>
     </div>
 </div>
 {% block content %}{% endblock %}

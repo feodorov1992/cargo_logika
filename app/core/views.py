@@ -12,7 +12,7 @@ from django.views import View
 from django.views.generic import FormView
 from django.utils.translation import gettext_lazy as _
 from core.forms import CalcForm, FeedbackForm, StatusForm
-from core.models import Document, IconBlock
+from core.models import Document, IconBlock, PhotoBlock
 from logistics.models import Order
 from mailer.views import send_logo_mail
 
@@ -41,6 +41,7 @@ class HomeView(FormView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['icon_blocks'] = IconBlock.objects.all()
+        context['photo_blocks'] = PhotoBlock.objects.all()
         return context
 
     def form_valid(self, form):
