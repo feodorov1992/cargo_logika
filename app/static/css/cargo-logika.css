@@ -750,6 +750,10 @@ form a:hover {
     color: #d27100;
 }
 
+.orders_list h3 {
+    text-align: center;
+}
+
 .order_detail {
     width: 95%;
     margin: 30px auto 0;

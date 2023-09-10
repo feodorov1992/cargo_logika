@@ -741,7 +741,7 @@ msgstr "Стоимость страховки, руб"
 
 #: clients_area/templates/clients_area/orders_list.html:77
 msgid "There are no orders yet"
-msgstr "Вы пока не сделали ни одной заявки"
+msgstr "Заявок не найдено"
 
 #: clients_area/views.py:95 logistics/admin.py:276 logistics/models.py:165
 #: logistics/models.py:246
