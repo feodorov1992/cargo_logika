@@ -651,18 +651,31 @@ label.checkbox {
     margin-bottom: 15px;
 }
 
-.centered_links a {
+.centered_links a,
+.clientsarea__centered_links a {
     color: #452f7f;
     font-weight: bold;
     margin-right: 10px;
 }
 
-.centered_links a:hover {
+.clientsarea__centered_links a {
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+
+.centered_links a:hover,
+.clientsarea__centered_links a:hover {
     color: #d27100;
 }
 
 .centered_links h4 {
     margin-block: 0;
+}
+
+.clientsarea__centered_links {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
 #orders_filters {
@@ -681,7 +694,7 @@ label.checkbox {
 }
 
 #orders_filters #submit {
-    width: auto !important;
+    width: auto;
     /*margin: 0;*/
 }
 
@@ -1104,6 +1117,27 @@ div#id_delivery_type>div {
     max-width: 1200px;
 }
 
+.filter_form__container {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    margin: 17px auto;
+}
+
+.filter_form {
+    margin: auto 15px;
+}
+
+.filter_form th,
+.filter_form td {
+    white-space: nowrap;
+    padding-right: 15px
+}
+
+.filter_form input[type=submit] {
+    margin: 0 !important;
+}
+
 @media screen and (max-width: 1700px) {
 
 }
@@ -1378,6 +1412,21 @@ div#id_delivery_type>div {
 	.footer_links:nth-child(1) {
 		display: none;
 	}
+}
+
+@media screen and (max-width: 610px) {
+    .filter_form__container {
+        flex-flow: column nowrap;
+        margin-bottom: 0;
+    }
+
+    .filter_form {
+        margin-bottom: 17px;
+    }
+
+    .filter_form input[type=submit] {
+        width: 100% !important;
+    }
 }
 
 @media screen and (max-width: 555px) {

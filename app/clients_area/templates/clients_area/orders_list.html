@@ -7,22 +7,21 @@
     {% else %}
     <h1>{% trans 'Account of' %} {{ request.user.org_name }}</h1>
     {% endif %}
-    <div class="centered_links">
-        <div>
-            <a href="{% url 'order' %}">{% trans 'New order' %}</a>
-            <a href="{% url 'XLS_client' %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}">{% trans 'Export to Excel' %}</a>
-            <a href="{% url 'edit_profile' %}">{% trans 'Edit profile' %}</a>
-            <a href="{% url 'logout' %}">{% trans 'Log out' %}</a>
-        </div>
+    <div class="clientsarea__centered_links">
+        <a href="{% url 'order' %}">{% trans 'New order' %}</a>
+        <a href="{% url 'XLS_client' %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}">{% trans 'Export to Excel' %}</a>
+        <a href="{% url 'edit_profile' %}">{% trans 'Edit profile' %}</a>
+        <a href="{% url 'logout' %}">{% trans 'Log out' %}</a>
     </div>
     <div class="centered_links">
-        <h4>{% trans 'Order date filters' %}</h4>
+{#        <h4>{% trans 'Order date filters' %}</h4>#}
         <form method="post" id="orders_filters">
             {% csrf_token %}
-            <table>
-                {{ form.as_table }}
-            </table>
-            <input type="submit" id="submit" value="Применить">
+{#            <table>#}
+{#                {{ form.as_table }}#}
+{#            </table>#}
+            {{ form.as_my_style }}
+{#            <input type="submit" id="submit" value="Применить">#}
         </form>
     </div>
     <div class="orders_list">

@@ -1,0 +1,59 @@
+{% load i18n %}
+<div class="filter_form__container">
+    <table class="filter_form">
+        <thead>
+            <tr>
+                <th colspan="2">{% trans 'Order date filters' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">{{ fields.order_date__gte.errors }}</td>
+            </tr>
+            <tr>
+                <td>{{ fields.order_date__gte.label_tag }}</td>
+                <td>{{ fields.order_date__gte }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ fields.order_date__lte.errors }}</td>
+            </tr>
+            <tr>
+                <td>{{ fields.order_date__lte.label_tag }}</td>
+                <td>{{ fields.order_date__lte }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="filter_form">
+        <thead>
+            <tr>
+                <th colspan="2">{% trans 'Delivery date filters' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">{{ fields.delivery_date__gte.errors }}</td>
+            </tr>
+            <tr>
+                <td>{{ fields.delivery_date__gte.label_tag }}</td>
+                <td>{{ fields.delivery_date__gte }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ fields.delivery_date__lte.errors }}</td>
+            </tr>
+            <tr>
+                <td>{{ fields.delivery_date__lte.label_tag }}</td>
+                <td>{{ fields.delivery_date__lte }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="filter_form">
+        <thead>
+            <tr><th>&nbsp;</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4"><input type="submit" id="submit" value="Применить"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
