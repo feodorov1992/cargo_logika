@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
+    'captcha',
     'app_auth',
     'core',
     'log_cats',
@@ -174,3 +175,6 @@ YANDEX_MAPS_LINK = os.environ.get('YANDEX_MAPS_LINK')
 YANDEX_MAPS_API_LINK = os.environ.get('YANDEX_MAPS_API_LINK')
 INITIAL_ORDER_NUMBER = int(os.environ.get('INITIAL_ORDER_NUMBER'))
 DADATA_TOKEN = os.environ.get('DADATA_TOKEN')
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

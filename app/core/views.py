@@ -88,7 +88,7 @@ class CalcView(FormView):
         email = form.cleaned_data.get('sub_email')
 
         machine_fields = ('who_packs', 'who_unpacks', 'package_type')
-        fields_to_join = ('cargo_warns', 'extra_services')
+        fields_to_join = ('extra_services',)
 
         context = {key: value for key, value in form.cleaned_data.items() if key not in machine_fields + fields_to_join}
 
@@ -97,6 +97,7 @@ class CalcView(FormView):
             context[field_name] = mapper.get(form.cleaned_data.get(field_name))
 
         for field_name in fields_to_join:
+            print(field_name)
             context[field_name] = ', '.join([str(i) for i in form.cleaned_data.get(field_name)])
 
         send_logo_mail(

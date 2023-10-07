@@ -1,4 +1,5 @@
 from django import forms
+from captcha import fields, widgets
 from django.template.defaultfilters import safe
 from django.utils.translation import gettext_lazy as _
 from logistics.models import LOADING_BY, UNLOADING_BY, PACKAGE_TYPES, ExtraService
@@ -30,6 +31,7 @@ class CalcForm(forms.Form):
     insurance = forms.BooleanField(label=_('Insurance is required'), initial=False, required=False)
     extra_services = forms.ModelMultipleChoiceField(label=_('Extra services'), queryset=ExtraService.objects.all(),
                                                     widget=forms.CheckboxSelectMultiple(), required=False)
+    captcha = fields.ReCaptchaField(widget=widgets.ReCaptchaV2Invisible())
     
     def as_my_style(self):
         context = super().get_context()
@@ -45,6 +47,7 @@ class FeedbackForm(forms.Form):
     sub_email = forms.EmailField(label=_('Your E-mail'), required=False)
     sub_title = forms.CharField(label=_('Topic'))
     sub_body = forms.CharField(label=_('Appeal'), widget=forms.Textarea())
+    captcha = fields.ReCaptchaField(widget=widgets.ReCaptchaV2Invisible())
 
     def as_my_style(self):
         context = super().get_context()

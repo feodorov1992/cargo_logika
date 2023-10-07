@@ -30,6 +30,8 @@ services:
       - YANDEX_MAPS_API_LINK=${YANDEX_MAPS_API_LINK}
       - DEBUG=${DEBUG}
       - DADATA_TOKEN=${DADATA_TOKEN}
+      - RECAPTCHA_PUBLIC_KEY=${RECAPTCHA_PUBLIC_KEY}
+      - RECAPTCHA_PRIVATE_KEY=${RECAPTCHA_PRIVATE_KEY}
     depends_on:
       - db
 
@@ -72,6 +74,8 @@ services:
       - YANDEX_MAPS_LINK=${YANDEX_MAPS_LINK}
       - YANDEX_MAPS_API_LINK=${YANDEX_MAPS_API_LINK}
       - DADATA_TOKEN=${DADATA_TOKEN}
+      - RECAPTCHA_PUBLIC_KEY=${RECAPTCHA_PUBLIC_KEY}
+      - RECAPTCHA_PRIVATE_KEY=${RECAPTCHA_PRIVATE_KEY}
     command: celery -A app worker -l info
     volumes:
       - ./app:/app
