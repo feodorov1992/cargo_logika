@@ -1,7 +1,8 @@
 from django.urls import path
 
-from app_auth.views import UserAuthView, UserCreateView, UserUpdateView, UserPasswordChangeView, UserPasswordResetView, \
-    UserPasswordResetDoneView, UserPasswordResetConfirmView, UserPasswordResetCompleteView, UserLogoutView
+from app_auth.views import UserAuthView, UserCreateView, UserUpdateView, UserPasswordChangeView, \
+    UserPasswordResetView, UserPasswordResetDoneView, UserPasswordResetConfirmView, UserPasswordResetCompleteView, \
+    UserLogoutView
 
 urlpatterns = [
     path('login/', UserAuthView.as_view(), name='login'),
