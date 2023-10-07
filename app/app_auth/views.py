@@ -73,11 +73,6 @@ class UserPasswordResetDoneView(PasswordResetDoneView):
 class UserPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'app_auth/password_reset_confirm.html'
 
-    def get_success_url(self):
-        url = super(UserPasswordResetConfirmView, self).get_success_url()
-        print(url)
-        return url
-
 
 class UserPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'app_auth/password_reset_complete.html'
