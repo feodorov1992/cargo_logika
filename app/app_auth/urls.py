@@ -1,5 +1,3 @@
-from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, \
-    PasswordResetCompleteView
 from django.urls import path
 
 from app_auth.views import UserAuthView, UserCreateView, UserUpdateView, UserPasswordChangeView, UserPasswordResetView, \

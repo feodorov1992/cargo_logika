@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import UpdateView
 
-from app_auth.forms import UserCreateForm, UserEditForm, UserPasswordResetForm, UserLoginForm
+from app_auth.forms import UserCreateForm, UserEditForm, UserPasswordResetForm, UserLoginForm, UserPasswordChangeForm
 
 
 class UserAuthView(LoginView):
@@ -45,6 +45,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 class UserPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     template_name = 'app_auth/password_change.html'
     login_url = 'login'
+    form_class = UserPasswordChangeForm
 
     def get_form(self, form_class=None):
         form = super(UserPasswordChangeView, self).get_form(form_class)

@@ -5,12 +5,18 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import path, include
 from django.views.generic import RedirectView, TemplateView
+
+from app_auth.forms import UserLoginForm
 from .sitemaps import StaticViewSitemap
 
 
 sitemaps = {
     "static": StaticViewSitemap,
 }
+
+admin.autodiscover()
+admin.site.login_form = UserLoginForm
+admin.site.login_template = 'app_auth/admin_login.html'
 
 urlpatterns = [
     path('', include('core.urls')),

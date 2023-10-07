@@ -1,6 +1,8 @@
+from captcha import fields, widgets
 from django import forms
 from django.conf import settings
-from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, AuthenticationForm, UsernameField
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, AuthenticationForm, UsernameField, \
+    PasswordChangeForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from app_auth.models import User
@@ -13,6 +15,7 @@ from mailer.views import send_logo_mail
 class UserCreateForm(UserCreationForm):
     required_css_class = 'required'
 
+    captcha = fields.ReCaptchaField(widget=widgets.ReCaptchaV2Invisible(), label='')
     email = forms.EmailField(label=_('Login (E-mail)'), max_length=254, required=True,
                              widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
     tin = forms.CharField(required=True, label=_('User TIN'))
@@ -58,10 +61,11 @@ class UserCreateForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['email', 'tin']
+        fields = ['email', 'tin', 'captcha']
 
 
 class UserEditForm(forms.ModelForm):
+    captcha = fields.ReCaptchaField(widget=widgets.ReCaptchaV2Invisible(), label='')
     email = forms.EmailField(label=_('Login (E-mail)'), max_length=254,
                              widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
 
@@ -72,10 +76,11 @@ class UserEditForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email']
+        fields = ['email', 'captcha']
 
 
 class UserPasswordResetForm(PasswordResetForm):
+    captcha = fields.ReCaptchaField(widget=widgets.ReCaptchaV2Invisible(), label='')
     email = forms.EmailField(label=_('Login (E-mail)'), max_length=254,
                              widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
 
@@ -92,6 +97,11 @@ class UserPasswordResetForm(PasswordResetForm):
         )
 
 
+class UserPasswordChangeForm(PasswordChangeForm):
+    captcha = fields.ReCaptchaField(widget=widgets.ReCaptchaV2Invisible(), label='')
+
+
 class UserLoginForm(AuthenticationForm):
+    captcha = fields.ReCaptchaField(widget=widgets.ReCaptchaV2Invisible(), label='')
     username = UsernameField(widget=forms.EmailInput(attrs={'autofocus': True, 'autocomplete': 'email'}),
                              label=_('Login (E-mail)'))
