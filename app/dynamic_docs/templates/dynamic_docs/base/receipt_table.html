@@ -23,8 +23,8 @@
                                 <td colspan="2">тел.: {{ order.sender_phone }}</td>
                             </tr>
                             <tr class="smaller_text">
-                                <td colspan="2">{% if order.send_precise_address %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Забор груза с адреса отправителя</td>
-                                <td>{% if order.loading_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Погрузка силами CARGO ЛОГИКА</td>
+                                <td colspan="2">{% if order.send_precise_address %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} Забор груза с адреса отправителя</td>
+                                <td>{% if order.loading_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} Погрузка силами CARGO ЛОГИКА</td>
                             </tr>
                         </table>
                     </td>
@@ -44,8 +44,8 @@
                                 <td colspan="2">тел.: {{ order.receiver_phone }}</td>
                             </tr>
                             <tr class="smaller_text">
-                                <td colspan="2">{% if order.receiver_precise_address %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Доставка груза до адреса получателя</td>
-                                <td>{% if order.unloading_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Выгрузка силами CARGO ЛОГИКА</td>
+                                <td colspan="2">{% if order.receiver_precise_address %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} Доставка груза до адреса получателя</td>
+                                <td>{% if order.unloading_by == 'cargo_logika' %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} Выгрузка силами CARGO ЛОГИКА</td>
                             </tr>
                         </table>
                     </td>
@@ -56,7 +56,7 @@
                             <tr class="even">
                                 <td class="vert_center"><b>Вид транспорта:</b></td>
                                 {% for del_type in delivery_types %}
-                                <td class="vert_center">{% if del_type == order.delivery_type %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} {{ del_type }}</td>
+                                <td class="vert_center">{% if del_type == order.delivery_type %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} {{ del_type }}</td>
                                 {% endfor %}
                             </tr>
                         </table>
@@ -97,7 +97,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    {% if order.insurance %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} да&nbsp;&nbsp;{% if not order.insurance %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} нет
+                                    {% if order.insurance %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} да&nbsp;&nbsp;{% if not order.insurance %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} нет
                                 </th>
                             </tr>
                             {% if order.show_cargo_price_in_receipt %}
@@ -141,10 +141,10 @@
             <table>
                 <tr>
                     <td><b>Плательщик:</b></td>
-                    <td>{% if order.payer_name == order.sender_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Отправитель</td>
-                    <td>{% if order.payer_name == order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} Получатель</td>
-                    <td colspan="2">{% if order.payer_name != order.sender_name and order.payer_name != order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes"> Третье лицо: {{ order.payer_name }}{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no"> третье лицо: _____________________{% endif %}</td>
-                    <td>{% if order.payment_type == 'cash' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} нал&nbsp;&nbsp;{% if order.payment_type != 'cash' %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} б/нал</td>
+                    <td>{% if order.payer_name == order.sender_name %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} Отправитель</td>
+                    <td>{% if order.payer_name == order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} Получатель</td>
+                    <td colspan="2">{% if order.payer_name != order.sender_name and order.payer_name != order.receiver_name %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes"> Третье лицо: {{ order.payer_name }}{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no"> третье лицо: _____________________{% endif %}</td>
+                    <td>{% if order.payment_type == 'cash' %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} нал&nbsp;&nbsp;{% if order.payment_type != 'cash' %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} б/нал</td>
                 </tr>
             </table>
         </td>
@@ -157,7 +157,7 @@
                 <tr>
                     <td><b>Дополнительные услуги:</b></td>
                     {% for service in extra_services %}
-                    <td>{% if service in order.extra_services.all %}<img class="check" src="{% static 'img/icons/check_yes.svg' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.svg' %}" alt="no">{% endif %} {{ service }}</td>
+                    <td>{% if service in order.extra_services.all %}<img class="check" src="{% static 'img/icons/check_yes.png' %}" alt="yes">{% else %}<img class="check" src="{% static 'img/icons/check_no.png' %}" alt="no">{% endif %} {{ service }}</td>
                     {% endfor %}
                 </tr>
             </table>

@@ -72,6 +72,10 @@ img.check {
     text-align: center;
 }
 
+i {
+    font-size: 0.95em;
+}
+
 .even {
     table-layout: fixed;
 }
@@ -80,6 +84,11 @@ th, td {
     vertical-align: top;
     padding: 3px;
     height: 15px;
+}
+
+.hor_center th {
+    line-height: 17px;
+    padding: 0 !important;
 }
 
 td.double_height {
