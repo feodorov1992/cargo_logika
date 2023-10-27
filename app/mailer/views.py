@@ -43,4 +43,7 @@ def send_model_email(self, subject, template_name, model_path, obj_pk, from_emai
     obj = model.objects.get(pk=obj_pk)
     body_text = render_to_string(f'{template_name}.txt', {'object': obj})
     body_html = render_to_string(f'{template_name}.html', {'object': obj})
-    return send_logo_mail(subject, body_text, body_html, from_email, recipients)
+    try:
+        return send_logo_mail(subject, body_text, body_html, from_email, recipients)
+    except ConnectionResetError as e:
+        self.retry(exc=e, countdown=0.5)
