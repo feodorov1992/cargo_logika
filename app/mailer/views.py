@@ -46,4 +46,4 @@ def send_model_email(self, subject, template_name, model_path, obj_pk, from_emai
     try:
         return send_logo_mail(subject, body_text, body_html, from_email, recipients)
     except ConnectionResetError as e:
-        self.retry(exc=e, countdown=0.5)
+        self.retry(exc=e, countdown=1.5)
