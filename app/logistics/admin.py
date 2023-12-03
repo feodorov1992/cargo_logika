@@ -3,6 +3,7 @@ from datetime import datetime
 from django import forms
 from django.conf import settings
 from django.contrib import admin, messages
+from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 from django.db import models
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -78,6 +79,7 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = (ContractorBillInline, OrderStatusInline)
 
     actions = ['send_accounts_email_action', 'send_registry_email_action', 'xls_report_action']
+    act_on_all = ['xls_report_action']
     change_form_template = 'admin/order_edit.html'
     list_filter = (
         'payer_name', 'picked_up', 'delivered', 'insurance', 'docs_sent', 'delivery_type',
@@ -277,3 +279,11 @@ class OrderAdmin(admin.ModelAdmin):
         return gen.response(queryset, 'report.xls')
 
     xls_report_action.short_description = _('Export to Excel')
+
+    def changelist_view(self, request, extra_context=None):
+        if request.POST.get('action', '') in self.act_on_all:
+            if not request.POST.getlist(ACTION_CHECKBOX_NAME):
+                post = request.POST.copy()
+                post.setlist(ACTION_CHECKBOX_NAME, self.model.objects.values_list('pk', flat=True))
+                request._set_post(post)
+        return super(OrderAdmin, self).changelist_view(request, extra_context)
